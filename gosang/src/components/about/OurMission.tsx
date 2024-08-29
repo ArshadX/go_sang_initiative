@@ -27,7 +27,7 @@ export default function OurMission() {
           {/* Stats Section */}
           <div className="flex-1 flex flex-col items-center justify-center">
           <div className=" justify-items-start items-start space-y-8">
-            <div>
+            <div>   
               <h3 className="text-4xl font-bold text-gray-900">44 million</h3>
               <p className="text-gray-500">Transactions every 24 hours</p>
             </div>
