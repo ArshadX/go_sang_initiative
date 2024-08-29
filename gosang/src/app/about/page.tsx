@@ -9,10 +9,9 @@ export default function Page() {
 
   return (
     <>
-        <AboutHero />
-        <OurMission/>
-        <TeamSection />
-
+      <AboutHero />
+      <OurMission/>
+      <TeamSection />
     </>
     ) 
 }
