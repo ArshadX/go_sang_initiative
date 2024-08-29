@@ -1,7 +1,15 @@
+import AboutHero from '@/components/about/AboutHero'
+import TeamSection from '@/components/about/Team'
 import React from 'react'
 
 
 
 export default function Page() {
-    return <h1 className='flex h-screen justify-center items-center'>Hello, About us!</h1>
+
+  return (
+    <>
+        <AboutHero />
+        <TeamSection />
+    </>
+    ) 
 }
