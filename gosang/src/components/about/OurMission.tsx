@@ -2,7 +2,7 @@
 export default function OurMission() {
     return (
       <section className="py-16 px-4 lg:px-24 bg-white">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
+        <div className="max-w-7xl mx-auto  flex flex-col lg:flex-row gap-12 lg:justify-start ">
           {/* Mission Text Section */}
           <div className="flex-1 space-y-6">
             <h2 className="text-4xl font-bold text-gray-900">Our mission</h2>
@@ -25,7 +25,8 @@ export default function OurMission() {
           </div>
   
           {/* Stats Section */}
-          <div className="flex-1 flex flex-col justify-start space-y-8">
+          <div className="flex-1 flex flex-col items-center justify-center">
+          <div className=" justify-items-start items-start space-y-8">
             <div>
               <h3 className="text-4xl font-bold text-gray-900">44 million</h3>
               <p className="text-gray-500">Transactions every 24 hours</p>
@@ -38,6 +39,7 @@ export default function OurMission() {
               <h3 className="text-4xl font-bold text-gray-900">46,000</h3>
               <p className="text-gray-500">New users annually</p>
             </div>
+          </div>
           </div>
         </div>
       </section>
