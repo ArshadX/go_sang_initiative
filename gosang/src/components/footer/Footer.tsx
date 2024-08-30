@@ -101,6 +101,12 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      <a href="#top" className="fixed bottom-4 right-4 p-3 bg-black-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition">
+    <svg width="24" height="24" viewBox="0 0 24 24" className="fill-current">
+      <path d="M12 5v14m-7-7l7-7 7 7" />
+    </svg>
+  </a>
     </footer>
   );
 };
