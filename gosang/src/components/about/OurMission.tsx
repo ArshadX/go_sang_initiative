@@ -1,7 +1,7 @@
 // components/OurMission.js
 export default function OurMission() {
     return (
-      <section className="py-16 px-4 lg:px-24 bg-white">
+      <section className="py-14 px-4 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto  flex flex-col lg:flex-row gap-12 lg:justify-start ">
           {/* Mission Text Section */}
           <div className="flex-1 space-y-6">
