@@ -31,7 +31,7 @@ const OurValues = () => {
   return (
     <section className="py-16 px-4 lg:px-24 bg-white">
       <div className="container">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">Our values</h2>
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Objective</h2>
         <p className="text-lg text-gray-500 mb-12">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.
         </p>

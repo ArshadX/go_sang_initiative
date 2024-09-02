@@ -6,6 +6,7 @@ import React from 'react'
 import Footer from '@/components/footer/Footer'
 import ScrollToTop from '@/components/common/ScrollToTop'
 import Objectives from '@/components/about/Objectives'
+import StatsSection from '@/components/about/StatsSection'
 
 
 
@@ -17,6 +18,7 @@ export default function Page() {
       {/* <OurMission/> */}
       <Objectives />
       <OurValues/>
+      <StatsSection/>
       <TeamSection />
       <Footer/>
       <ScrollToTop />
