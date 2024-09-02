@@ -1,28 +1,29 @@
+import Image from "next/image"
 
 const people = [
     {
       name: 'Zaheen akhtar',
       role: 'Backend',
       imageUrl:
-        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'zaheen.jpg',
     },
     {
         name: 'Mo Arshad',
         role: 'Frontend',
         imageUrl:
-          'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          'arshad.jpg',
     },
     {
         name: 'Vimal Sharma',
         role: 'Frontend',
         imageUrl:
-          'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          'vimal.jpg',
     },
     {
         name: 'Ayush',
         role: 'CEO / CTO',
         imageUrl:
-          'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          'ayush.jpg',
     },
     // More people...
   ]
@@ -41,8 +42,8 @@ export default function TeamSection(){
               <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
                 {people.map((person) => (
                   <li key={person.name}>
-                    <div className="flex items-center gap-x-6">
-                      <img alt="" src={person.imageUrl} className="h-16 w-16 rounded-full" />
+                    <div className="items-center gap-x-6">
+                      <Image alt="" src={`/images/about/${person.imageUrl}`} width={500} height={500} className="rounded-lg" />
                       <div>
                         <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">{person.name}</h3>
                         <p className="text-sm font-semibold leading-6 text-indigo-600">{person.role}</p>

@@ -1,12 +1,8 @@
 export default function AboutHero() {
   return (
-    <div className="bg-white flex flex-col lg:flex-row justify-center items-start">
-      <div className="relative isolate px-6 pt-14 lg:px-8 lg:pt-32 flex-1">
-       
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            
-          </div>
+    <section className="py-14 px-4 lg:px-24 bg-cyan-300">
+    <div className="max-w-7xl isolate mx-auto  flex flex-col lg:flex-row gap-12 justify-between items-center ">
+        <div className=" flex-1 space-y-6 p-6 ">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               We are changing the way people connect to Share ride.
@@ -26,8 +22,7 @@ export default function AboutHero() {
               </a>
             </div>
           </div>
-        </div>
-        <div
+          <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
         >
@@ -39,17 +34,19 @@ export default function AboutHero() {
             className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
           />
         </div>
+        </div>   
+      
+      <div className="flex-1 space-y-6">
+          <div className="mx-auto flex">     
+            <img 
+              src="/images/about/aboutbus.webp" 
+              alt="image not found" 
+              className="w-fit h-auto "  // Add this line to increase top margin
+            />
+          </div>
       </div>
-      <div className="relative isolate px-6 pt-14 lg:px-8 lg:pt-32 flex-1">
-  <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 top-18">     
-    <img 
-      src="/images/about/aboutbus.webp" 
-      alt="image not found" 
-      className="mt-8 lg:mt-16"  // Add this line to increase top margin
-    />
-  </div>
-</div>
 
     </div>
+    </section>
   );
 }
