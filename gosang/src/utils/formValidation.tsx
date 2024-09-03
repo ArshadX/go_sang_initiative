@@ -1,0 +1,47 @@
+
+interface FormProps {
+    phone: string;
+    name: string;
+    email: string;
+    DOB:string;
+  }
+export const validateField = (fieldName: keyof FormProps, value: string) => {
+    let error = '';
+
+    if (!value) {
+      error = 'This field is required';
+    } else {
+      switch (fieldName) {
+        case 'email':
+          if (!/\S+@\S+\.\S+/.test(value)) {
+            error = 'Email is invalid';
+          }
+          break;
+        // case 'age':
+        //   if (isNaN(Number(value)) || Number(value) < 1 || Number(value) > 120) {
+        //     error = 'Age must be a valid number between 1 and 120';
+        //   }
+        //   break;
+        case 'name':
+          if(value === ""){
+            error = "Name is required"
+          }
+          break;
+        case 'DOB':
+          if(value=== ""){
+            error = "DOB is required"
+          }
+          break;
+        case 'phone':
+          if(value=== ""){
+            error = "Phone number is required"
+          }
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    return error;
+  };

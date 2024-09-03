@@ -126,7 +126,7 @@ export default function Page() {
          {
           currentField === 'phone' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What's your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
@@ -141,7 +141,7 @@ export default function Page() {
         {
           currentField === 'name' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What's your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
@@ -157,7 +157,7 @@ export default function Page() {
           currentField === 'email' && 
           <div className='flex flex-col bg-cyan-400 items-center justify-center animate-slideIn gap-y-4'>
        
-          <h1 className='font-bold text-4xl text-gray-900  '> What's your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
@@ -172,11 +172,11 @@ export default function Page() {
          {
           currentField === 'DOB' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What's your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
-              type={'text'}
+              type={'date'}
               name={currentField}
               value={formData['DOB']}
               onChange={handleInputChange}
