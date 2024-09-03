@@ -1,20 +1,83 @@
 "use client";
 
-import React, { useState } from 'react';
-import { RiSendPlaneLine } from "react-icons/ri";
-import { RiMapPinUserFill } from "react-icons/ri";
-import { RiUser3Line } from "react-icons/ri";
+import React, { useState, useEffect } from 'react';
+import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line } from "react-icons/ri";
 
-
-
+interface Suggestion {
+  properties: {
+    osm_id: string;
+    name: string;
+    city: string;
+    state: string;
+    country: string;
+  };
+  geometry: {
+    coordinates: [number, number]; // [lon, lat]
+  };
+}
 
 const ChooseLocation = () => {
   const [passengerCount, setPassengerCount] = useState(1);
   const [showPassengerPopup, setShowPassengerPopup] = useState(false);
+  const [fromLocation, setFromLocation] = useState('');
+  const [toLocation, setToLocation] = useState('');
+  const [fromSuggestions, setFromSuggestions] = useState<Suggestion[]>([]);
+  const [toSuggestions, setToSuggestions] = useState<Suggestion[]>([]);
+  const [fromCoordinates, setFromCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
+  const [toCoordinates, setToCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
+  const [dateTime, setDateTime] = useState<string>('');
+
+  useEffect(() => {
+    if (fromLocation) {
+      fetch(`https://photon.komoot.io/api/?q=${fromLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
+        .then(response => response.json())
+        .then(data => setFromSuggestions(data.features));
+    } else {
+      setFromSuggestions([]);
+    }
+  }, [fromLocation]);
+
+  useEffect(() => {
+    if (toLocation) {
+      fetch(`https://photon.komoot.io/api/?q=${toLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
+        .then(response => response.json())
+        .then(data => setToSuggestions(data.features));
+    } else {
+      setToSuggestions([]);
+    }
+  }, [toLocation]);
+
+  const handleLocationClick = (type: 'from' | 'to', name: string, coordinates: [number, number]) => {
+    const [lon, lat] = coordinates;
+    if (type === 'from') {
+      setFromLocation(name);
+      setFromCoordinates({ lat: Number(lat), lon: Number(lon) });
+      setFromSuggestions([]);
+    } else {
+      setToLocation(name);
+      setToCoordinates({ lat: Number(lat), lon: Number(lon) });
+      setToSuggestions([]);
+    }
+  };
 
   const incrementPassenger = () => setPassengerCount(passengerCount + 1);
   const decrementPassenger = () => {
     if (passengerCount > 1) setPassengerCount(passengerCount - 1);
+  };
+
+  const handleSearch = () => {
+    const searchData = {
+      fromLocation,
+      fromCoordinates,
+      toLocation,
+      toCoordinates,
+      passengerCount,
+      dateTime,
+      
+    };
+
+    // Perform the POST request with searchData
+    console.log('Search Data:', searchData);
   };
 
   return (
@@ -23,32 +86,65 @@ const ChooseLocation = () => {
 
       <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
         {/* Leaving From Input */}
-        <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600"><RiSendPlaneLine/></span>
+        <div className="relative flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
+          <span className="text-gray-600"><RiSendPlaneLine/></span>
           <input
             type="text"
             placeholder="Leaving from"
+            value={fromLocation}
+            onChange={(e) => setFromLocation(e.target.value)}
             className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
           />
+          {fromSuggestions.length > 0 && (
+            <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
+              {fromSuggestions.map((suggestion) => (
+                <div
+                  key={suggestion.properties.osm_id}
+                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleLocationClick('from', suggestion.properties.name, suggestion.geometry.coordinates)}
+                >
+                  <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Going To Input */}
-        <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600"><RiMapPinUserFill/></span>
+        <div className="relative flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
+          <span className="text-gray-600"><RiMapPinUserFill/></span>
           <input
             type="text"
             placeholder="Going to"
+            value={toLocation}
+            onChange={(e) => setToLocation(e.target.value)}
             className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
           />
+          {toSuggestions.length > 0 && (
+            <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
+              {toSuggestions.map((suggestion) => (
+                <div
+                  key={suggestion.properties.osm_id}
+                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => handleLocationClick('to', suggestion.properties.name, suggestion.geometry.coordinates)}
+                >
+                  <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Date Picker Input */}
         <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600"></span>
+          <span className="text-gray-600"></span> {/* Example icon */}
           <input
-             type="datetime-local"
-            className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
-          />
+                type="datetime-local"
+                value={dateTime}
+                onChange={(e) => setDateTime(e.target.value)}
+                className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
+              />
+
         </div>
 
         {/* Passenger Input */}
@@ -57,7 +153,7 @@ const ChooseLocation = () => {
             className="flex items-center w-full cursor-pointer"
             onClick={() => setShowPassengerPopup(!showPassengerPopup)}
           >
-            <span className="material-icons text-gray-600"><RiUser3Line/></span>
+            <span className="text-gray-600"><RiUser3Line/></span>
             <span className="ml-2 text-gray-600">{passengerCount} Passenger{passengerCount > 1 ? 's' : ''}</span>
           </div>
 
@@ -90,7 +186,10 @@ const ChooseLocation = () => {
         </div>
 
         {/* Search Button */}
-        <button className="bg-blue-500 text-white rounded-full p-3 px-6 hover:bg-blue-600 w-full sm:w-auto">
+        <button
+          onClick={handleSearch}
+          className="bg-blue-500 text-white rounded-full p-3 px-6 hover:bg-blue-600 w-full sm:w-auto"
+        >
           Search
         </button>
       </div>
