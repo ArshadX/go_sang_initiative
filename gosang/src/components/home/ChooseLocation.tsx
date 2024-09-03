@@ -1,6 +1,12 @@
 "use client";
 
 import React, { useState } from 'react';
+import { RiSendPlaneLine } from "react-icons/ri";
+import { RiMapPinUserFill } from "react-icons/ri";
+import { RiUser3Line } from "react-icons/ri";
+
+
+
 
 const ChooseLocation = () => {
   const [passengerCount, setPassengerCount] = useState(1);
@@ -18,7 +24,7 @@ const ChooseLocation = () => {
       <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
         {/* Leaving From Input */}
         <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600">circle</span>
+          <span className="material-icons text-gray-600"><RiSendPlaneLine/></span>
           <input
             type="text"
             placeholder="Leaving from"
@@ -28,7 +34,7 @@ const ChooseLocation = () => {
 
         {/* Going To Input */}
         <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600">circle</span>
+          <span className="material-icons text-gray-600"><RiMapPinUserFill/></span>
           <input
             type="text"
             placeholder="Going to"
@@ -38,9 +44,9 @@ const ChooseLocation = () => {
 
         {/* Date Picker Input */}
         <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="material-icons text-gray-600">calendar_today</span>
+          <span className="material-icons text-gray-600"></span>
           <input
-            type="date"
+             type="datetime-local"
             className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
           />
         </div>
@@ -51,7 +57,7 @@ const ChooseLocation = () => {
             className="flex items-center w-full cursor-pointer"
             onClick={() => setShowPassengerPopup(!showPassengerPopup)}
           >
-            <span className="material-icons text-gray-600">person</span>
+            <span className="material-icons text-gray-600"><RiUser3Line/></span>
             <span className="ml-2 text-gray-600">{passengerCount} Passenger{passengerCount > 1 ? 's' : ''}</span>
           </div>
 
