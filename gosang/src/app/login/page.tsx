@@ -6,15 +6,42 @@ const Login = () => {
   const [emailOrMobile, setEmailOrMobile] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
+  const [error, setError] = useState('');
 
-  const handleNext = () => {
+  const handleNext = async() => {
+  
     if (step === 1) {
         console.log(emailOrMobile);
       // Validate email/mobile before moving to the next step
       setStep(2);
     } else if (step === 2) {
-        console.log(password);
-        console.log(otp);
+       if(password != '' && otp==''){
+        try {
+          const response = await fetch('https://go-sang-initiative-backend.vercel.app/api/user/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ emailOrMobile, password }),
+          });
+    
+          if (response.ok) {
+            const data = await response.json();
+            // Store the token or session data
+            localStorage.setItem('token', '12345');
+            console.log('Logged in');
+    
+            // Redirect to the dashboard or home page
+           
+          } else {
+            const errorData = await response.json();
+            setError(errorData.message || 'Something went wrong.');
+          }
+        } catch (err) {
+          setError('Failed to login.');
+        }
+
+       }
       // Validate password or send OTP
       // If user clicks "Login with OTP", move to the OTP step
     }
