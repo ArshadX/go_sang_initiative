@@ -1,3 +1,5 @@
+import Breadcrumb from "../common/Breadcrumb";
+
 export default function AboutHero() {
   return (
     <section className="py-14 px-4 lg:px-24 bg-cyan-300">
@@ -20,6 +22,7 @@ export default function AboutHero() {
               <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
               </a>
+              <Breadcrumb pageName="about" description="This is demo you are seeing" />
             </div>
           </div>
           <div
