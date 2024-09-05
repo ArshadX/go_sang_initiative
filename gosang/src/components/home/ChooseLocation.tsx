@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line } from "react-icons/ri";
+import { useRouter } from 'next/navigation';
 
 interface Suggestion {
   properties: {
@@ -47,6 +48,8 @@ const ChooseLocation = () => {
     }
   }, [toLocation]);
 
+  const router = useRouter();
+
   const handleLocationClick = (type: 'from' | 'to', name: string, coordinates: [number, number]) => {
     const [lon, lat] = coordinates;
     if (type === 'from') {
@@ -76,6 +79,7 @@ const ChooseLocation = () => {
       
     };
 
+    router.push('/rides');
     // Perform the POST request with searchData
     console.log('Search Data:', searchData);
   };
@@ -159,7 +163,7 @@ const ChooseLocation = () => {
 
           {/* Passenger Popup */}
           {showPassengerPopup && (
-            <div className="absolute z-10 top-full mt-2 bg-white shadow-lg rounded-lg p-4 w-full sm:w-48 left-0">
+            <div className="absolute z-50 top-full mt-2 bg-white shadow-lg rounded-lg p-4 w-full sm:w-48 left-0">
               <div className="flex items-center justify-between mb-2">
                 <button
                   className="bg-gray-300 text-gray-700 rounded-full w-8 h-8 flex items-center justify-center"
