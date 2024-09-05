@@ -1,9 +1,10 @@
 
 interface FormProps {
-    phone: string;
-    name: string;
-    email: string;
-    DOB:string;
+    phone: string,
+    first_name: string,
+    last_name:string,
+    email: string,
+    DOB:string,
   }
 export const validateField = (fieldName: keyof FormProps, value: string) => {
     let error = '';
@@ -22,7 +23,12 @@ export const validateField = (fieldName: keyof FormProps, value: string) => {
         //     error = 'Age must be a valid number between 1 and 120';
         //   }
         //   break;
-        case 'name':
+        case 'first_name':
+          if(value === ""){
+            error = "Name is required"
+          }
+          break;
+        case 'last_name':
           if(value === ""){
             error = "Name is required"
           }

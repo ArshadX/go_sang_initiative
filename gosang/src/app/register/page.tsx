@@ -1,12 +1,15 @@
 'use client'
 import Button from '@/components/common/Button';
 import AdvanceInput from '@/components/register/AdvanceInput';
-import React, { useState, useEffect } from 'react';
+import { instance } from '@/constants/apis/instance';
+import { validateField } from '@/utils/formValidation';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Define the type for the form data
 interface FormProps {
   phone: string;
-  name: string;
+  first_name: string,
+  last_name:string,
   email: string;
   DOB:string;
 }
@@ -15,12 +18,15 @@ export default function Page() {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormProps>({
     phone:"",
-    name: '',
-    email: '',
+    first_name: "",
+    last_name:"",
+    email: "",
     DOB:""
   });
   const [errors, setErrors] = useState<Partial<FormProps>>({});
-
+  const registerUser = () => {
+    instance.post('/user/registration',formData)
+  }
   useEffect(() => {
     const handleBack = (event: PopStateEvent) => {
       if (step > 0) {
@@ -35,73 +41,54 @@ export default function Page() {
     window.addEventListener('popstate', handleBack);
 
     // Cleanup event listener on component unmount
+    
     return () => {
       window.removeEventListener('popstate', handleBack);
     };
   }, [step]);
-
-  const validateField = (fieldName: keyof FormProps, value: string) => {
-    let error = '';
-
-    if (!value) {
-      error = 'This field is required';
-    } else {
-      switch (fieldName) {
-        case 'email':
-          if (!/\S+@\S+\.\S+/.test(value)) {
-            error = 'Email is invalid';
-          }
-          break;
-        // case 'age':
-        //   if (isNaN(Number(value)) || Number(value) < 1 || Number(value) > 120) {
-        //     error = 'Age must be a valid number between 1 and 120';
-        //   }
-        //   break;
-        case 'name':
-          if(value === ""){
-            error = "Name is required"
-          }
-          break;
-        case 'DOB':
-          if(value=== ""){
-            error = "DOB is required"
-          }
-          break;
-        case 'phone':
-          if(value=== ""){
-            error = "Phone number is required"
-          }
-          break;
-
-        default:
-          break;
+  
+  const formatDOB = (value:string) => {
+      // Remove non-numeric characters
+      value = value.replace(/\D/g, '');
+      // Add "/" after the 2nd and 4th character
+      if (value.length > 2 && value.length <= 4) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+      } else if (value.length > 4) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4,8);
       }
-    }
-
-    return error;
+      return value;
+    
   };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const fieldName = name as keyof FormProps;
+    if(name === 'DOB'){
+      setFormData({
+        ...formData,
+        [fieldName]: formatDOB(value)
+      });
 
-    setFormData({
-      ...formData,
-      [fieldName]: value
-    });
+    }else {
+      setFormData({
+        ...formData,
+        [fieldName]: value
+      });
+    }
+  
 
     setErrors({
       ...errors,
       [fieldName]: validateField(fieldName, value)
     });
-  };
+  }
 
   const handleNext = () => {
     const currentField = Object.keys(formData)[step] as keyof FormProps;
     const currentError = validateField(currentField, formData[currentField]);
 
-    if (!currentError) {
-      setStep(step + 1);
+    if (!currentError) { 
+      if(currentField === 'first_name') setStep(step + 2)
+      else setStep(step + 1);
       window.history.pushState({}, ''); // Update the browser history
     } else {
       setErrors({
@@ -122,42 +109,58 @@ export default function Page() {
     const currentField = fieldNames[step];
 
     return (
-      <div className='flex flex-1 flex-col justify-center items-center bg-cyan-400 py-20 px-40 ' >
+      <div className='flex flex-1 flex-col justify-center items-center bg-cyan-400 md:py-20 md:px-40 sm:w-full w-full sm:py-10 sm:px-20 px-5 py-20' >
          {
           currentField === 'phone' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900'> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
-              className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
+              className="rounded-3xl py-2 px-4 w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
               type={'number'}
+              required={true}
               name={currentField}
               value={formData['phone']}
               onChange={handleInputChange}
+              autoFocus
             />
           </label>
         </div>
         }
         {
-          currentField === 'name' &&
+          currentField === 'first_name' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900  '> What&apos;s your Name?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
               type={'text'}
               name={currentField}
-              value={formData['name']}
+              required={true}
+              placeholder='First name'
+              value={formData['first_name']}
+              onChange={handleInputChange}
+              autoFocus
+            />
+          </label>
+          <label>
+            <input
+              className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
+              type={'text'}
+              name={'last_name'}
+              placeholder='Last name'
+              value={formData['last_name']}
               onChange={handleInputChange}
             />
           </label>
         </div>
         }
+
         {
           currentField === 'email' && 
           <div className='flex flex-col bg-cyan-400 items-center justify-center animate-slideIn gap-y-4'>
        
-          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
               className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
@@ -165,6 +168,7 @@ export default function Page() {
               name={currentField}
               value={formData['email']}
               onChange={handleInputChange}
+              autoFocus
             />
           </label>
         </div>
@@ -172,13 +176,16 @@ export default function Page() {
          {
           currentField === 'DOB' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
-          <h1 className='font-bold text-4xl text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
+          <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
             <input
-              className="rounded-3xl py-2 px-4   w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
-              type={'date'}
+              className="rounded-3xl py-2 px-4 w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
+              type={'text'}
+              required={true}
+              placeholder="DD/MM/YYYY" 
               name={currentField}
               value={formData['DOB']}
+              autoFocus
               onChange={handleInputChange}
             />
           </label>
@@ -196,7 +203,7 @@ export default function Page() {
   };
 
   return (
-    <div className='bg-white flex flex-1 justify-center items-center flex-col h-svh'>
+    <div className='bg-white flex justify-center md:items-center flex-col h-dvh md:p-0 px-2  '>
       <form onSubmit={handleSubmit}>
         {step < Object.keys(formData).length ? renderInputField() : <button type="submit">Submit</button>}
       </form>
