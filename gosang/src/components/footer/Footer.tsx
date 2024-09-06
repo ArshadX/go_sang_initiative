@@ -1,10 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import BottomNavBar from "./BottomNavBar";
 const date = new Date();
 const Footer = () => {
  
   return (
+    <>
     <footer className=" bg-slate-500 pt-16 md:pt-20 lg:pt-24 relative z-10 hidden md:block">
       <div className="container mx-auto">
         <div className="flex flex-wrap mx-4">
@@ -103,12 +105,10 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* <a href="#top" className="fixed bottom-4 right-4 p-3 bg-black-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition">
-    <svg width="24" height="24" viewBox="0 0 24 24" className="fill-current">
-      <path d="M12 5v14m-7-7l7-7 7 7" />
-    </svg>
-  </a> */}
+      
     </footer>
+    <BottomNavBar/>
+    </>
   );
 };
 

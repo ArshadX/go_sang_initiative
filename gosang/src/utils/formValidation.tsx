@@ -38,11 +38,13 @@ export const validateField = (fieldName: keyof FormProps, value: string) => {
             error = "DOB is required"
           }
           break;
-        case 'phone':
-          if(value=== ""){
-            error = "Phone number is required"
-          }
-          break;
+          case 'phone':
+            if (value.trim() === '') {
+              error = 'Phone number is required';
+            } else if (!/^[6-9]\d{9}$/.test(value)) {
+              error = 'Phone number must be a 10-digit & starting with 6, 7, 8,9';
+            }
+            break;
 
         default:
           break;

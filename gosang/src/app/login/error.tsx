@@ -1,30 +1,14 @@
-"use client"
- 
-import { useEffect } from 'react'
- 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
- 
+"use client"; // Ensure this is the very first line
+
+import React from "react";
+
+const Error = () => {
   return (
     <div>
-      <h2 className='text-4xl text-white font-serif'>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <h1>An error occurred.</h1>
+      <p>Please try again later.</p>
     </div>
-  )
-}
+  );
+};
+
+export default Error;
