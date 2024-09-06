@@ -1,4 +1,5 @@
-// components/Profile.js
+// components/Profile.tsx
+import Image from 'next/image';
 import { FaIdCard, FaEnvelope, FaPhone, FaCheckCircle, FaComment, FaMusic, FaSmoking, FaPaw, FaChevronRight } from 'react-icons/fa';
 
 const Profile = () => {
@@ -11,7 +12,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className="flex items-center space-x-6 mb-6">
-                <img src="/images/about/vimal.jpg" alt="Profile" className="w-24 h-24 rounded-full border-4 border-blue-200 shadow-md object-cover" />
+                <Image src="/images/about/vimal.jpg" alt="Profile" width={96} height={96} className="rounded-full border-4 border-blue-200 shadow-md object-cover" />
                 <div>
                     <h1 className="text-3xl font-extrabold text-gray-800">Vimal Sharma</h1>
                     <p className="text-gray-600 text-lg">Newcomer</p>
@@ -48,11 +49,11 @@ const Profile = () => {
                 <div className="space-y-3">
                     <div className="flex items-center space-x-3">
                         <FaComment className="text-gray-600 text-xl" />
-                        <span className="text-gray-700">I'm chatty when I feel comfortable</span>
+                        <span className="text-gray-700">I&apos;m chatty when I feel comfortable</span>
                     </div>
                     <div className="flex items-center space-x-3">
                         <FaMusic className="text-gray-600 text-xl" />
-                        <span className="text-gray-700">I'll jam depending on the mood</span>
+                        <span className="text-gray-700">I&apos;ll jam depending on the mood</span>
                     </div>
                     <div className="flex items-center space-x-3">
                         <FaSmoking className="text-gray-600 text-xl" />
@@ -60,7 +61,7 @@ const Profile = () => {
                     </div>
                     <div className="flex items-center space-x-3">
                         <FaPaw className="text-gray-600 text-xl" />
-                        <span className="text-gray-700">I'll travel with pets depending on the animal</span>
+                        <span className="text-gray-700">I&apos;ll travel with pets depending on the animal</span>
                     </div>
                 </div>
                 <div className="mt-4">
