@@ -9,7 +9,7 @@ import PromotionSlider from "@/components/home/PromotionSlider";
 export default function Home() {
   return (
     <>
-    <SelectService/>
+    {/* <SelectService/> */}
     <ChooseLocation/>
     <PromotionSlider/>
     </>
