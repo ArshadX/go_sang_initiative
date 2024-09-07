@@ -20,7 +20,6 @@ export default function Page() {
       <OurValues/>
       <StatsSection/>
       <TeamSection />
-      <Footer/>
       <ScrollToTop />
 
     </>

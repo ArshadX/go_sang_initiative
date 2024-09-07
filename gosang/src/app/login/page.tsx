@@ -1,38 +1,43 @@
 "use client"; 
 import React, { useState } from 'react';
+import axios from 'axios';
+import { validateField } from '@/utils/formValidation';
 
 const Login = () => {
   const [step, setStep] = useState(1); // 1: Email/Mobile, 2: Password, 3: OTP
-  const [emailOrMobile, setEmailOrMobile] = useState('');
+  const [Mobile, setMobile] = useState('');
   const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
 
-  const handleNext = async() => {
-  
+  const handleNext = async () => {
     if (step === 1) {
-        console.log(emailOrMobile);
-      // Validate email/mobile before moving to the next step
+      // Validate mobile number before moving to the next step
+      const mobileError = validateField('phone', Mobile);
+      if (mobileError) {
+        setError(mobileError);
+        return;
+      }
+      setError(''); // Clear any previous errors
       setStep(2);
     } else if (step === 2) {
-       if(password != '' && otp==''){
+      if (password !== '' && otp === '') {
         try {
           const response = await fetch('https://go-sang-initiative-backend.vercel.app/api/user/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ emailOrMobile, password }),
+            body: JSON.stringify({ Mobile, password }),
           });
-    
+
           if (response.ok) {
             const data = await response.json();
-            // Store the token or session data
             localStorage.setItem('token', '12345');
             console.log('Logged in');
-    
             // Redirect to the dashboard or home page
-           
+            // e.g., Router.push('/dashboard'); // Uncomment and use if you have routing set up
           } else {
             const errorData = await response.json();
             setError(errorData.message || 'Something went wrong.');
@@ -40,32 +45,54 @@ const Login = () => {
         } catch (err) {
           setError('Failed to login.');
         }
-
-       }
-      // Validate password or send OTP
-      // If user clicks "Login with OTP", move to the OTP step
+      }
     }
   };
 
-  const handleOtpLogin = () => {
+  const handleOtpLogin = async () => {
     setStep(3);
-    // Trigger OTP sending logic here
+    const countryCode = '+91'; // For India
+    const formattedPhoneNumber = `${countryCode}${Mobile.replace(/\D/g, '')}`;
+    try {
+      const response = await axios.get('https://getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com/api', {
+        params: {
+          key: '712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d', // Your API Key
+          otp: otp,
+          to: formattedPhoneNumber,
+        },
+        headers: {
+          'x-rapidapi-host': 'getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com',
+          'x-rapidapi-key': '712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d',
+        },
+      });
+
+      if (response.status === 200) {
+        setOtpSent(true);
+      } else {
+        setError('Failed to send OTP via WhatsApp.');
+      }
+    } catch (error) {
+      setError('Error sending OTP. Please try again later.');
+    }
   };
 
   return (
     <div className="flex justify-center items-center h-screen bg-cyan-400">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md m-4">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+
 
         {step === 1 && (
           <div>
             <input
               type="text"
               placeholder="Email or Mobile Number"
-              value={emailOrMobile}
-              onChange={(e) => setEmailOrMobile(e.target.value)}
+              value={Mobile}
+              onChange={(e) => setMobile(e.target.value)}
               className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none mb-4"
             />
+                    {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white w-full p-2 rounded-full"
@@ -106,7 +133,6 @@ const Login = () => {
                 <input
                   key={i}
                   type="text"
-                  
                   className="bg-gray-100 text-gray-600 w-12 p-2 text-center rounded-full outline-none"
                   value={otp[i - 1] || ''}
                   onChange={(e) => {

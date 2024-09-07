@@ -49,7 +49,7 @@ const RideCard = () => {
         <div className="flex items-center space-x-4">
           <RiCarFill className="text-gray-500" />
           <Image
-            src="/path/to/driver-image.jpg" // Update with correct image path
+            src="/images/about/vimal.jpg" // Update with correct image path
             alt="Driver"
             width={32}
             height={32}
@@ -68,8 +68,8 @@ const RideCard = () => {
         <div className="flex items-center space-x-4 lg:w-1/4 justify-end">
           <div className="flex items-center space-x-1">
             <FaBoltLightning className="text-gray-500" />
-            <span className="text-sm text-gray-600">Instant Booking</span>
-          </div>
+            <span className="hidden md:inline text-sm text-gray-600">Instant Booking</span>
+            </div>
           <span className="text-xl font-bold text-green-600">₹200.00</span>
         </div>
       </div>

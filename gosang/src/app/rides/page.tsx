@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import FilterCard from '@/components/rides/FilterCard';
 import RideCard from '@/components/rides/RideCard';
+import ChooseLocation from '@/components/home/ChooseLocation';
 
 export default function Page() {
     const [showFilter, setShowFilter] = useState(false); // State to manage filter visibility on mobile
@@ -12,6 +13,7 @@ export default function Page() {
     };
 
     return (
+        <>
         <div className="flex flex-col lg:flex-row p-6">
             {/* Filter section */}
             <div className="w-full lg:w-1/4 p-4">
@@ -43,9 +45,10 @@ export default function Page() {
             </div>
 
             {/* Ride section */}
-            <div className="w-full lg:w-3/4 p-4">
+            <div className="w-full lg:w-3/4 ">
                 <RideCard />
             </div>
         </div>
+        </>
     );
 }
