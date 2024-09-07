@@ -9,7 +9,7 @@ import RideCard from "@/components/rides/RideCard";
 export default function Home() {
   return (
     <>
-    <SelectService/>
+    {/* <SelectService/> */}
     <ChooseLocation/>
     <BottomNavBar/>
     <Footer/>
