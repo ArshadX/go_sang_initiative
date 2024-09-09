@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 const MyRides = () => {
   return (
+    
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-md p-4 mt-6">
       <div className="text-lg font-semibold mb-4">Your rides</div>
 
