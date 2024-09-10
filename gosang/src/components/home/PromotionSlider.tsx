@@ -64,7 +64,7 @@ const PromotionSlider = () => {
     <div className="relative w-full max-w-screen-lg mx-auto mt-4 overflow-hidden px-4"> {/* Added px-4 for margin on mobile */}
       {/* Hide buttons on mobile */}
       {!isMobile && (
-        <div className="absolute inset-0 flex items-center justify-between p-4 z-10">
+        <div className="absolute">
           <button
             onClick={handlePrevSlide}
             className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
@@ -84,18 +84,17 @@ const PromotionSlider = () => {
         onTouchStart={handleTouchStart}  // Detect swipe start on mobile
         onTouchEnd={handleTouchEnd}  // Detect swipe end on mobile
       >
-        <button
+        {/** Image is nested indside button which is giving hydratrion error  */}
+        {/* <button
           onClick={() => handleImageClick(slides[currentSlide].link)}
           className="block w-full h-full"
         >
-          <Image
+          <img
             src={currentImage}
             alt={`Slide ${currentSlide + 1}`}
-            layout="fill"
-            objectFit="cover"
             className="w-full h-full"
           />
-        </button>
+        </button> */}
       </div>
       {/* Dot Indicators */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
@@ -105,7 +104,8 @@ const PromotionSlider = () => {
             className={`w-4 h-4 rounded-full cursor-pointer ${
               currentSlide === index ? 'bg-blue-500' : 'bg-gray-400'
             }`}
-            onClick={() => setCurrentSlide(index)}
+           // onClick={() => setCurrentSlide(index)}
+          
           />
         ))}
       </div>
