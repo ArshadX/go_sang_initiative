@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import BottomNavBar from "./BottomNavBar";
+import BottomNavBar from "./BottomTab";
 const date = new Date();
 const Footer = () => {
  
   return (
     <>
-    <footer className=" bg-slate-500 pt-16 md:pt-20 lg:pt-24 relative z-10 hidden md:block">
+    <footer className=" bg-slate-500 pt-16 md:pt-20 lg:pt-24 relative z-10 hidden md:visible">
       <div className="container mx-auto">
         <div className="flex flex-wrap mx-4">
           {/* Logo and Social Links */}

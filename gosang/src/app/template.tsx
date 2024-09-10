@@ -1,8 +1,10 @@
-import SelectService from "@/components/home/SelectService";
+import Header from "@/components/common/Header";
+import BottomTab from "@/components/footer/BottomTab";
 
 export default function Template({ children }: { children: React.ReactNode }) {
     return <>
-                <SelectService />
-                {children}
+            <Header />
+                <main>{children}</main>
+            <BottomTab />
             </>
 }

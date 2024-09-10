@@ -74,12 +74,6 @@ export default function Page() {
         [fieldName]: value
       });
     }
-  
-
-    setErrors({
-      ...errors,
-      [fieldName]: validateField(fieldName, value)
-    });
   }
 
   const handleNext = () => {
@@ -117,12 +111,14 @@ export default function Page() {
           <label>
             <input
               className="rounded-3xl py-2 px-4 w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
-              type={'number'}
+              type={'tel'}
               required={true}
               name={currentField}
               value={formData['phone']}
               onChange={handleInputChange}
+              maxLength={13}
               autoFocus
+              autoComplete='tel-local'
             />
           </label>
         </div>
@@ -141,6 +137,7 @@ export default function Page() {
               value={formData['first_name']}
               onChange={handleInputChange}
               autoFocus
+              
             />
           </label>
           <label>
