@@ -32,7 +32,6 @@ const Login = () => {
         );
 
         if (response.data.exists) {
-          // Move to the next step (password input)
           setStep(2);
         } else {
           setError("Mobile number does not exist.");
