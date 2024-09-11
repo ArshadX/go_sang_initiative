@@ -34,7 +34,7 @@ const Login = () => {
         if (response.data.exists) {
           setStep(2);
         } else {
-          setError("Mobile number does not exist.");
+          setError(" This Mobile number does not  exist.");
         }
       } catch (error) {
         setError("Error checking mobile number. Please try again.");
