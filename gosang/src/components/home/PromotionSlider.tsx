@@ -99,26 +99,19 @@ const PromotionSlider = () => {
         onTouchStart={handleTouchStart} // Detect swipe start on mobile
         onTouchEnd={handleTouchEnd} // Detect swipe end on mobile
       >
-<<<<<<< HEAD
         <div
-=======
-        {/** Image is nested indside button which is giving hydratrion error  */}
-        {/* <button
->>>>>>> 1d674dd98f549def576577dfd59aefe9f04e8e7f
           onClick={() => handleImageClick(slides[currentSlide].link)}
           className="block w-full h-full cursor-pointer"
         >
-          <img
+          <Image
             src={currentImage}
             alt={`Slide ${currentSlide + 1}`}
+            width={100}
+            height={100}
             className="w-full h-full"
             priority
           />
-<<<<<<< HEAD
         </div>
-=======
-        </button> */}
->>>>>>> 1d674dd98f549def576577dfd59aefe9f04e8e7f
       </div>
 
       {/* Dot Indicators */}
