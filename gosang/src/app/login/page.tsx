@@ -27,18 +27,22 @@ const Login = () => {
         const response = await axios.get(
           "https://ovesh5667.pythonanywhere.com/api/user_profile/user_exist/",
           {
-            params: { user_id: Mobile }
+            params: { user_id: Mobile }, // Pass user_id as query params in GET request
+            headers: {
+              'Content-Type': 'application/json'
+            }
           }
         );
-
+      
         if (response.data.exists) {
           setStep(2);
         } else {
-          setError(" This Mobile number does not  exist.");
+          setError("This Mobile number does not exist.");
         }
       } catch (error) {
         setError("Error checking mobile number. Please try again.");
       }
+      
     } else if (step === 2) {
       if (password !== "" && otp === "") {
         try {
