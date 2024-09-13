@@ -1,0 +1,21 @@
+.swiper {
+    width: 100vw;
+    height: auto; /* Ensure it takes full viewport height */
+  }
+  
+  .image {
+    width: 90vw;    /* The central image should take 90% of the viewport width */
+    height: auto;   /* Maintain aspect ratio */
+  }
+  
+  .swiper-slide {
+    transition: transform 0.5s ease;
+    overflow: hidden;  /* Hide parts of side images */
+  }
+  
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.1);  /* Scale down side images to 10% */
+    opacity: 0.5;           /* Reduce opacity for a subtle effect */
+  }
+  
