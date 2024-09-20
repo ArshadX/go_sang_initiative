@@ -2,9 +2,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { validateField } from "@/utils/formValidation";
+import bcrypt from "bcryptjs";
 
 const Login = () => {
-  const [step, setStep] = useState(1); // 1: Email/Mobile, 2: Password, 3: OTP
+  const [step, setStep] = useState(1); 
   const [Mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -23,43 +24,63 @@ const Login = () => {
       setError(""); // Clear any previous errors
 
       try {
-        // Check if the mobile number exists
-        const response = await axios.get(
-          "https://ovesh5667.pythonanywhere.com/api/user_profile/user_exist/",
+        const response = await axios.post(
+          "https://gosang-d9esgjhxbsa0cwav.southindia-01.azurewebsites.net/api/user_profile/user_exist/",
           {
-            params: { user_id: Mobile }, // Pass user_id as query params in GET request
-            headers: {
-              'Content-Type': 'application/json'
-            }
+            user_id: Mobile,
           }
         );
-      
-        if (response.data.exists) {
+
+        console.log(response.data);
+
+        if (response.data.user_exist) {
           setStep(2);
         } else {
           setError("This Mobile number does not exist.");
         }
-      } catch (error) {
-        setError("Error checking mobile number. Please try again.");
+      } catch (error: any) {
+        if (error.response) {
+          // Handle different response errors
+          if (error.response.status === 404) {
+            setError("This Mobile number does not exist.");
+          } else {
+            console.error("Response Error:", error.response.data);
+            setError(`Server responded with error: ${error.response.status}.`);
+          }
+        } else if (error.request) {
+          // No response received
+          console.error("Request Error:", error.request);
+          setError("No response from the server. Please try again later.");
+        } else {
+          // Network errors
+          console.error("Network Error:", error.message);
+          setError("Network error. Please check your connection.");
+        }
       }
-      
     } else if (step === 2) {
       if (password !== "" && otp === "") {
         try {
-          const response = await axios.post(
-            "https://go-sang-initiative-backend.vercel.app/api/user/login",
-            { Mobile, password }
-          );
+          const salt = bcrypt.genSaltSync(10);
+          const hashedPassword = bcrypt.hashSync(password, salt);
+          console.log(hashedPassword);
 
+          const response = await axios.post(
+            "https://gosang-d9esgjhxbsa0cwav.southindia-01.azurewebsites.net/api/user_profile/login/",
+            {
+              user_id: Mobile,
+              password: password,
+            }
+          );
+          console.log(response);
           if (response.status === 200) {
             localStorage.setItem("token", "12345");
             console.log("Logged in");
             // Redirect to the dashboard or home page
-            // e.g., Router.push('/dashboard'); // Uncomment if routing is set up
           } else {
             setError("Login failed. Check your credentials.");
           }
         } catch (error) {
+          console.error("Error:", error);
           setError("Failed to login.");
         }
       }
@@ -75,7 +96,7 @@ const Login = () => {
         "https://getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com/api",
         {
           params: {
-            key: "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d", // Your API Key
+            key: "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d",
             otp: otp,
             to: formattedPhoneNumber,
           },
