@@ -4,6 +4,7 @@ import AdvanceInput from '@/components/register/AdvanceInput';
 import { instance } from '@/constants/apis/instance';
 import { validateField } from '@/utils/formValidation';
 import React, { useState, useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 // Define the type for the form data
 interface FormProps {
@@ -12,6 +13,7 @@ interface FormProps {
   last_name:string,
   email: string;
   DOB:string;
+  password:string;
 }
 
 export default function Page() {
@@ -21,7 +23,8 @@ export default function Page() {
     first_name: "",
     last_name:"",
     email: "",
-    DOB:""
+    DOB:"",
+    password:"",
   });
   const [errors, setErrors] = useState<Partial<FormProps>>({});
   const registerUser = () => {
@@ -69,6 +72,7 @@ export default function Page() {
       });
 
     }else {
+      console.log(value);
       setFormData({
         ...formData,
         [fieldName]: value
@@ -92,11 +96,43 @@ export default function Page() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle final form submission here
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission behavior
+  
+    try {
+      // Make the POST request using axios and pass the form data in the request body
+      const response = await axios.post(
+        "https://gosang-d9esgjhxbsa0cwav.southindia-01.azurewebsites.net/api/user_profile/register/",
+        {
+          // Send the formData object in the body
+          // phone: formData.phone,
+          // first_name: formData.first_name,
+          // last_name: formData.last_name,
+          // email: formData.email,
+          // DOB: formData.DOB,
+          // password: formData.password,
+          data:formData,
+        }
+      );
+  
+      // Log the response data for debugging purposes
+      console.log('Response from API:', response.data);
+  
+      // Handle the success scenario, e.g., showing a message or redirecting
+      if (response.data.success) {
+        console.log('User exists, handle accordingly.');
+      } else {
+        console.log('User does not exist, handle accordingly.');
+      }
+  
+    } catch (error: any) {
+      // Handle the error scenario
+      console.error('Error during API request:', error.response?.data || error.message);
+    }
+  
     console.log('Form submitted:', formData);
   };
+  
 
   const renderInputField = () => {
     const fieldNames = Object.keys(formData) as Array<keyof FormProps>;
@@ -186,12 +222,24 @@ export default function Page() {
               onChange={handleInputChange}
             />
           </label>
+          <label>
+            <input
+              className="rounded-3xl py-2 px-4 w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
+              type={'text'}
+              required={true}
+              placeholder="TYPE YOUR PASSWORD" 
+              name='password'
+              value={formData['password']}
+              autoFocus
+              onChange={handleInputChange}
+            />
+          </label>
         </div>
         }
         {errors[currentField] && <p style={{ color: 'red' }}>{errors[currentField]}</p>}
         <div className='mt-6'>
           {/* {step > 0 && <button type="button" onClick={() => window.history.back()}>Back</button>} */}
-          <Button type="button"  onClick={handleNext}>
+          <Button type= {step < fieldNames.length - 1 ? 'button' : 'submit'}  onClick= {step < fieldNames.length - 1 ? handleNext : handleSubmit}>
             {step < fieldNames.length - 1 ? 'Continue' : 'Submit'}
           </Button>
         </div>
