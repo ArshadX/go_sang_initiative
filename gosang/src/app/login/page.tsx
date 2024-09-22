@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+<<<<<<< HEAD
 import { useRouter } from 'next/navigation';  // Use `next/navigation` in App Router, not 'next/router'
 import axios from "axios";
 import { validateField } from "@/utils/formValidation";
@@ -23,10 +24,28 @@ const Login = () => {
   const handleNext = async () => {
     if (step === 1) {
       const mobileError = validateField("phone", mobile);
+=======
+import axios from "axios";
+import { validateField } from "@/utils/formValidation";
+
+const Login = () => {
+  const [step, setStep] = useState(1); // 1: Email/Mobile, 2: Password, 3: OTP
+  const [Mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  const [otp, setOtp] = useState("");
+  const [error, setError] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+
+  const handleNext = async () => {
+    if (step === 1) {
+      // Validate mobile number before moving to the next step
+      const mobileError = validateField("phone", Mobile);
+>>>>>>> vimal
       if (mobileError) {
         setError(mobileError);
         return;
       }
+<<<<<<< HEAD
 
       setError(""); 
 
@@ -61,6 +80,45 @@ const Login = () => {
           } else {
             setError("Login failed. Check your credentials.");
           }
+=======
+
+      setError(""); // Clear any previous errors
+
+      try {
+        // Check if the mobile number exists
+        const response = await axios.post(
+          "https://gosang-d9esgjhxbsa0cwav.southindia-01.azurewebsites.net/api/user_profile/user_exist/",
+          {
+            user_id:"9843454343"
+          }
+        );
+        console.log(response.data)
+        if (response.data.exists) {
+          setStep(2);
+        } else {
+          setError("This Mobile number does not exist.");
+        }
+      } catch (error) {
+        setError("Error checking mobile number. Please try again.");
+      }
+      
+    } else if (step === 2) {
+      if (password !== "" && otp === "") {
+        try {
+          const response = await axios.post(
+            "https://go-sang-initiative-backend.vercel.app/api/user/login",
+            { Mobile, password }
+          );
+
+          if (response.status === 200) {
+            localStorage.setItem("token", "12345");
+            console.log("Logged in");
+            // Redirect to the dashboard or home page
+            // e.g., Router.push('/dashboard'); // Uncomment if routing is set up
+          } else {
+            setError("Login failed. Check your credentials.");
+          }
+>>>>>>> vimal
         } catch (error) {
           setError("Failed to login.");
         }
@@ -69,6 +127,7 @@ const Login = () => {
   };
 
   const handleOtpLogin = async () => {
+<<<<<<< HEAD
     const countryCode = "+91"; 
     const formattedPhoneNumber = `${countryCode}${mobile.replace(/\D/g, "")}`;
     try {
@@ -83,6 +142,28 @@ const Login = () => {
           "x-rapidapi-key": "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d",
         },
       });
+=======
+    setStep(3);
+    const countryCode = "+91"; // For India
+    const formattedPhoneNumber = `${countryCode}${Mobile.replace(/\D/g, "")}`;
+    try {
+      const response = await axios.get(
+        "https://getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com/api",
+        {
+          params: {
+            key: "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d", // Your API Key
+            otp: otp,
+            to: formattedPhoneNumber,
+          },
+          headers: {
+            "x-rapidapi-host":
+              "getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com",
+            "x-rapidapi-key":
+              "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d",
+          },
+        }
+      );
+>>>>>>> vimal
 
       if (response.status === 200) {
         setOtpSent(true);
@@ -92,6 +173,7 @@ const Login = () => {
       }
     } catch (error) {
       setError("Error sending OTP. Please try again later.");
+<<<<<<< HEAD
     }
   };
 
@@ -117,6 +199,8 @@ const Login = () => {
       setError("No response from the server. Please try again later.");
     } else {
       setError("Network error. Please check your connection.");
+=======
+>>>>>>> vimal
     }
   };
 
