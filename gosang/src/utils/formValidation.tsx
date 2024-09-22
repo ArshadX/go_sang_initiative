@@ -1,12 +1,12 @@
 
 interface FormProps {
-    phone: string,
+    contact_number: string,
     first_name: string,
     last_name:string,
     email: string,
     DOB:string,
   }
-export const validateField = (fieldName: keyof FormProps, value: string) => {
+export const validateField = (fieldName:string, value: string) => {
     let error = '';
 
     if (!value) {
@@ -38,7 +38,7 @@ export const validateField = (fieldName: keyof FormProps, value: string) => {
             error = "DOB is required"
           }
           break;
-          case 'phone':
+          case 'contact_number':
             if (value.trim() === '') {
               error = 'Phone number is required';
             } else if (!/^[6-9]\d{9}$/.test(value)) {
