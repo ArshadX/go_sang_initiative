@@ -55,7 +55,6 @@ const ProfileAbout = () => {
             );
 
             const result = response.data;
-
             if (result.user) {
                 const userData: User = JSON.parse(result.user);
                 console.log(userData);
