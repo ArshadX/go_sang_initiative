@@ -3,25 +3,35 @@ import Button from '@/components/common/Button';
 import AdvanceInput from '@/components/register/AdvanceInput';
 import { instance } from '@/constants/apis/instance';
 import { validateField } from '@/utils/formValidation';
+import { API_BASE_URL } from "@/utils/apiBaseUrl";
+import useRedirectIfLoggedIn from '@/utils/useRedirectIfLoggedIn';
+
+
 import React, { useState, useEffect, useCallback } from 'react';
+import bcrypt from "bcryptjs";
+import axios from 'axios';
 
 // Define the type for the form data
 interface FormProps {
-  phone: string;
+  phone_number: string;
   first_name: string,
   last_name:string,
   email: string;
-  DOB:string;
+  dob:string;
+  password:string;
 }
 
 export default function Page() {
+  useRedirectIfLoggedIn('');
+
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<FormProps>({
-    phone:"",
+    phone_number:"",
     first_name: "",
     last_name:"",
     email: "",
-    DOB:""
+    dob:"",
+    password:""
   });
   const [errors, setErrors] = useState<Partial<FormProps>>({});
   const registerUser = () => {
@@ -78,6 +88,7 @@ export default function Page() {
 
   const handleNext = () => {
     const currentField = Object.keys(formData)[step] as keyof FormProps;
+    console.log(currentField);
     const currentError = validateField(currentField, formData[currentField]);
 
     if (!currentError) { 
@@ -92,11 +103,47 @@ export default function Page() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle final form submission here
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent default form submission behavior
+  
+    try {
+      const salt = bcrypt.genSaltSync(10);
+      const hashedPassword = bcrypt.hashSync(formData.password, salt);
+      formData.password= hashedPassword;
+      // Make the POST request using axios and pass the form data in the request body
+      const response = await axios.post(
+        `${API_BASE_URL}/user_profile/register_user/`,
+        {
+          // Send the formData object in the body
+          phone_number: formData.phone_number,
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          email: formData.email,
+          dob: formData.dob,
+          password: hashedPassword,
+         
+        }
+      );
+  
+      // Log the response data for debugging purposes
+      console.log('Response from API:', response.data);
+  
+      // Handle the success scenario, e.g., showing a message or redirecting
+      if (response.data.success) {
+        console.log('User exists, handle accordingly.');
+      } else {
+        console.log('User does not exist, handle accordingly.');
+      }
+  
+    } catch (error: any) {
+      // Handle the error scenario
+      console.error(error);
+    }
+  
     console.log('Form submitted:', formData);
   };
+  
+
 
   const renderInputField = () => {
     const fieldNames = Object.keys(formData) as Array<keyof FormProps>;
@@ -105,7 +152,7 @@ export default function Page() {
     return (
       <div className='flex flex-1 flex-col justify-center items-center bg-cyan-400 md:py-20 md:px-40 sm:w-full w-full sm:py-10 sm:px-20 px-5 py-20' >
          {
-          currentField === 'phone' &&
+          currentField === 'phone_number' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
           <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900'> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
@@ -114,7 +161,7 @@ export default function Page() {
               type={'tel'}
               required={true}
               name={currentField}
-              value={formData['phone']}
+              value={formData['phone_number']}
               onChange={handleInputChange}
               maxLength={13}
               autoFocus
@@ -171,7 +218,7 @@ export default function Page() {
         </div>
         }
          {
-          currentField === 'DOB' &&
+          currentField === 'dob' &&
           <div className='flex flex-col items-center justify-center animate-slideIn gap-y-4'>
           <h1 className='font-bold sm:text-4xl text-3xl text-center text-gray-900  '> What&apos;s your {currentField.charAt(0).toUpperCase() + currentField.slice(1)}?</h1>
           <label>
@@ -181,7 +228,19 @@ export default function Page() {
               required={true}
               placeholder="DD/MM/YYYY" 
               name={currentField}
-              value={formData['DOB']}
+              value={formData['dob']}
+              autoFocus
+              onChange={handleInputChange}
+              onKeyUp={(e) => formatDOB((e.target as HTMLInputElement).value)}           />
+          </label>
+          <label>
+            <input
+              className="rounded-3xl py-2 px-4 w-full m-1 text-lg bg-gray-200 focus:outline focus:outline-offset-0 focus:outline-3 focus:outline-cyan-400"
+              type={'text'}
+              required={true}
+              placeholder="Password" 
+              name='password'
+              value={formData['password']}
               autoFocus
               onChange={handleInputChange}
             />
@@ -191,7 +250,7 @@ export default function Page() {
         {errors[currentField] && <p style={{ color: 'red' }}>{errors[currentField]}</p>}
         <div className='mt-6'>
           {/* {step > 0 && <button type="button" onClick={() => window.history.back()}>Back</button>} */}
-          <Button type="button"  onClick={handleNext}>
+          <Button type={step < fieldNames.length - 1 ? 'button' : 'submit'}  onClick={step < fieldNames.length - 1 ? handleNext : handleSubmit}>
             {step < fieldNames.length - 1 ? 'Continue' : 'Submit'}
           </Button>
         </div>
