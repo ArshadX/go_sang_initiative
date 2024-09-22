@@ -84,8 +84,8 @@ export default function AddVehicle() {
         <title>Add Vehicle</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
       </Head>
-      <div className="bg-white min-h-screen flex flex-col">
-        <div className="max-w-md mx-auto p-4">
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="w-full max-w-md p-4">
           <div className="flex items-center justify-between bg-orange-500 p-2">
             <i className="fas fa-arrow-left text-white"></i>
             <h1 className="text-white text-lg">Add Vehicle</h1>
