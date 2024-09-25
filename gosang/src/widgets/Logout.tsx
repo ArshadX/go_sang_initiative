@@ -1,6 +1,6 @@
 'use client'
 import { logout } from "@/app/actions/auth"
-import Button from "@/components/common/Button"
+import ButtonMedium from "@/components/common/Button"
 
 export function Logout() {
     function _logout(e:React.FormEvent<Element>){
@@ -8,12 +8,12 @@ export function Logout() {
         logout()
       }
     return (
-    <Button
+    <ButtonMedium
         onClick={_logout}
        // className="text-sm font-semibold leading-6 text-ternary bg-primary px-3 py-2 rounded-2xl"
     >
         Logout 
         {/* <span aria-hidden="true">&rarr;</span> */}
-    </Button>
+    </ButtonMedium>
     )
 }

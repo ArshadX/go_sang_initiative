@@ -25,10 +25,11 @@ const callsToAction = [
 export default async function Header() {
   const session = await verifySession()
   console.log(session);
+
   // Optionally handle the case where isLoggedIn is undefined (e.g., during the hook's execution)
   return (
-    <header className="bg-white">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header className="bg-white py-2">
+      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Gosang</span>
@@ -102,14 +103,14 @@ export default async function Header() {
             <div className='space-x-6'>
             <a
               href="/register"
-              className="text-sm font-semibold leading-6 text-ternary bg-primary px-3 py-2 rounded-2xl"
+              className="inline-flex items-center gap-2 rounded-md bg-primary py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-pink-600 open:bg-pink-600 data-[focus]:outline-1 data-[focus]:outline-white"
             >
               Register 
               {/* <span aria-hidden="true">&rarr;</span> */}
             </a>
             <a
               href="/login"
-              className="text-sm font-semibold leading-6 text-ternary bg-secondary bg- px-3 py-2 rounded-2xl"
+              className="inline-flex items-center gap-2 rounded-md bg-secondary py-1.5 px-3 text-sm/6 font-semibold text-ternary shadow-inner shadow-white/10 focus:outline-none hover:bg-cyan-400 open:bg-cyan-400 data-[focus]:outline-1 data-[focus]:outline-white"
             >
               Log in 
               {/* <span aria-hidden="true">&rarr;</span> */}

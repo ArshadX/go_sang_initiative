@@ -1,11 +1,10 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
-import { API_BASE_URL } from "@/utils/apiBaseUrl";
 import Image from 'next/image';
 import { FaIdCard, FaEnvelope, FaPhone, FaCheckCircle, FaComment, FaMusic, FaSmoking, FaPaw, FaChevronRight } from 'react-icons/fa';
 import { instance } from "@/constants/apis/instance";
 import { _verifysession } from "@/app/actions/auth";
+import Dialogue from "../common/DialogueBox";
 
 // Define the User interface
 interface User {
@@ -30,30 +29,29 @@ const ProfileAbout = () => {
     const [user, setUser] = useState<User | null>(null);
     const [mobile, setMobile] = useState<string | null | unknown>(null);
     const [token, setToken] = useState<{} | null>(null);
-
+    const [loading,setLoading] = useState(false)
     // Fetch mobile and token from localStorage and update state
-     const fetchToken  = useCallback(async()=>{
-        return await  _verifysession()
+     const fetchToken  = useCallback(()=>{
+        return _verifysession()
     },[])
     useEffect(() => {
          fetchToken().then((res)=>{
             setToken(res.token)
             setMobile(res.phone_number)
+            fetchUser(res.phone_number,res.token)
         }).catch((err:any)=>{
             console.log("failed to fetch token",err)
         })
         // if (storedMobile) setMobile(storedMobile);
         // if (storedToken) setToken(storedToken);
     }, []);
-
     // Fetch user data from the API
-    const fetchUser = async () => {
-        if (!mobile || (token === null)) return; 
-
+    const fetchUser = async (phone_number:unknown,token:{}|null) => {
         try {
+            setLoading(true)
             const response = await instance.post(
                 '/user_profile/get_user/',
-                { user_id: mobile },
+                { user_id: phone_number },
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -68,20 +66,40 @@ const ProfileAbout = () => {
                 console.log(userData);
                 setUser(userData);
             }
+            setLoading(false)
         } catch (error: any) {
+            setLoading(false)
             console.error('Error fetching user:', error.message);
         }
     };
-
-    useEffect(() => {
-        fetchUser();
-    }, [mobile, token]); // Add mobile and token as dependencies
+    // Add mobile and token as dependencies
 
     // Show loading text if user data is not yet available
-    if (!user) {
-        return <p>Loading...</p>;
+    
+    if(loading){
+        return (
+            <div className="relative left-0 right-0 top-72 h-full isolate">
+                <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+                    <div className="animate-pulse flex space-x-4">
+                        <div className="rounded-full bg-slate-700 h-10 w-10"></div>
+                        <div className="flex-1 space-y-6 py-1">
+                            <div className="h-2 bg-slate-700 rounded"></div>
+                            <div className="space-y-3">
+                                <div className="grid grid-cols-3 gap-4">
+                                    <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                                    <div className="h-2 bg-slate-700 rounded col-span-1"></div>
+                                </div>
+                                <div className="h-2 bg-slate-700 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }else if(!user || (token === null)){
+        return <Dialogue />
     }
-
+  
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
             <div className="flex justify-between items-center border-b border-gray-200 pb-3 mb-6">
