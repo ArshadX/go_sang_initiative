@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Popover,
@@ -7,8 +6,9 @@ import {
   PopoverPanel,
 } from '@headlessui/react';
 import Image from 'next/image';
-import { RiArrowDownSLine, RiAuctionLine, RiChat4Line, RiCustomerServiceLine, RiMoneyRupeeCircleLine, RiPhoneLine, RiSafeLine, RiShieldCheckLine, RiTeamLine, RiToolsLine } from 'react-icons/ri';
+import { RiArrowDownSLine, RiChat4Line, RiCustomerServiceLine, RiMoneyRupeeCircleLine, RiPhoneLine, RiShieldCheckLine, RiTeamLine } from 'react-icons/ri';
 import { verifySession } from '@/lib/dal';
+import { Logout } from '@/widgets/Logout';
 
 const about = [
   { name: 'Who we are', description: '', href: '/about', icon: RiTeamLine },
@@ -26,8 +26,6 @@ export default async function Header() {
   const session = await verifySession()
   console.log(session);
   // Optionally handle the case where isLoggedIn is undefined (e.g., during the hook's execution)
-  
-
   return (
     <header className="bg-white">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -39,13 +37,14 @@ export default async function Header() {
               alt="company logo"
               width={112}
               height={33}
+              priority
               style={{ objectFit: 'contain' }}
               className='bg-black'
             />
           </a>
         </div>
 
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+        <PopoverGroup className="hidden md:flex md:gap-x-12">
           <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
             Add Ride
           </a>
@@ -99,7 +98,7 @@ export default async function Header() {
           </Popover>
         </PopoverGroup>
         <div className="flex lg:flex-1 lg:justify-end">
-          {!session?.isAuth && (
+          {!session?.isAuth ? (
             <div className='space-x-6'>
             <a
               href="/register"
@@ -116,7 +115,11 @@ export default async function Header() {
               {/* <span aria-hidden="true">&rarr;</span> */}
             </a>
             </div>
-          )}
+          ):
+          <div className='space-x-6'>
+            <Logout />
+          </div>
+          }
 
         </div>
       </nav>

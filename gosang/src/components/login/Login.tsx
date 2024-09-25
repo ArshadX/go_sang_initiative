@@ -3,10 +3,8 @@ import React, { useEffect, useState } from "react";
 import { redirect, useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
 import axios from "axios";
 import { validateField } from "@/utils/formValidation";
-
-import bcrypt from "bcryptjs";
 import { instance } from "@/constants/apis/instance";
-import { generateSession } from "@/app/actions";
+import { generateSession } from "@/app/actions/auth"
 import { JWTPayload } from "jose";
 
 
@@ -57,7 +55,7 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
 
           if (response.status === 200) {
             console.log(response.data)
-            await generateSession(response.data.token); 
+            await generateSession(response.data.token,mobile); 
             router.push('/profile'); // Navigate to profile on successful login
           } else {
             setError("Login failed. Check your credentials.");

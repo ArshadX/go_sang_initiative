@@ -1,9 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { API_BASE_URL } from "@/utils/apiBaseUrl";
 import Image from 'next/image';
 import { FaIdCard, FaEnvelope, FaPhone, FaCheckCircle, FaComment, FaMusic, FaSmoking, FaPaw, FaChevronRight } from 'react-icons/fa';
+import { instance } from "@/constants/apis/instance";
+import { _verifysession } from "@/app/actions/auth";
 
 // Define the User interface
 interface User {
@@ -26,25 +28,31 @@ interface User {
 const ProfileAbout = () => {
     // Initialize state with User type or null
     const [user, setUser] = useState<User | null>(null);
-    const [mobile, setMobile] = useState<string | null>(null);
-    const [token, setToken] = useState<string | null>(null);
+    const [mobile, setMobile] = useState<string | null | unknown>(null);
+    const [token, setToken] = useState<{} | null>(null);
 
     // Fetch mobile and token from localStorage and update state
+     const fetchToken  = useCallback(async()=>{
+        return await  _verifysession()
+    },[])
     useEffect(() => {
-        const storedMobile = localStorage.getItem('mobile');
-        const storedToken = localStorage.getItem('token');
-         console.log(storedMobile, storedToken);
-        if (storedMobile) setMobile(storedMobile);
-        if (storedToken) setToken(storedToken);
+         fetchToken().then((res)=>{
+            setToken(res.token)
+            setMobile(res.phone_number)
+        }).catch((err:any)=>{
+            console.log("failed to fetch token",err)
+        })
+        // if (storedMobile) setMobile(storedMobile);
+        // if (storedToken) setToken(storedToken);
     }, []);
 
     // Fetch user data from the API
     const fetchUser = async () => {
-        if (!mobile || !token) return; 
+        if (!mobile || (token === null)) return; 
 
         try {
-            const response = await axios.post(
-                `${API_BASE_URL}user_profile/get_user/`,
+            const response = await instance.post(
+                '/user_profile/get_user/',
                 { user_id: mobile },
                 {
                     headers: {

@@ -5,7 +5,7 @@ export default function Button ({onClick,type,children}:{onClick?:(e:React.FormE
         <button
         onClick={onClick}
         type={type}
-        className="rounded-md bg-sky-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className="text-sm font-semibold leading-6 text-ternary bg-primary active:bg-pink-200 bg- px-3 py-2 rounded-2xl"
         >
         {children}
       </button>
