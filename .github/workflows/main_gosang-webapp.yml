@@ -70,5 +70,5 @@ jobs:
         with:
           app-name: 'gosang-webapp'
           slot-name: 'Production'
-          package: gosang  # Path to the gosang folder for deployment
+          package: .
           
