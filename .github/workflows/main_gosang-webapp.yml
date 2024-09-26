@@ -26,15 +26,18 @@ jobs:
           npm install
           npm run build --if-present
           npm run test --if-present
+        working-directory: ./gosang  # Ensure commands run inside the gosang folder
+        
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
+        working-directory: ./gosang  # Zip content from gosang folder
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: gosang/release.zip  # Path to zipped artifact in gosang folder
 
   deploy:
     runs-on: ubuntu-latest
@@ -67,5 +70,5 @@ jobs:
         with:
           app-name: 'gosang-webapp'
           slot-name: 'Production'
-          package: .
+          package: './gosang'  # Path to the gosang folder for deployment
           
