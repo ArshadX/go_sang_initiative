@@ -1,6 +1,4 @@
-"use client";
-import React, { useState, useEffect } from 'react';
-import useRedirectIfLoggedIn from '@/utils/useRedirectIfLoggedIn';
+import React from 'react';
 import {
   Popover,
   PopoverButton,
@@ -8,48 +6,58 @@ import {
   PopoverPanel,
 } from '@headlessui/react';
 import Image from 'next/image';
-import { RiArrowDownSLine, RiAuctionLine, RiCustomerServiceLine, RiPhoneLine, RiSafeLine, RiToolsLine } from 'react-icons/ri';
+import { RiArrowDownSLine, RiChat4Line, RiCustomerServiceLine, RiMoneyRupeeCircleLine, RiPhoneLine, RiShieldCheckLine, RiTeamLine } from 'react-icons/ri';
+import { verifySession } from '@/lib/dal';
+import { Logout } from '@/widgets/Logout';
 
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: RiToolsLine },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: RiCustomerServiceLine },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: RiSafeLine },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: RiToolsLine },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: RiAuctionLine },
+const about = [
+  { name: 'Who we are', description: '', href: '/about', icon: RiTeamLine },
+  { name: 'Refer and earn free rides', description: '', href: '#', icon: RiMoneyRupeeCircleLine },
+  { name: 'Safety measures', description: '', href: '#', icon: RiShieldCheckLine },
+  { name: 'FAQs', description: '', href: '#', icon: RiChat4Line},
 ];
 
 const callsToAction = [
-  { name: 'Contact sales', href: '#', icon: RiPhoneLine },
+  { name: 'Contacts', href: '#', icon: RiPhoneLine },
+  { name: 'Complain', href: '#', icon: RiCustomerServiceLine },
 ];
 
-export default function Header() {
-  const isLoggedIn = useRedirectIfLoggedIn('check');
-  console.log(isLoggedIn);
+export default async function Header() {
+  const session = await verifySession()
+  console.log(session);
 
   // Optionally handle the case where isLoggedIn is undefined (e.g., during the hook's execution)
-  
-
   return (
-    <header className="bg-white">
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
+    <header className="bg-white py-2">
+      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-3 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a href="/" className="-m-1.5 p-1.5">
+            <span className="sr-only">Gosang</span>
             <Image
               src='/images/logo/logo.png'
               alt="company logo"
               width={112}
               height={33}
+              priority
               style={{ objectFit: 'contain' }}
               className='bg-black'
             />
           </a>
         </div>
 
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+        <PopoverGroup className="hidden md:flex md:gap-x-12">
+          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+            Add Ride
+          </a>
+          <a href="/myrides" className="text-sm font-semibold leading-6 text-gray-900">
+            My Rides
+          </a>       
+          <a href="/profile" className="text-sm font-semibold leading-6 text-gray-900">
+            Profile
+          </a>
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              About
               <RiArrowDownSLine aria-hidden="true" className="h-5 w-5 flex-none text-gray-400" />
             </PopoverButton>
             <PopoverPanel
@@ -57,7 +65,7 @@ export default function Header() {
               className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
             >
               <div className="p-4">
-                {products.map((item) => (
+                {about.map((item) => (
                   <div
                     key={item.name}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
@@ -89,26 +97,31 @@ export default function Header() {
               </div>
             </PopoverPanel>
           </Popover>
-
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
-          </a>
-          <a href="/about" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
-          </a>
         </PopoverGroup>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {/* {!isLoggedIn && (
+        <div className="flex lg:flex-1 lg:justify-end">
+          {!session?.isAuth ? (
+            <div className='space-x-6'>
+            <a
+              href="/register"
+              className="inline-flex items-center gap-2 rounded-md bg-primary py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-pink-600 open:bg-pink-600 data-[focus]:outline-1 data-[focus]:outline-white"
+            >
+              Register 
+              {/* <span aria-hidden="true">&rarr;</span> */}
+            </a>
             <a
               href="/login"
-              className="text-sm font-semibold leading-6 text-gray-900 bg-cyan-400 px-3 py-2 rounded-2xl"
+              className="inline-flex items-center gap-2 rounded-md bg-secondary py-1.5 px-3 text-sm/6 font-semibold text-ternary shadow-inner shadow-white/10 focus:outline-none hover:bg-cyan-400 open:bg-cyan-400 data-[focus]:outline-1 data-[focus]:outline-white"
             >
-              Log in <span aria-hidden="true">&rarr;</span>
+              Log in 
+              {/* <span aria-hidden="true">&rarr;</span> */}
             </a>
-          )} */}
+            </div>
+          ):
+          <div className='space-x-6'>
+            <Logout />
+          </div>
+          }
+
         </div>
       </nav>
     </header>

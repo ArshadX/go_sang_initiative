@@ -1,13 +1,13 @@
-import { Children } from "react";
+import { Button } from '@headlessui/react'
 
-export default function Button ({onClick,type,children}:{onClick?:(e:React.FormEvent)=>void,children:any,type?:"submit" | "reset" | "button" | undefined}){
+export default function ButtonMedium ({onClick,type,children,primary}:{onClick?:(e:React.FormEvent)=>void,children:any,type?:"submit" | "reset" | "button" | undefined,primary?:boolean | true}){
     return (
-        <button
+        <Button
         onClick={onClick}
         type={type}
-        className="rounded-md bg-sky-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        className={`inline-flex items-center gap-2 rounded-md ${primary?'bg-primary data-[hover]:bg-pink-500 data-[open]:bg-pink-600':'bg-secondary data-[hover]:bg-cyan-400 data-[open]:bg-cyan-400' } py-1.5 px-3 text-sm/6 font-semibold ${primary?'text-white':'text-ternary' } shadow-inner shadow-white/10 focus:outline-none data-[focus]:outline-1 data-[focus]:outline-white`}
         >
         {children}
-      </button>
+      </Button>
     )
 }

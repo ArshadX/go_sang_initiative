@@ -13,6 +13,11 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors:{
+        primary:"#ff66c4",
+        secondary:"#67e8f9",
+        ternary:"#210d0d"
+      },
       keyframes: {
         slideIn: {
           '0%': { transform: 'translateX(-20%)', opacity: '0' },

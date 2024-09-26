@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 const BottomTab = () => {
     const pathname = usePathname()
     return (
-        <div className="fixed bottom-0 left-0 w-full bg-white shadow-lg md:hidden flex justify-around py-2">
+        <div className="fixed z-50 bottom-0 left-0 w-full bg-white shadow-lg md:hidden flex justify-around py-2">
             <Link href="/" aria-label="Home" className="flex cyan flex-col items-center">
                 <RiSearchLine size={20} color={pathname === "/"?"#22d3ee":"#000"} />
                 <span className="text-xs">Book</span>

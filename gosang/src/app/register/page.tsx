@@ -107,9 +107,7 @@ export default function Page() {
     e.preventDefault(); // Prevent default form submission behavior
   
     try {
-      const salt = bcrypt.genSaltSync(10);
-      const hashedPassword = bcrypt.hashSync(formData.password, salt);
-      formData.password= hashedPassword;
+
       // Make the POST request using axios and pass the form data in the request body
       const response = await axios.post(
         `${API_BASE_URL}/user_profile/register_user/`,
@@ -120,8 +118,7 @@ export default function Page() {
           last_name: formData.last_name,
           email: formData.email,
           dob: formData.dob,
-          password: hashedPassword,
-         
+          password: formData.password
         }
       );
   

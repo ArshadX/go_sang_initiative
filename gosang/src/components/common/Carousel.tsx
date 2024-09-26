@@ -1,52 +1,85 @@
-'use client'
+'use client';
+
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Autoplay, Pagination, Virtual } from 'swiper/modules';
+import { Autoplay, EffectCube, Pagination } from 'swiper/modules';
 
-export default function App() {
+const slider = [
+  {
+    id: "b1",
+    name: "adv",
+    images: ['/images/promotions/laptop/testing.png']
+  },
+  {
+    id: "b2",
+    name: "adv2",
+    images: ['/images/promotions/laptop/testing.png']
+  },
+  {
+    id: "b3",
+    name: "adv2",
+    images: ['/images/promotions/laptop/testing.png']
+  },
+  {
+    id: "b4",
+    name: "adv2",
+    images: ['/images/promotions/laptop/testing.png']
+  },
+  {
+    id: "b5",
+    name: "adv2",
+    images: ['/images/promotions/laptop/testing.png']
+  },
+];
+
+export default function Carousel() {
   return (
-    <>
-      <Swiper
-        className="mySwiper swiper-h w-screen bg-slate-500 h-96"
-        spaceBetween={50}
-        pagination={{
-          clickable: true,
+    <main suppressHydrationWarning={true}>
+        <Swiper
+        effect={'cube'}
+        autoplay={
+          {
+            delay:2500,
+            waitForTransition:true,
+            pauseOnMouseEnter:true,
+          }
+        }
+        grabCursor={true}
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
         }}
-        modules={[Autoplay,Virtual]}
-        autoplay
-        virtual
+        // pagination={true}
+        modules={[EffectCube, Pagination ,Autoplay]}
+        className="mySwiper w-11/12"
       >
-        <SwiperSlide>Horizontal Slide 1</SwiperSlide>
         <SwiperSlide>
-          <Swiper
-            className="mySwiper2 swiper-v w-full h-full"
-            direction={'vertical'}
-            spaceBetween={50}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Autoplay,Virtual]}
-            autoplay
-            virtual
-          >
-            <SwiperSlide>Vertical Slide 1</SwiperSlide>
-            <SwiperSlide>Vertical Slide 2</SwiperSlide>
-            <SwiperSlide>Vertical Slide 3</SwiperSlide>
-            <SwiperSlide>Vertical Slide 4</SwiperSlide>
-            <SwiperSlide>Vertical Slide 5</SwiperSlide>
-          </Swiper>
+          <img src={slider[0].images[0]} />
         </SwiperSlide>
-        <SwiperSlide>Horizontal Slide 3</SwiperSlide>
-        <SwiperSlide>Horizontal Slide 4</SwiperSlide>
+        <SwiperSlide>
+            <img src={slider[1].images[0]} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider[2].images[0]} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider[3].images[0]} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slider[4].images[0]} />
+        </SwiperSlide>
       </Swiper>
-    </>
+    </main>
   );
 }
 
