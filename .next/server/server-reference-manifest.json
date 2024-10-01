@@ -1,5 +1,6 @@
 {
   "node": {
+<<<<<<< HEAD
     "5486d838e231cf24590dc082711d152869fd7c5c": {
       "workers": {
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
@@ -28,9 +29,61 @@
       "layer": {
         "app/page": "action-browser",
         "app/login/page": "action-browser"
+=======
+    "0e3a7a56db2aabad0f15d0825263fd1714f1fbb7": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/editprofile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser",
+        "app/profile/page": "action-browser",
+        "app/login/page": "action-browser",
+        "app/_not-found/page": "action-browser",
+        "app/editprofile/page": "action-browser"
+      }
+    },
+    "1f8603cda0f2f31d99d0296854239531a435c63b": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/editprofile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser",
+        "app/profile/page": "action-browser",
+        "app/login/page": "action-browser",
+        "app/_not-found/page": "action-browser",
+        "app/editprofile/page": "action-browser"
+      }
+    },
+    "bb27e19ed0dd94d2abfaa78ecd8bffd2f7f9700d": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/_not-found/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!",
+        "app/editprofile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22_verifysession%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser",
+        "app/profile/page": "action-browser",
+        "app/login/page": "action-browser",
+        "app/_not-found/page": "action-browser",
+        "app/editprofile/page": "action-browser"
+>>>>>>> refs/remotes/origin/main
       }
     }
   },
   "edge": {},
+<<<<<<< HEAD
   "encryptionKey": "391mzj1BFatyHmXGjkFhxgNqzwRoByLY2ZgvxzAxgm0="
+=======
+  "encryptionKey": "pmRrHXJwdtHyKeNKkPFAzG0edAK9sQZzTuf5WvTSy3g="
+>>>>>>> refs/remotes/origin/main
 }

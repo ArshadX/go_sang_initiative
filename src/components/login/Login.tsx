@@ -68,32 +68,30 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
     }
   };
 
-  const handleOtpLogin = async (e:any) => {
-    e.preventDefault()
-    const countryCode = "+91"; 
-    const formattedPhoneNumber = `${countryCode}${mobile.replace(/\D/g, "")}`;
-    try {
-      const response = await axios.get("https://getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com/api", {
-        params: {
-          key: "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d",
-          otp: otp,
-          to: formattedPhoneNumber,
-        },
-        headers: {
-          "x-rapidapi-host": "getotp-co-send-otps-via-whatsapp-globally-for-free.p.rapidapi.com",
-          "x-rapidapi-key": "712bffad4amsh4602e17e5ea28cdp18ccfdjsnd18774d6b93d",
-        },
-      });
+  const handleOtpLogin = async () => {
+    // const countryCode = "+91"; 
+    // const formattedPhoneNumber = `${countryCode}${mobile.replace(/\D/g, "")}`;
+    // try {
+    //   const response = await axios.get("", {
+    //     params: {
+    //       key: "",
+    //       otp: otp,
+    //       to: formattedPhoneNumber,
+    //     },
+    //     headers: {
+          
+    //     },
+    //   });
 
-      if (response.status === 200) {
-        setOtpSent(true);
-        setStep(3); // Move to OTP verification step
-      } else {
-        setError("Failed to send OTP via WhatsApp.");
-      }
-    } catch (error) {
-      setError("Error sending OTP. Please try again later.");
-    }
+    //   if (response.status === 200) {
+    //     setOtpSent(true);
+    //     setStep(3); // Move to OTP verification step
+    //   } else {
+    //     setError("Failed to send OTP via WhatsApp.");
+    //   }
+    // } catch (error) {
+    //   setError("Error sending OTP. Please try again later.");
+    // }
   };
 
   const handleOtpVerify = () => {

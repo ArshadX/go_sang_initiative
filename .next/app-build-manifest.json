@@ -22,6 +22,21 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
+    "/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/page.js"
+    ],
+    "/profile/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/error.js"
+    ],
+    "/profile/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/profile/loading.js"
+    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -36,6 +51,26 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/loading.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
+    ],
+    "/editprofile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/page.js"
+    ],
+    "/editprofile/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/error.js"
+    ],
+    "/editprofile/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/loading.js"
     ]
   }
 }
