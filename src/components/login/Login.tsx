@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { EventHandler, useEffect, useState } from "react";
 import { redirect, useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
 import axios from "axios";
 import { validateField } from "@/utils/formValidation";
@@ -21,7 +21,8 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
       redirect('/profile')
     }
   },[])
-  const handleNext = async () => {
+  const handleNext = async (e:any) => {
+    e.preventDefault()
     if (step === 1) {
       const mobileError = validateField("phone", mobile);
       if (mobileError) {
@@ -67,7 +68,8 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
     }
   };
 
-  const handleOtpLogin = async () => {
+  const handleOtpLogin = async (e:any) => {
+    e.preventDefault()
     const countryCode = "+91"; 
     const formattedPhoneNumber = `${countryCode}${mobile.replace(/\D/g, "")}`;
     try {
