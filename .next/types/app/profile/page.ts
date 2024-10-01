@@ -1,4 +1,4 @@
-// File: /Users/macos/Desktop/project/go_sang_initiative/src/app/profile/page.tsx
+// File: D:\Projects\go_sang_initiative\src\app\profile\page.tsx
 import * as entry from '../../../../src/app/profile/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
