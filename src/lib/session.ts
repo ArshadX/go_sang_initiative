@@ -37,6 +37,6 @@ export async function createSession(token: string,phone_number:string) {
   })
 }
  
-export function deleteSession() {
-  cookies().delete('session')
+export async function deleteSession() {
+  await cookies().delete('session')
 }
