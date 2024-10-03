@@ -1,12 +1,14 @@
 'use client'
-import { logout } from "@/app/actions/auth"
+import { _verifysession, logout } from "@/app/actions/auth"
 import ButtonMedium from "@/components/common/Button"
 
 export function Logout() {
-    function _logout(e:React.FormEvent<Element>){
+    const _session  = _verifysession()
+    async function _logout(e:React.FormEvent<Element>){
         e.preventDefault()
-        logout()
+       await logout()
       }
+    console.log(_session)
     return (
     <ButtonMedium
         onClick={_logout}
