@@ -32,7 +32,7 @@ export async function createSession(token: string,phone_number:string) {
     httpOnly: true,
     secure: true,
     expires: expiresAt,
-    sameSite: 'lax',
+    sameSite: 'none',
     path: '/',
   })
 }

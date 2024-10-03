@@ -1,14 +1,17 @@
 'use client'
 import { logout } from "@/app/actions/auth"
 import ButtonMedium from "@/components/common/Button"
+import { useRouter } from "next/navigation"
 
 export function Logout() {
+    const router = useRouter()
      function _logout(e:React.FormEvent<Element>){
 
         e.preventDefault()
         try {
             const res  = logout()
             console.log("cookies from web",res)
+            router.refresh()
         }catch(e){
             console.log("not deleted cookies",e)
         }
