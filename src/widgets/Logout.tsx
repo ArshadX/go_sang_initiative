@@ -4,9 +4,9 @@ import ButtonMedium from "@/components/common/Button"
 
 export function Logout() {
     const _session  = _verifysession()
-    async function _logout(e:React.FormEvent<Element>){
+     function _logout(e:React.FormEvent<Element>){
         e.preventDefault()
-       await logout()
+       logout()
       }
     console.log(_session)
     return (

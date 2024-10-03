@@ -8,7 +8,7 @@ export async function generateSession(token:string,phone_number:string) {
   await createSession(token,phone_number)
 }
 
-export async function logout() {
+export function logout() {
   deleteSession()
   redirect('/')
 }
