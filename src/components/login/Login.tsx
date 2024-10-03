@@ -1,11 +1,12 @@
 "use client";
-import React, { EventHandler, useEffect, useState } from "react";
-import { redirect, useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
-import axios from "axios";
+import React, {useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
+
 import { validateField } from "@/utils/formValidation";
-import { instance } from "@/constants/apis/instance";
 import { generateSession } from "@/app/actions/auth"
 import { JWTPayload } from "jose";
+import { instance } from "@/constants/apis/instance";
+import axios from "axios";
 
 
 const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolean}}) => {
@@ -18,11 +19,10 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
   const [otpSent, setOtpSent] = useState<boolean>(false);
   useEffect(()=>{
     if(session?.isAuth){
-      redirect('/profile')
+      router.push('/profile')
     }
   },[])
   const handleNext = async (e:any) => {
-    e.preventDefault()
     if (step === 1) {
       const mobileError = validateField("phone", mobile);
       if (mobileError) {
@@ -33,11 +33,12 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
       setError(""); 
 
       try {
-        const response = await instance.post('/user_profile/user_exist/', {
-          user_id: mobile
-        });
-        if (response.data.user_exist) {
-            console.log(response.data)
+        const res = await instance.post('/user_profile/user_exist/',{
+          user_id:mobile
+        })
+        console.log("asakasjsakj",res.data)
+        if (res.data.user_exist) {
+            console.log(res.data)
           setStep(2);  // Move to the password/OTP step
         } else {
           setError("This mobile number does not exist.");
@@ -49,20 +50,23 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
     } else if (step === 2) {
       if (password !== "" && otp === "") {
         try {
+          console.log("login pressed")
           const response = await instance.post('/user_profile/login/', {
             user_id: mobile,
             password: password,
           });
-
+          console.log(response.status)
           if (response.status === 200) {
-            console.log(response.data)
             await generateSession(response.data.token,mobile); 
-            router.push('/profile'); // Navigate to profile on successful login
+            router.push('/profile') // Navigate to profile on successful login
           } else {
+            console.log("invalid")
             setError("Login failed. Check your credentials.");
           }
-        } catch (error) {
-          setError("Failed to login.");
+        } catch (error:any) {
+          console.log('eeror')
+          setError(error.response.data.error)
+          // handleError(error)
         }
       }
     }
@@ -146,12 +150,14 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
         {step === 2 && (
           <div>
             <input
-              type="password"
+              type='text'
+              hidden={false}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none mb-4"
             />
+            {error && <p className="text-red-500 text-center mb-4">{error}</p>}
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white w-full p-2 rounded-full active:bg-secondary"

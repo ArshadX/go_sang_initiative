@@ -40,8 +40,8 @@ const ProfilePage = () => {
   const [token, setToken] = useState<{} | null>(null);
   const [loading,setLoading] = useState(false)
   // Fetch mobile and token from localStorage and update state
-   const fetchToken  = useCallback(()=>{
-      return _verifysession()
+   const fetchToken  = useCallback(async()=>{
+      return await _verifysession()
   },[])
   useEffect(() => {
        fetchToken().then((res)=>{
@@ -72,7 +72,6 @@ const ProfilePage = () => {
           const result = response.data;
           if (result.user) {
               const userData: User = JSON.parse(result.user);
-              console.log(userData);
               setUser(userData);
           }
           setLoading(false)

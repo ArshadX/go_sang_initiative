@@ -2,29 +2,41 @@
   "node": {
     "5486d838e231cf24590dc082711d152869fd7c5c": {
       "workers": {
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/login/page": "action-browser",
+        "app/profile/page": "action-browser",
         "app/page": "action-browser"
       }
     },
     "6b193b7dd760480fa99649ba05b660599c222054": {
       "workers": {
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/login/page": "action-browser",
+        "app/profile/page": "action-browser",
         "app/page": "action-browser"
       }
     },
     "713eaaa097ec6c7d33b98ec92fce594723ea9738": {
       "workers": {
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
+        "app/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!",
         "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22_verifysession%22%2C%22generateSession%22%2C%22logout%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
+        "app/login/page": "action-browser",
+        "app/profile/page": "action-browser",
         "app/page": "action-browser"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "pPdy/CLdgeCLQpX1V0AQjXFkyakbuBgFFZzUhhiRfw8="
+  "encryptionKey": "zvrsswivGzYpY8hv1jssKFmDfvLIjPSWyw029vpaKS8="
 }
