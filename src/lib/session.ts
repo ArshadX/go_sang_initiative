@@ -28,7 +28,7 @@ export async function createSession(token: string,phone_number:string) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
   const session = await encrypt({ token, expiresAt, phone_number})
  
-  cookies().set('session', session, {
+  cookies().set('authentication', session, {
     httpOnly: true,
     secure: true,
     expires: expiresAt,
@@ -38,5 +38,7 @@ export async function createSession(token: string,phone_number:string) {
 }
  
 export async function deleteSession() {
-  await cookies().delete('session')
+  const cookiesstore =  cookies()
+  const res = await cookiesstore.delete('authentication')
+  return res
 }

@@ -9,8 +9,8 @@ export async function generateSession(token:string,phone_number:string) {
 }
 
 export async function logout() {
-  await deleteSession()
-  redirect('/')
+  const res = await deleteSession()
+  return res
 }
 
 export async function _verifysession() {

@@ -6,7 +6,7 @@ import { cache } from 'react'
 
  
 export const verifySession = async () => {
-  const cookie =  cookies().get('session')?.value
+  const cookie =  cookies().get('authentication')?.value
   const session = await decrypt(cookie)
  
   if (!session?.token) {
