@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { instance } from "@/constants/apis/instance";
 import React, { useCallback, useEffect, useState } from "react";
-import { _verifysession } from "@/app/actions/auth";
+import { getCredentials } from "@/app/actions/auth";
 import Dialogue from "../common/DialogueBox";
 import {
   RiHistoryLine,
@@ -50,23 +50,17 @@ const EditProfile = () => {
   const [token, setToken] = useState<{} | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchToken = useCallback(() => {
-    return _verifysession();
-  }, []);
+  
 
+  const fetchToken = useCallback(async()=>{
+    const session = await getCredentials()
+    fetchUser(session.phone_number,session.token)
+  },[])
   useEffect(() => {
     fetchToken()
-      .then((res) => {
-        setToken(res.token);
-        setMobile(res.phone_number);
-        fetchUser(res.phone_number, res.token);
-      })
-      .catch((err: any) => {
-        console.log("failed to fetch token", err);
-      });
-  }, [fetchToken]);
+  }, []);
 
-  const fetchUser = async (phone_number: unknown, token: {} | null) => {
+  const fetchUser = async (phone_number: unknown, token:unknown | string) => {
     try {
       setLoading(true);
       const response = await instance.post(

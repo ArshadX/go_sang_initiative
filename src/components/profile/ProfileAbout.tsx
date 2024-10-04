@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Image from 'next/image';
 import { FaIdCard, FaEnvelope, FaPhone, FaCheckCircle, FaComment, FaMusic, FaSmoking, FaPaw, FaChevronRight } from 'react-icons/fa';
 import { instance } from "@/constants/apis/instance";
-import { _verifysession } from "@/app/actions/auth";
+// import { _verifysession } from "@/app/actions/auth";
 import Dialogue from "../common/DialogueBox";
 
 // Define the User interface
@@ -31,20 +31,20 @@ const ProfileAbout = () => {
     const [token, setToken] = useState<{} | null>(null);
     const [loading,setLoading] = useState(false)
     // Fetch mobile and token from localStorage and update state
-     const fetchToken  = useCallback(()=>{
-        return _verifysession()
-    },[])
-    useEffect(() => {
-         fetchToken().then((res)=>{
-            setToken(res.token)
-            setMobile(res.phone_number)
-            fetchUser(res.phone_number,res.token)
-        }).catch((err:any)=>{
-            console.log("failed to fetch token",err)
-        })
-        // if (storedMobile) setMobile(storedMobile);
-        // if (storedToken) setToken(storedToken);
-    }, []);
+    //  const fetchToken  = useCallback(()=>{
+    //     return _verifysession()
+    // },[])
+    // useEffect(() => {
+    //      fetchToken().then((res)=>{
+    //         setToken(res.token)
+    //         setMobile(res.phone_number)
+    //         fetchUser(res.phone_number,res.token)
+    //     }).catch((err:any)=>{
+    //         console.log("failed to fetch token",err)
+    //     })
+    //     // if (storedMobile) setMobile(storedMobile);
+    //     // if (storedToken) setToken(storedToken);
+    // }, []);
     // Fetch user data from the API
     const fetchUser = async (phone_number:unknown,token:{}|null) => {
         try {

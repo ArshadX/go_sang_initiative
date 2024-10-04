@@ -47,7 +47,7 @@ const ProfilePage = () => {
     fetchToken()
   }, []);
   // Fetch user data from the API
-  const fetchUser = async (phone_number:unknown,token:{}|null) => {
+  const fetchUser = async (phone_number:unknown,token:unknown | string) => {
       try {
           setLoading(true)
           const response = await instance.post(
