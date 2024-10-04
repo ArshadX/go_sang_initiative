@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation"
 
 export function Logout() {
     const router = useRouter()
-     function _logout(e:React.FormEvent<Element>){
+     async function _logout(e:React.FormEvent<Element>){
 
         e.preventDefault()
         try {
-            const res  = logout()
+            const res  = await logout()
             console.log("cookies from web",res)
             router.replace('/')
         }catch(e){

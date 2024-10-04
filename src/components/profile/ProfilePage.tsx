@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { instance } from "@/constants/apis/instance";
 import React, { useCallback, useEffect, useState } from "react";
-import { _verifysession } from "@/app/actions/auth";
+import {  getCredentials } from "@/app/actions/auth";
 import Dialogue from "../common/DialogueBox";
 
 import {
@@ -14,6 +14,7 @@ import {
   RiHeartLine,
   RiArrowRightSLine,
 } from 'react-icons/ri';
+import { useRouter } from 'next/router';
 
 
 interface User {
@@ -34,25 +35,16 @@ interface User {
 }
 
 const ProfilePage = () => {
-
-  const [user, setUser] = useState<User | null>(null);
-  const [mobile, setMobile] = useState<string | null | unknown>(null);
-  const [token, setToken] = useState<{} | null>(null);
+  const router = useRouter()
+  const [ user, setUser] = useState<User | null>(null);
   const [loading,setLoading] = useState(false)
   // Fetch mobile and token from localStorage and update state
-   const fetchToken  = useCallback(async()=>{
-      return await _verifysession()
+  const fetchToken = useCallback(async()=>{
+    const session = await getCredentials()
+    fetchUser(session.phone_number,session.token)
   },[])
   useEffect(() => {
-       fetchToken().then((res)=>{
-          setToken(res.token)
-          setMobile(res.phone_number)
-          fetchUser(res.phone_number,res.token)
-      }).catch((err:any)=>{
-          console.log("failed to fetch token",err)
-      })
-      // if (storedMobile) setMobile(storedMobile);
-      // if (storedToken) setToken(storedToken);
+    fetchToken()
   }, []);
   // Fetch user data from the API
   const fetchUser = async (phone_number:unknown,token:{}|null) => {
@@ -102,7 +94,7 @@ const ProfilePage = () => {
             </div>
         </div>
     )
-}else if(!user || (token === null)){
+}else if(!user){
     return <Dialogue />
 }
   return (

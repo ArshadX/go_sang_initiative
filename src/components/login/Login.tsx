@@ -1,15 +1,15 @@
 "use client";
-import React, {useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
 
 import { validateField } from "@/utils/formValidation";
-import { generateSession } from "@/app/actions/auth"
+import { generateSession, getCredentials } from "@/app/actions/auth"
 import { JWTPayload } from "jose";
 import { instance } from "@/constants/apis/instance";
 import axios from "axios";
 
 
-const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolean}}) => {
+const Login = () => {
   const router = useRouter();
   const [step, setStep] = useState<number>(1); 
   const [mobile, setMobile] = useState<string>("");
@@ -17,10 +17,14 @@ const Login = ({session}:{session:{token:JWTPayload[string] | null,isAuth:boolea
   const [otp, setOtp] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
-  useEffect(()=>{
-    if(session?.isAuth){
-      router.push('/profile')
+  const fetchToken = useCallback(async()=>{
+    const session = await getCredentials()
+    if(session.isAuth){
+      router.push("/profile")
     }
+  },[])
+  useEffect(()=>{
+      fetchToken()
   },[])
   const handleNext = async (e:any) => {
     if (step === 1) {

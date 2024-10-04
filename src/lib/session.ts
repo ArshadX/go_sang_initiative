@@ -20,7 +20,7 @@ export async function decrypt(session: string | undefined = '') {
     return payload
   } catch (error) {
     console.log('Failed to verify session')
-    return 
+    return {}
   }
 }
  
@@ -39,6 +39,6 @@ export async function createSession(token: string,phone_number:string) {
  
 export async function deleteSession() {
   const cookiesstore =  cookies()
-  const res = await cookiesstore.delete('authentication')
+  const res = cookiesstore.delete('authentication')
   return res
 }

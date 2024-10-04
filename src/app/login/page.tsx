@@ -2,10 +2,9 @@ import Login from "@/components/login/Login"
 import { verifySession } from "@/lib/dal"
 
 export default async function Page (){
-  const session = await verifySession()
   return(
     <>
-    <Login session={session} />
+    <Login />
     </>
   )
 }
