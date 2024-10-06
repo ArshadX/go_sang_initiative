@@ -14,7 +14,7 @@ import {
   RiHeartLine,
   RiArrowRightSLine,
 } from 'react-icons/ri';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 interface User {

@@ -4,9 +4,7 @@ import { useRouter } from 'next/navigation';  // Use next/navigation in App Rout
 
 import { validateField } from "@/utils/formValidation";
 import { generateSession, getCredentials } from "@/app/actions/auth"
-import { JWTPayload } from "jose";
 import { instance } from "@/constants/apis/instance";
-import axios from "axios";
 
 
 const Login = () => {
