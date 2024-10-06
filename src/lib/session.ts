@@ -38,7 +38,10 @@ export async function createSession(token: string,phone_number:string) {
 }
  
 export async function deleteSession() {
+
   const cookiesstore =  cookies()
   const res = cookiesstore.delete('authentication')
+  
+  
   return res
 }

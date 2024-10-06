@@ -1,4 +1,5 @@
 "use client";
+export const revalidate = 'no-store';
 import React, {useCallback, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
 
