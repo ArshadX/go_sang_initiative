@@ -11,7 +11,7 @@ export function Logout() {
         try {
             const res  = await logout()
             console.log("cookies from web",res)
-            router.replace('/')
+            router.refresh()
         }catch(e){
             console.log("not deleted cookies",e)
         }
