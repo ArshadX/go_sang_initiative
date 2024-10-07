@@ -29,7 +29,7 @@ export async function createSession(token: string,phone_number:string) {
   const session = await encrypt({ token, expiresAt, phone_number})
  
   cookies().set('authentication', session, {
-    httpOnly: true,
+    httpOnly: false,
     secure: true,
     expires: expiresAt,
     sameSite: 'none',
