@@ -161,7 +161,7 @@ const EditProfile = () => {
         </div>
       </div>
     );
-  } else if (!user || token === null) {
+  } else if (!user) {
     return <Dialogue />;
   }
 

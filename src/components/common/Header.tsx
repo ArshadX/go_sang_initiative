@@ -99,13 +99,6 @@ export default async function Header() {
           </Popover>
         </PopoverGroup>
         <div className="flex lg:flex-1 lg:justify-end">
-             <a
-              href="/register"
-              className="inline-flex items-center gap-2 rounded-md bg-primary py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none hover:bg-pink-600 open:bg-pink-600 data-[focus]:outline-1 data-[focus]:outline-white"
-            >
-              {`${session.isAuth},${session.token}`}
-              {/* <span aria-hidden="true">&rarr;</span> */}
-            </a>
           {!session?.isAuth ? (
             <div className='space-x-6'>
             <a

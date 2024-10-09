@@ -4,51 +4,59 @@
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/editprofile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/login/page": "rsc",
-        "app/profile/page": "rsc"
+        "app/profile/page": "rsc",
+        "app/editprofile/page": "rsc"
       }
     },
     "713eaaa097ec6c7d33b98ec92fce594723ea9738": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/editprofile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/login/page": "rsc",
-        "app/profile/page": "rsc"
+        "app/profile/page": "rsc",
+        "app/editprofile/page": "rsc"
       }
     },
     "a97c6cacbaa20637390bc8a9c0a1151708117f85": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/editprofile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/login/page": "rsc",
-        "app/profile/page": "rsc"
+        "app/profile/page": "rsc",
+        "app/editprofile/page": "rsc"
       }
     },
     "c36f3bfeb14032af3979346cde3083a736519048": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/editprofile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fmacos%2FDesktop%2Fproject%2Fgo_sang_initiative%2Fsrc%2Fapp%2Factions%2Fauth.ts%22%2C%5B%22generateSession%22%2C%22logout%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/login/page": "rsc",
-        "app/profile/page": "rsc"
+        "app/profile/page": "rsc",
+        "app/editprofile/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "E4ReyA1yOAxL4URcrCRbCCFkusZwcBNkK+ibn/yM/t8="
+  "encryptionKey": "WOB5Iz3iFEtGtedhKN0WUihBcIS1et4ybcNVogeh/wg="
 }

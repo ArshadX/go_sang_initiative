@@ -51,6 +51,21 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/profile/loading.js"
+    ],
+    "/editprofile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/page.js"
+    ],
+    "/editprofile/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/error.js"
+    ],
+    "/editprofile/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/editprofile/loading.js"
     ]
   }
 }
