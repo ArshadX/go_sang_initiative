@@ -1,19 +1,19 @@
 {
   "pages": {
-    "/addvehical/page": [
+    "/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/page.js"
+      "static/chunks/app/profile/page.js"
     ],
-    "/addvehical/error": [
+    "/profile/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/error.js"
+      "static/chunks/app/profile/error.js"
     ],
-    "/addvehical/loading": [
+    "/profile/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/loading.js"
+      "static/chunks/app/profile/loading.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -31,20 +31,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/profile/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/page.js"
-    ],
-    "/profile/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/profile/error.js"
-    ],
-    "/profile/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/profile/loading.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ],
     "/login/page": [
       "static/chunks/webpack.js",
@@ -60,21 +51,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/login/loading.js"
-    ],
-    "/editprofile/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/page.js"
-    ],
-    "/editprofile/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/error.js"
-    ],
-    "/editprofile/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/loading.js"
     ]
   }
 }
