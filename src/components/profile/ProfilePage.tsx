@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { instance } from "@/constants/apis/instance";
 import React, { useCallback, useEffect, useState } from "react";
-import {  getCredentials } from "@/app/actions/auth";
+import { getCredentials } from "@/app/actions/auth";
 import Dialogue from "../common/DialogueBox";
 
 import {
@@ -16,6 +16,13 @@ import {
 } from 'react-icons/ri';
 import { useRouter } from 'next/navigation';
 
+interface Vehicle {
+  vehicle_brand: string;
+  vehicle_capacity: string;
+  vehicle_modal: string;
+  vehicle_number: string;
+  vehicle_type: string;
+}
 
 interface User {
   first_name: string;
@@ -24,8 +31,9 @@ interface User {
   status: string;
   email: string;
   phone_number: string;
-  is_email_verified:boolean;
-  is_aadhar_verified :boolean;
+  is_email_verified: boolean;
+  vehical_list: Array<Vehicle>;  // Correct spelling as per your backend
+  is_aadhar_verified: boolean;
   bio: string;
   chatty: string;
   music: string;
@@ -34,77 +42,98 @@ interface User {
   vehicle: string;
 }
 
-const ProfilePage = () => {
-  const router = useRouter()
-  const [ user, setUser] = useState<User | null>(null);
-  const [loading,setLoading] = useState(false)
-  // Fetch mobile and token from localStorage and update state
-  const fetchToken = useCallback(async()=>{
-    const session = await getCredentials()
-    fetchUser(session.phone_number,session.token)
-  },[])
-  useEffect(() => {
-    fetchToken()
-  }, []);
-  // Fetch user data from the API
-  const fetchUser = async (phone_number:unknown,token:unknown | string) => {
-      try {
-          setLoading(true)
-          const response = await instance.post(
-              '/user_profile/get_user/',
-              { user_id: phone_number },
-              {
-                  headers: {
-                      Authorization: `Bearer ${token}`,
-                      'Content-Type': 'application/json',
-                  },
-              }
-          );
+// Define the keys for collapsible items
+type CollapsibleKeys = 'vehicles' | 'paymentHistory' | 'faq' | 'termsConditions' | 'settings' | 'supportCenter';
 
-          const result = response.data;
-          if (result.user) {
-              const userData: User = JSON.parse(result.user);
-              setUser(userData);
-          }
-          setLoading(false)
-      } catch (error: any) {
-          setLoading(false)
-          console.error('Error fetching user:', error.message);
+const ProfilePage = () => {
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [vehicles, setVehicles] = useState<Vehicle[] | null>(null); // Change here
+  const [loading, setLoading] = useState(false);
+  
+  const [collapseStates, setCollapseStates] = useState<Record<CollapsibleKeys, boolean>>({
+    vehicles: false,
+    paymentHistory: false,
+    faq: false,
+    termsConditions: false,
+    settings: false,
+    supportCenter: false,
+  });
+
+  const fetchToken = useCallback(async () => {
+    const session = await getCredentials();
+    fetchUser(session.phone_number, session.token);
+  }, []);
+
+  useEffect(() => {
+    fetchToken();
+  }, []);
+
+  const fetchUser = async (phone_number: unknown, token: unknown | string) => {
+    try {
+      setLoading(true);
+      const response = await instance.post(
+        '/user_profile/get_user/',
+        { user_id: phone_number },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const result = response.data;
+      if (result.user) {
+        const userData: User = JSON.parse(result.user);
+        setUser(userData);
+        setVehicles(userData.vehical_list); // Keep the spelling as you mentioned
       }
+      setLoading(false);
+    } catch (error: any) {
+      setLoading(false);
+      console.error('Error fetching user:', error.message);
+    }
   };
 
+  // Toggle the collapse state for a specific item
+  const toggleCollapse = (key: CollapsibleKeys) => {
+    setCollapseStates((prevStates) => ({
+      ...prevStates,
+      [key]: !prevStates[key],
+    }));
+  };
 
-  if(loading){
+  if (loading) {
     return (
-        <div className="relative left-0 right-0 top-72 h-full isolate">
-            <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-                <div className="animate-pulse flex space-x-4">
-                    <div className="rounded-full bg-slate-700 h-10 w-10"></div>
-                    <div className="flex-1 space-y-6 py-1">
-                        <div className="h-2 bg-slate-700 rounded"></div>
-                        <div className="space-y-3">
-                            <div className="grid grid-cols-3 gap-4">
-                                <div className="h-2 bg-slate-700 rounded col-span-2"></div>
-                                <div className="h-2 bg-slate-700 rounded col-span-1"></div>
-                            </div>
-                            <div className="h-2 bg-slate-700 rounded"></div>
-                        </div>
-                    </div>
+      <div className="relative left-0 right-0 top-72 h-full isolate">
+        <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+          <div className="animate-pulse flex space-x-4">
+            <div className="rounded-full bg-slate-700 h-10 w-10"></div>
+            <div className="flex-1 space-y-6 py-1">
+              <div className="h-2 bg-slate-700 rounded"></div>
+              <div className="space-y-3">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="h-2 bg-slate-700 rounded col-span-2"></div>
+                  <div className="h-2 bg-slate-700 rounded col-span-1"></div>
                 </div>
+                <div className="h-2 bg-slate-700 rounded"></div>
+              </div>
             </div>
+          </div>
         </div>
-    )
-}else if(!user){
-    return <Dialogue />
-}
+      </div>
+    );
+  } else if (!user) {
+    return <Dialogue />;
+  }
+
   return (
     <>
       <Head>
         <title>Profile Page</title>
       </Head>
-      {/* Full height wrapper for mobile */}
-      <div className="bg-gray-100 h-screen flex items-center justify-center">
-        {/* Responsive container */}
+      <div className="bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-6 shadow-lg rounded-lg w-full h-full lg:w-1/2 lg:h-auto lg:max-h-screen">
           <div className="flex items-center mb-6">
             <img
@@ -113,7 +142,7 @@ const ProfilePage = () => {
               className="w-16 h-16 rounded-full mr-4"
             />
             <div>
-              <h2 className="text-xl font-bold">{user.first_name +" "+ user.last_name || "User Name"}</h2>
+              <h2 className="text-xl font-bold">{user.first_name + " " + user.last_name || "User Name"}</h2>
               <a href="/editprofile" className="text-blue-500">
                 Edit profile
               </a>
@@ -130,48 +159,98 @@ const ProfilePage = () => {
             </div>
           </div>
           <ul className="space-y-4">
-            <li className="flex items-center justify-between">
-              <a href="#" className="flex items-center">
-                <RiHistoryLine className="text-gray-500 mr-4" />
-                <span className="font-semibold">Rides history</span>
-              </a>
-              <RiArrowRightSLine className="text-gray-500" />
-            </li>
-            <li className="flex items-center justify-between">
+            {/* Vehicles Section */}
+            <li onClick={() => toggleCollapse('vehicles')} className="flex items-center justify-between cursor-pointer">
               <a href="#" className="flex items-center">
                 <RiIdCardLine className="text-gray-500 mr-4" />
-                <span className="font-semibold">Payment methods</span>
+                <span className="font-semibold">Vehicles</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            <li className="flex items-center justify-between">
+            {collapseStates.vehicles && (
+              <ul className="pl-8">
+                {vehicles && vehicles.map((vehicle, index) => (
+                  <li key={index}>
+                    {vehicle.vehicle_brand} - {vehicle.vehicle_number}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {/* Payment History Section */}
+            <li onClick={() => toggleCollapse('paymentHistory')} className="flex items-center justify-between cursor-pointer">
+              <a href="#" className="flex items-center">
+                <RiHistoryLine className="text-gray-500 mr-4" />
+                <span className="font-semibold">Payment History</span>
+              </a>
+              <RiArrowRightSLine className="text-gray-500" />
+            </li>
+            {collapseStates.paymentHistory && (
+              <ul className="pl-8">
+                <li>Payment 1</li>
+                <li>Payment 2</li>
+              </ul>
+            )}
+
+            {/* FAQ Section */}
+            <li onClick={() => toggleCollapse('faq')} className="flex items-center justify-between cursor-pointer">
               <a href="#" className="flex items-center">
                 <RiQuestionLine className="text-gray-500 mr-4" />
                 <span className="font-semibold">FAQ</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            <li className="flex items-center justify-between">
+            {collapseStates.faq && (
+              <ul className="pl-8">
+                <li>Question 1</li>
+                <li>Question 2</li>
+              </ul>
+            )}
+
+            {/* Terms & Conditions Section */}
+            <li onClick={() => toggleCollapse('termsConditions')} className="flex items-center justify-between cursor-pointer">
               <a href="#" className="flex items-center">
                 <RiFileTextLine className="text-gray-500 mr-4" />
                 <span className="font-semibold">Terms & Conditions</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            <li className="flex items-center justify-between">
+            {collapseStates.termsConditions && (
+              <ul className="pl-8">
+                <li>Condition 1</li>
+                <li>Condition 2</li>
+              </ul>
+            )}
+
+            {/* Settings Section */}
+            <li onClick={() => toggleCollapse('settings')} className="flex items-center justify-between cursor-pointer">
               <a href="#" className="flex items-center">
                 <RiSettings3Line className="text-gray-500 mr-4" />
                 <span className="font-semibold">Settings</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            <li className="flex items-center justify-between">
+            {collapseStates.settings && (
+              <ul className="pl-8">
+                <li>Setting 1</li>
+                <li>Setting 2</li>
+              </ul>
+            )}
+
+            {/* Support Center Section */}
+            <li onClick={() => toggleCollapse('supportCenter')} className="flex items-center justify-between cursor-pointer">
               <a href="#" className="flex items-center">
                 <RiHeartLine className="text-gray-500 mr-4" />
-                <span className="font-semibold">Support center</span>
+                <span className="font-semibold">Support Center</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
+            {collapseStates.supportCenter && (
+              <ul className="pl-8">
+                <li>Support 1</li>
+                <li>Support 2</li>
+              </ul>
+            )}
           </ul>
         </div>
       </div>
