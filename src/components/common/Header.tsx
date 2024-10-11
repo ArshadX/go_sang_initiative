@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { RiArrowDownSLine, RiChat4Line, RiCustomerServiceLine, RiMoneyRupeeCircleLine, RiPhoneLine, RiShieldCheckLine, RiTeamLine } from 'react-icons/ri';
 import { Logout } from '@/widgets/Logout';
 import { getCredentials } from '@/app/actions/auth';
+import RideOffer from "@/components/rides/RideOffer";
 
 const about = [
   { name: 'Who we are', description: '', href: '/about', icon: RiTeamLine },
@@ -24,7 +25,6 @@ const callsToAction = [
 
 export default async function Header() {
   const session = await getCredentials()
-  console.log("credentials in header",session);
 
   // Optionally handle the case where isLoggedIn is undefined (e.g., during the hook's execution)
   return (
@@ -46,8 +46,8 @@ export default async function Header() {
         </div>
 
         <PopoverGroup className="hidden md:flex md:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Add Ride
+          <a href="/addride" className="text-sm font-semibold leading-6 text-gray-900">
+            Publish Ride
           </a>
           <a href="/myrides" className="text-sm font-semibold leading-6 text-gray-900">
             My Rides
