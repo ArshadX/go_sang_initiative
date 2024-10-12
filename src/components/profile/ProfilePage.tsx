@@ -171,7 +171,7 @@ const ProfilePage = () => {
               <ul className="pl-8">
                 {vehicles && vehicles.map((vehicle, index) => (
                   <li key={index}>
-                    {vehicle.vehicle_brand} - {vehicle.vehicle_number}
+                   <b> {vehicle.vehicle_brand} - {vehicle.vehicle_number}</b>
                   </li>
                 ))}
               </ul>

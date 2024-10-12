@@ -1,4 +1,3 @@
-"use client";
 
 import RideOffer from "@/components/rides/RideOffer";
 
