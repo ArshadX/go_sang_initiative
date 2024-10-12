@@ -29,6 +29,8 @@ export default function AddVehicle() {
   const [seats, setSeats] = useState<string>("");
   const [errors, setErrors] = useState<Errors>({});
   const [user_id, setUserPhoneNumber] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+
   const [showSuccessPopup, setShowSuccessPopup] = useState(false); // New state for success popup
   const currentYear = new Date().getFullYear();
   const validYears = Array.from({ length: 15 }, (_, i) => (currentYear - i).toString());
@@ -40,6 +42,7 @@ export default function AddVehicle() {
       const session = await getCredentials();
       if (session && typeof session.phone_number === "string") {
         setUserPhoneNumber(session.phone_number);
+        setToken(session.token as string);
       } else {
         setUserPhoneNumber(null);
       }
@@ -80,10 +83,18 @@ export default function AddVehicle() {
       vehicle_color: "Black",
       vehicle_capacity: vehicleType === "Car" ? seats : 1,
     };
+     console.log(vehicleData);
 
     try {
-      const response = await instance.post("/user_profile/add_vehical/", vehicleData);
-
+      const response = await instance.post("/user_profile/add_vehical/", vehicleData,
+     {
+            headers: {
+              Authorization: `Bearer ${token}`, // Ensure token is valid and present
+              'Content-Type': 'application/json',
+            },
+          }
+      );
+      
       if (response.status !== 200) {
         throw new Error('Network response was not ok');
       }

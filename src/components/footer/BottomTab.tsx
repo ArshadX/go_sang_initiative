@@ -10,9 +10,9 @@ const BottomTab = () => {
                 <RiSearchLine size={20} color={pathname === "/"?"#22d3ee":"#000"} />
                 <span className="text-xs">Book</span>
             </Link>
-            <Link href="/request" aria-label="Request" className="flex flex-col items-center">
-                <RiAddCircleLine size={20} color={pathname === "/request"?"#22d3ee":"#000"} />
-                <span className="text-xs">Add Ride </span>
+            <Link href="/addride" aria-label="Request" className="flex flex-col items-center">
+                <RiAddCircleLine size={20} color={pathname === "/addride"?"#22d3ee":"#000"} />
+                <span className="text-xs">Publish Ride </span>
             </Link>
             <Link href="/rides" aria-label="My Rides" className="flex flex-col items-center">
                 <RiCarLine size={20} color={pathname === "/rides"?"#22d3ee":"#000"}/>

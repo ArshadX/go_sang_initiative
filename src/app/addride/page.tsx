@@ -1,11 +1,12 @@
 "use client";
 
-import MyRides from "@/components/rides/MyRides";
+import RideOffer from "@/components/rides/RideOffer";
+
 
 
 export default function Page(){
     return(
-        <MyRides/>
+        <RideOffer/>
         
     );
 }
