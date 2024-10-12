@@ -68,7 +68,7 @@ const Login = () => {
           }
         } catch (error:any) {
           console.log('eeror')
-          setError(error.response.data.error)
+          setError(error.message)
           // handleError(error)
         }
       }
