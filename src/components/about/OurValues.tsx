@@ -3,28 +3,30 @@ import React from 'react';
 const values = [
   {
     title: "Be world-class",
-    description: "Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.",
+    description: "At Gosang, we deliver world-class carpooling solutions focused on women's safety and affordability. Leveraging advanced technology, we offer low-cost rides, verified drivers, and real-time tracking, ensuring a safe, secure, and premium travel experience for women everywhere.",
   },
   {
     title: "Share everything you know",
-    description: "Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.",
+    description: "Make sure all drivers undergo thorough background checks and verifications, including identity verification, driving records, and criminal background checks Women-Only Rides  Provide the option for women to book rides with female drivers or join women-only carpools to increase comfort and trust."
+             
   },
   {
-    title: "Always learning",
-    description: "Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.",
+    title: "Embrace Continuous Learning",
+    description: "We believe in constantly evolving by staying updated with the latest technologies and industry practices. Growth comes from learning, and we encourage our team and users to never stop improving."
   },
   {
-    title: "Be supportive",
-    description: "Magnam provident veritatis odit. Vitae eligendi repellat non. Eum fugit impedit veritatis ducimus. Non qui aspernatur laudantium modi.",
+    title: "Foster a Supportive Community",
+    description: "Building a safe, inclusive environment for our users and employees is our priority. We promote kindness, understanding, and support to ensure that everyone feels valued and heard."
   },
   {
-    title: "Take responsibility",
-    description: "Sit minus expedita quam in ullam molestiae dignissimos in harum. Tenetur dolorem iure. Non nesciunt dolorem veniam necessitatibus.",
+    title: "Take Ownership",
+    description: "We encourage accountability at every level. Taking responsibility for our actions drives us to deliver reliable services and create trust within our community of users."
   },
   {
-    title: "Enjoy downtime",
-    description: "Ipsa in earum deserunt aut. Quos minus aut animi et soluta. Ipsum dicta ut quia eius. Possimus reprehenderit iste aspernatur ut est.",
-  },
+    title: "Balance Work and Relaxation",
+    description: "We understand the importance of maintaining a healthy work-life balance. By encouraging downtime and relaxation, we help our team and users stay energized and motivated."
+  }
+  
 ];
 
 const OurValues = () => {
@@ -33,7 +35,7 @@ const OurValues = () => {
       <div className="container">
         <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Objective</h2>
         <p className="text-lg text-gray-500 mb-12">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in accusamus quisquam.
+          Gosang Promise you to provide low cost and safe rides throughout your journey with live tracking safety systems
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {values.map((value, index) => (

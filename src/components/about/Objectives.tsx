@@ -4,17 +4,17 @@ const values = [
     {
       title: "Focused on women safety",
       image:"safewomen.svg",
-      description: "Aut illo quae. Ut et harum ea animi natus. Culpa maiores et sed sint et magnam exercitationem quia. Ullam voluptas nihil vitae dicta molestiae et. Aliquid velit porro vero.",
+      description: "At Gosang, we prioritize women's safety with secure, reliable, and community-driven carpooling solutions. Our platform empowers women to travel confidently, offering verified drivers, real-time tracking, and 24/7 support to ensure peace of mind on every ride.",
     },
     {
       title: "Low cost and safety",
       image:"cost.svg",
-      description: "Mollitia delectus a omnis. Quae velit aliquid. Qui nulla maxime adipisci illo id molestiae. Cumque cum ut minus rerum architecto magnam consequatur. Quia quaerat minima.",
+      description: "we provide safe and affordable carpooling solutions, especially focused on women's safety. With verified drivers, real-time tracking, and budget-friendly rides, we ensure a secure and cost-effective way to travel with confidence.",
     },
     {
       title: "Leveraging technologies",
       image:"tech.svg",
-      description: "Aut repellendus et officiis dolor possimus. Deserunt velit quasi sunt fuga error labore quia ipsum. Commodi autem voluptatem nam. Quos voluptatem totam.",
+      description: "we combine cutting-edge technology with safety and affordability to offer women a secure carpooling experience. Our platform ensures low-cost rides, verified drivers, real-time tracking, and safety features, all powered by advanced tech to make your commute safe and reliable.",
     },
 ];
 

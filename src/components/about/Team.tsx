@@ -1,31 +1,20 @@
 import Image from "next/image"
 
 const people = [
-    {
-      name: 'Zaheen akhtar',
-      role: 'Backend',
-      imageUrl:
-        'zaheen.jpg',
-    },
+  {
+    name: 'Vimal Sharma',
+    role: 'Founder',
+    imageUrl:
+      'vimal.jpg',
+},
     {
         name: 'Mo Arshad',
-        role: 'Frontend',
+        role: 'Founder',
         imageUrl:
           'arshad.jpg',
-    },
-    {
-        name: 'Vimal Sharma',
-        role: 'Frontend',
-        imageUrl:
-          'vimal.jpg',
-    },
-    {
-        name: 'Ayush',
-        role: 'CEO / CTO',
-        imageUrl:
-          'ayush.jpg',
-    },
-    // More people...
+    }
+    
+    
   ]
 
 export default function TeamSection(){
@@ -35,8 +24,7 @@ export default function TeamSection(){
               <div className="max-w-2xl">
                 <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our leadership</h2>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                  Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae elementum enim vitae ullamcorper
-                  suspendisse.
+                Our leadership team is dedicated to driving innovation, safety, and community at <b> Gosang</b> With a focus on empowering users and enhancing our service through cutting-edge technology, they bring a wealth of experience and passion for making a positive impact. Together, they are committed to creating a safe, reliable, and affordable carpooling experience for everyone.
                 </p>
               </div>
               <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
