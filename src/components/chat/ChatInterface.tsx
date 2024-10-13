@@ -16,8 +16,8 @@ interface ChatInterfaceProps {
 
 const ChatInterface = ({ chatId, chatUserName, chatMessages, isRideAvailable }: ChatInterfaceProps) => {
   return (
-    <div className="flex flex-col max-w-4xl mx-auto bg-white h-[calc(100vh-60px)] shadow-lg">
-      {/* Header */}
+<div className="flex flex-col max-w-4xl mx-auto bg-white h-[80vh] shadow-lg">
+    
       <div className="flex items-center p-4 border-b border-gray-200 flex-none bg-gray-50">
         <a href="/chat">
           <RiArrowLeftLine className="text-blue-500 cursor-pointer" />
