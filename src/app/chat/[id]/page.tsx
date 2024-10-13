@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import ChatInterface from '@/components/chat/ChatInterface';
-// import ChatList from '@/components/chat/ChatList'; // Uncomment if using ChatList component
-
 interface ChatInterfaceProps {
   params: { id: string };
 }
@@ -13,13 +11,10 @@ const Page = ({ params }: ChatInterfaceProps) => {
   const [selectedChatId, setSelectedChatId] = useState(id);
 console.log(params);
   useEffect(() => {
-    // You can perform any action based on the chat ID here
-    console.log("Current Chat ID:", selectedChatId);
+   
   }, [selectedChatId]);
 
-  const handleChatSelect = (chatId: string) => {
-    setSelectedChatId(chatId); // Update the selected chat ID
-  };
+
 
   // Sample chat messages
   const sampleChatMessages = [
@@ -33,13 +28,12 @@ console.log(params);
 
   return (
     <div>
-
-      {/* Chat Interface */}
+       
       <ChatInterface
         chatId={selectedChatId}
         chatUserName="Vimal Sharma"
         chatMessages={sampleChatMessages}
-        isRideAvailable={false}  // Ride is no longer available
+        isRideAvailable={false}  
       />
     </div>
   );

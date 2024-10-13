@@ -1,8 +1,8 @@
-// app/chat/ChatList.tsx
-"use client"; // Use client-side rendering if necessary
+"use client"; // Client-side rendering
 
 import { RiSearchLine, RiMore2Line } from 'react-icons/ri';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 interface Chat {
   name: string;
@@ -16,7 +16,9 @@ interface ChatListProps {
   onChatSelect: (chatId: string) => void; // Specify the function type
 }
 
-const ChatList = ({ onChatSelect }: ChatListProps) => {
+const ChatList = () => {
+  const router = useRouter(); // Initialize the router
+
   const chats: Chat[] = [
     {
       name: 'Jagvendra',
@@ -49,6 +51,15 @@ const ChatList = ({ onChatSelect }: ChatListProps) => {
     chat.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Function to handle chat selection and navigation
+  const handleChatSelect = (index: number) => {
+    // Perform any additional actions if needed
+    // onChatSelect(chats[index].name); 
+
+    // Programmatically navigate to the selected chat page
+    router.push(`/chat/${index}`);
+  };
+
   return (
     <div className="flex flex-col h-screen w-full lg:w-1/3 bg-white border-r border-gray-200">
       {/* Header */}
@@ -80,7 +91,7 @@ const ChatList = ({ onChatSelect }: ChatListProps) => {
             <div
               key={index}
               className="flex items-center p-4 hover:bg-gray-100 cursor-pointer"
-              onClick={() => onChatSelect(chat.name)} // Call the onChatSelect function with chat name
+              onClick={() => handleChatSelect(index)} // Call the handleChatSelect function
             >
               <div className="w-12 h-12 rounded-full bg-gray-300 flex-shrink-0">
                 <img
