@@ -19,7 +19,9 @@ const ChatInterface = ({ chatId, chatUserName, chatMessages, isRideAvailable }: 
     <div className="flex flex-col h-screen max-w-4xl mx-auto bg-white">
       {/* Header */}
       <div className="flex items-center p-4 border-b border-gray-200 flex-none bg-gray-50">
+        <a href="/chat">
         <RiArrowLeftLine className="text-blue-500 cursor-pointer" />
+        </a>
         <div className="ml-4">
           <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
         </div>
@@ -60,7 +62,7 @@ const ChatInterface = ({ chatId, chatUserName, chatMessages, isRideAvailable }: 
         ))}
       </div>
 
-      {/* Input box - fixed at the bottom */}
+
       <div className="p-4 border-t border-gray-200 bg-gray-50 flex items-center">
         <input
           type="text"

@@ -3,17 +3,35 @@
 import { useState } from 'react';
 import ChatList from '@/components/chat/ChatList';
 import ChatInterface from './[id]/page'; // Import the ChatInterface component
+import { RiArrowLeftLine } from "react-icons/ri"; // Import the back icon
 
 const ChatPage = () => {
   const [selectedChatId, setSelectedChatId] = useState<string | null>(null); // State to track selected chat
 
   const handleChatSelect = (chatId: string) => {
-    setSelectedChatId(chatId); // Update the selected chat ID
+    setSelectedChatId(chatId); 
+  };
+
+  const handleBack = () => {
+    setSelectedChatId(null); // Clear the selected chat to go back to the list
   };
 
   return (
     <div className="flex h-screen">
-      <ChatList onChatSelect={handleChatSelect} />
+      {/* Chat List or Back Button */}
+      {selectedChatId ? (
+        <div className="flex-none p-4 bg-gray-100 border-r">
+          {/* <button 
+            onClick={handleBack}
+            className="flex items-center space-x-2 text-blue-500"
+          >
+            <RiArrowLeftLine className="text-2xl" />
+            <span>Back to chats</span>
+          </button> */}
+        </div>
+      ) : (
+        <ChatList onChatSelect={handleChatSelect} />
+      )}
 
       {/* Chat Interface */}
       <div className="flex-1 border-l border-gray-200 flex flex-col">
