@@ -22,21 +22,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/addvehical/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/page.js"
-    ],
-    "/addvehical/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/error.js"
-    ],
-    "/addvehical/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addvehical/loading.js"
-    ],
     "/addride/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -52,21 +37,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/addride/loading.js"
     ],
-    "/myrides/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/page.js"
-    ],
-    "/myrides/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/error.js"
-    ],
-    "/myrides/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/loading.js"
-    ],
     "/rides/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -81,6 +51,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/rides/loading.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/_not-found/page.js"
     ],
     "/rides/[id]/page": [
       "static/chunks/webpack.js",

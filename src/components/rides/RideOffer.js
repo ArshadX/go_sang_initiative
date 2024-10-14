@@ -84,8 +84,13 @@ const RideOffer = () => {
     if (location.length > 2) {
       axios
         .get(`${API_URL}${location}&bbox=68.1097,6.4627,97.3956,35.5133`)
-        .then((res) => setSuggestions(res.data.features))
+        .then((res) =>{
+          console.log(res.data);
+          setSuggestions(res.data.features);
+          
+        } )
         .catch((err) => console.error(err));
+      
     }
   };
 
@@ -223,9 +228,8 @@ const RideOffer = () => {
     ladies_only:false,
     ride_info: rideDescription,
     };
-    console.log(ridedetails);
 
-    console.log(dropCoordinates);
+    
     try{
       const response= await instance.post("/rides/add_ride/",ridedetails,{
         headers: {
@@ -233,7 +237,6 @@ const RideOffer = () => {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       if (response.status !== 200) {
         throw new Error('Network response was not ok');
       }else if(response.status==200){

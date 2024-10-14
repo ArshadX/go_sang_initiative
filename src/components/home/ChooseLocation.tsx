@@ -4,16 +4,13 @@ import React, { useState, useEffect } from 'react';
 import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line } from "react-icons/ri";
 import { useRouter } from 'next/navigation';
 import useOSRMRoute from '@/hooks/useOSRMRoute';
+import { instance } from "@/constants/apis/instance";
 
 type Coordinates = {
   lat: number | null;
   lon: number | null;
 };
 
-type Props = {
-  fromCoordinates: Coordinates;
-  toCoordinates: Coordinates;
-};
 interface Suggestion {
   properties: {
     osm_id: string;
@@ -34,37 +31,48 @@ const ChooseLocation = () => {
   const [toLocation, setToLocation] = useState('');
   const [fromSuggestions, setFromSuggestions] = useState<Suggestion[]>([]);
   const [toSuggestions, setToSuggestions] = useState<Suggestion[]>([]);
-  const [fromCoordinates, setFromCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
-  const [toCoordinates, setToCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
+  const [fromCoordinates, setFromCoordinates] = useState<Coordinates>({ lat: null, lon: null });
+  const [toCoordinates, setToCoordinates] = useState<Coordinates>({ lat: null, lon: null });
   const [dateTime, setDateTime] = useState<string>('');
-  const { routeInfo, fetchRoute } = useOSRMRoute();
+  const { fetchRoute } = useOSRMRoute();
+  const router = useRouter();
 
-   useEffect(()=>{
-    fetchRoute(fromCoordinates, toCoordinates);
-   },[fromCoordinates, toCoordinates])
-
+  // Fetch suggestions for "from" location
   useEffect(() => {
-    if (fromLocation) {
-      fetch(`https://photon.komoot.io/api/?q=${fromLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
-        .then(response => response.json())
-        
-        .then(data => setFromSuggestions(data.features));
-    } else {
-      setFromSuggestions([]);
-    }
+    const delayDebounceFn = setTimeout(() => {
+      if (fromLocation) {
+        fetch(`https://photon.komoot.io/api/?q=${fromLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
+          .then(response => response.json())
+          .then(data => setFromSuggestions(data.features))
+          .catch(err => console.error(err));
+      } else {
+        setFromSuggestions([]);
+      }
+    }, 300); // Debounce for 300ms
+
+    return () => clearTimeout(delayDebounceFn);
   }, [fromLocation]);
 
+  // Fetch suggestions for "to" location
   useEffect(() => {
-    if (toLocation) {
-      fetch(`https://photon.komoot.io/api/?q=${toLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
-        .then(response => response.json())
-        .then(data => setToSuggestions(data.features));
-    } else {
-      setToSuggestions([]);
-    }
+    const delayDebounceFn = setTimeout(() => {
+      if (toLocation) {
+        fetch(`https://photon.komoot.io/api/?q=${toLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
+          .then(response => response.json())
+          .then(data => setToSuggestions(data.features))
+          .catch(err => console.error(err));
+      } else {
+        setToSuggestions([]);
+      }
+    }, 300); // Debounce for 300ms
+
+    return () => clearTimeout(delayDebounceFn);
   }, [toLocation]);
 
-  const router = useRouter();
+  // Fetch route whenever coordinates change
+  useEffect(() => {
+    fetchRoute(fromCoordinates, toCoordinates);
+  }, [fromCoordinates, toCoordinates]);
 
   const handleLocationClick = (type: 'from' | 'to', name: string, coordinates: [number, number]) => {
     const [lon, lat] = coordinates;
@@ -84,20 +92,31 @@ const ChooseLocation = () => {
     if (passengerCount > 1) setPassengerCount(passengerCount - 1);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     const searchData = {
-      fromLocation,
-      fromCoordinates,
-      toLocation,
-      toCoordinates,
-      passengerCount,
-      dateTime,
-      
+      coordinates_from: { lon: fromCoordinates.lon, lat: fromCoordinates.lat },
+      coordinates_to: { lon: toCoordinates.lon, lat: toCoordinates.lat },
+      address_from: fromLocation,
+      address_to: toLocation,
+      seats: passengerCount, // Use passengerCount instead of hardcoding
+      search_origin: "home",
+      ladies_only: false,
     };
 
-    router.push('/rides');
-    // Perform the POST request with searchData
-    console.log('Search Data:', searchData);
+    try {
+      const response = await instance.post("/rides/find_ride/", searchData);
+      if (response.status !== 200) {
+        throw new Error('Network response was not ok');
+      } else {
+        const rideData = JSON.parse(response.data.data);
+        localStorage.setItem('rides', JSON.stringify(rideData));
+        // Handle rideData as needed
+        router.push('/rides');
+      }
+
+    } catch (error: any) {
+      console.error(error.message);
+    }
   };
 
   return (
@@ -157,14 +176,12 @@ const ChooseLocation = () => {
 
         {/* Date Picker Input */}
         <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
-          <span className="text-gray-600"></span> {/* Example icon */}
           <input
-                type="datetime-local"
-                value={dateTime}
-                onChange={(e) => setDateTime(e.target.value)}
-                className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
-              />
-
+            type="datetime-local"
+            value={dateTime}
+            onChange={(e) => setDateTime(e.target.value)}
+            className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
+          />
         </div>
 
         {/* Passenger Input */}
@@ -196,7 +213,7 @@ const ChooseLocation = () => {
                 </button>
               </div>
               <button
-                className="bg-blue-500 text-white w-full p-2 rounded-full hover:bg-blue-600"
+                className="bg-blue-500 text-white rounded-full py-2 w-full"
                 onClick={() => setShowPassengerPopup(false)}
               >
                 Done
@@ -204,15 +221,19 @@ const ChooseLocation = () => {
             </div>
           )}
         </div>
-
-        {/* Search Button */}
-        <button
-          onClick={handleSearch}
-          className="bg-blue-500 text-white rounded-full p-3 px-6 hover:bg-blue-600 w-full sm:w-auto"
-        >
-          Search
-        </button>
       </div>
+
+      {/* Search Button */}
+      <div className="flex justify-center">
+          <button
+            className="mt-4 bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 transition"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
+        </div>
+
+
     </div>
   );
 };

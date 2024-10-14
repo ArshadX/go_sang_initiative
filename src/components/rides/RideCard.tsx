@@ -4,15 +4,65 @@ import { FaBoltLightning } from 'react-icons/fa6';
 import { BsFillPersonFill, BsFillPersonCheckFill, BsFillPersonPlusFill } from 'react-icons/bs';
 import Image from 'next/image'; // Adjust this based on your project
 
-const RideCard = () => {
+export interface Ride {
+  address_from: string;
+  address_to: string;
+  instant_booking: string;
+  pick_up_time: string;
+  price: string;
+  ladies_only: string;
+  requested_user: string;
+  response_time: string;
+  ride_info: string;
+  seats: number; // Use 'number' instead of 'Number'
+  status: string;
+  stoppers: any[]; // Adjust based on what you expect
+  vehicle: object;  // Adjust this type as needed
+  _id: string;
+  user_id: string;
+  created_at: string;
+  updated_at: string;
+}
+
+interface RideCardProps extends Ride { // Extend from Ride to have all properties
+}
+
+const RideCard: React.FC<RideCardProps> = (props) => {
+  // Log the props to the console
+  function formatDate(dateString:any) {
+    const date = new Date(dateString);
+  
+    // Use the correct types for the options
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',    
+      month: 'long',      
+      day: 'numeric',    
+      hour: '2-digit',    
+      minute: '2-digit', 
+      hour12: false      
+    };
+  
+    // Format the date using toLocaleString
+    return date.toLocaleString('en-US', options);
+  }
+  const {
+    pick_up_time,
+    address_from,
+    address_to,
+    ride_info,
+    seats,
+    price,
+    status,
+  } = props;
+
   return (
     <div className="bg-white rounded-md shadow-md p-4 mb-4 lg:w-2/3 w-full mx-auto">
       {/* Upper section for time and location */}
       <div className="flex justify-between items-center">
         {/* Left side - Time and Location */}
         <div className="flex flex-col items-start">
-          <h3 className="text-lg font-semibold text-gray-800">18:00</h3>
-          <p className="text-sm text-gray-600">Noida</p>
+          <h3 className="text-lg font-semibold text-gray-800">{formatDate(pick_up_time)}</h3>
+          <p className="text-sm text-gray-600">{props.address_from}</p>
           <div className="flex space-x-2 mt-2">
             <BsFillPersonFill className="text-gray-400" />
             <BsFillPersonCheckFill className="text-yellow-500" />
@@ -31,7 +81,7 @@ const RideCard = () => {
         {/* Right side - Destination */}
         <div className="flex flex-col items-end">
           <h3 className="text-lg font-semibold text-gray-800">20:00</h3>
-          <p className="text-sm text-gray-600">Jahangirabad</p>
+          <p className="text-sm text-gray-600">{address_to}</p>
           <div className="flex space-x-2 mt-2">
             <BsFillPersonFill className="text-gray-400" />
             <BsFillPersonCheckFill className="text-yellow-500" />
@@ -69,8 +119,8 @@ const RideCard = () => {
           <div className="flex items-center space-x-1">
             <FaBoltLightning className="text-gray-500" />
             <span className="hidden md:inline text-sm text-gray-600">Instant Booking</span>
-            </div>
-          <span className="text-xl font-bold text-green-600">₹200.00</span>
+          </div>
+          <span className="text-xl font-bold text-green-600">₹{price}</span>
         </div>
       </div>
     </div>
