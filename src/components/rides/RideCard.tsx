@@ -2,27 +2,10 @@ import React from 'react';
 import { RiCarFill } from 'react-icons/ri';
 import { FaBoltLightning } from 'react-icons/fa6';
 import { BsFillPersonFill, BsFillPersonCheckFill, BsFillPersonPlusFill } from 'react-icons/bs';
-import Image from 'next/image'; // Adjust this based on your project
+import Image from 'next/image'; 
+import Ride from  '@/components/rides/Ride';
 
-export interface Ride {
-  address_from: string;
-  address_to: string;
-  instant_booking: string;
-  pick_up_time: string;
-  price: string;
-  ladies_only: string;
-  requested_user: string;
-  response_time: string;
-  ride_info: string;
-  seats: number; 
-  status: string;
-  stoppers: any[]; 
-  vehicle: object;  
-  _id: string;
-  user_id: string;
-  created_at: string;
-  updated_at: string;
-}
+
 
 interface RideCardProps extends Ride { // Extend from Ride to have all properties
 }

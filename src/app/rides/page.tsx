@@ -4,27 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import FilterCard from '@/components/rides/FilterCard';
 import RideCard from '@/components/rides/RideCard';
 import ChooseLocation from '@/components/home/ChooseLocation';
-// types.ts or interfaces.ts
-export interface Ride {
-    address_from: string;
-    address_to: string;
-    instant_booking: string;
-    pick_up_time: string;
-    price: string;
-    ladies_only: string;
-    requested_user: string;
-    response_time: string;
-    ride_info: string;
-    seats: number; // Note: Use 'number' instead of 'Number'
-    status: string;
-    stoppers: any[]; // Adjust based on what you expect
-    vehicle: object;  // Adjust this type as needed
-    _id: string;
-    user_id: string;
-    created_at: string;
-    updated_at: string;
-}
-
+import Ride from  '@/components/rides/Ride';
 export default function Page() {
     const [showFilter, setShowFilter] = useState(false); // State to manage filter visibility on mobile
     const [rides, setRides] = useState<Ride[]>([]);
