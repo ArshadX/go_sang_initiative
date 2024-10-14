@@ -45,7 +45,7 @@ const BookingPage = () => {
     if (!ride) {
         return <div>Loading...</div>; // Handle loading state if ride data is not available
     } else {
-        console.log(rideid); // Logs the ride ID string
+        console.log(ride); // Logs the ride ID string
     }
 
     return (
@@ -127,6 +127,17 @@ const BookingPage = () => {
                             Book
                         </button>
                     </div>
+
+                    <div>
+                        <h2 className="text-lg font-bold mb-4">Vehicle Information</h2>
+                        <p><strong>Brand:</strong> {ride.vehicle.vehicle_brand}</p>
+                        <p><strong>Model:</strong> {ride.vehicle.vehicle_modal}</p> {/* Corrected from vehicle_model to vehicle_modal */}
+                        <p><strong>Color:</strong> {ride.vehicle.vehicle_color}</p>
+                        <p><strong>Capacity:</strong> {ride.vehicle.vehicle_capacity}</p>
+                        <p><strong>Vehicle Number:</strong> {ride.vehicle.vehicle_number}</p>
+                        <p><strong>Type:</strong> {ride.vehicle.vehicle_type}</p>
+                    </div>
+
                 </div>
             </div>
         </div>

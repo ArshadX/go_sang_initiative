@@ -1,4 +1,16 @@
-export  default interface Ride {
+// Vehicle.ts
+export interface Vehicle {
+    vehicle_brand: string;
+    vehicle_capacity: number;
+    vehicle_color: string;
+    vehicle_modal: string;
+    vehicle_number: string;
+    vehicle_type: string;
+}
+
+// Ride.ts
+
+export default interface Ride {
     _id: { $oid: string }; 
     address_from: string;
     address_to: string;
@@ -12,7 +24,7 @@ export  default interface Ride {
     seats: number; 
     status: string;
     stoppers: any[]; 
-    vehicle: object;  
+    vehicle: Vehicle;  // Use the Vehicle interface
     user_id: string;
     created_at: string;
     updated_at: string;
