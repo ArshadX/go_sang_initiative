@@ -45,9 +45,9 @@ export default function Page() {
             </div>
 
             {/* Ride section */}
-            <div className="w-full lg:w-3/4 ">
+            <a className="w-full lg:w-3/4 "  href='rides/1'>
                 <RideCard />
-            </div>
+            </a>
         </div>
         </>
     );

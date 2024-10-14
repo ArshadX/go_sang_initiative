@@ -3,7 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line } from "react-icons/ri";
 import { useRouter } from 'next/navigation';
+import useOSRMRoute from '@/hooks/useOSRMRoute';
 
+type Coordinates = {
+  lat: number | null;
+  lon: number | null;
+};
+
+type Props = {
+  fromCoordinates: Coordinates;
+  toCoordinates: Coordinates;
+};
 interface Suggestion {
   properties: {
     osm_id: string;
@@ -27,11 +37,17 @@ const ChooseLocation = () => {
   const [fromCoordinates, setFromCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
   const [toCoordinates, setToCoordinates] = useState<{ lat: number | null; lon: number | null }>({ lat: null, lon: null });
   const [dateTime, setDateTime] = useState<string>('');
+  const { routeInfo, fetchRoute } = useOSRMRoute();
+
+   useEffect(()=>{
+    fetchRoute(fromCoordinates, toCoordinates);
+   },[fromCoordinates, toCoordinates])
 
   useEffect(() => {
     if (fromLocation) {
       fetch(`https://photon.komoot.io/api/?q=${fromLocation}&bbox=68.1097,6.4627,97.3956,35.5133`)
         .then(response => response.json())
+        
         .then(data => setFromSuggestions(data.features));
     } else {
       setFromSuggestions([]);

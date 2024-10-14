@@ -6,6 +6,7 @@ import { instance } from "@/constants/apis/instance";
 import Link from "next/link";
 
 import { RiSearchLine, RiAddLine, RiSubtractLine, RiMapPinLine } from "react-icons/ri";
+import { type } from "os";
 
 const debounce = (func, delay) => {
   let timeoutId;
@@ -195,8 +196,18 @@ const RideOffer = () => {
   const handlePublishRide = async() => {
     const ridedetails=  {
      user_id: user.phone_number,
-     coordinates_from:startCoordinates,
-     coordinates_to:dropCoordinates,
+     coordinates_from: {
+      type: "Point",
+      coordinates: Array.isArray(startCoordinates)
+        ? startCoordinates
+        : [startCoordinates.lat, startCoordinates.lon],
+    },
+    coordinates_to: {
+      type: "Point",
+      coordinates: Array.isArray(dropCoordinates)
+        ? dropCoordinates
+        : [dropCoordinates.lat, dropCoordinates.lon],
+    },
      address_from: startLocation,
      address_to:dropLocation,
      pick_up_time:rideTime,
@@ -213,6 +224,8 @@ const RideOffer = () => {
     ride_info: rideDescription,
     };
     console.log(ridedetails);
+
+    console.log(dropCoordinates);
     try{
       const response= await instance.post("/rides/add_ride/",ridedetails,{
         headers: {
@@ -231,7 +244,7 @@ const RideOffer = () => {
 
     }
     catch(error){
-    console.log(error.response.data.message);
+    console.log(error.message);
     }
     
   };
