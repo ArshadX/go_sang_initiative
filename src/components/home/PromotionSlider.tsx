@@ -11,7 +11,7 @@ const slides = [
     link: "/link-to-first-slide",
   },
   {
-    image: "/images/promotions/laptop/testing.png",
+    image: "/images/promotions/laptop/bannerlaptop.webp",
     mobileImage: "/images/promotions/mobile/mobileslider2.jpg",
     link: "/link-to-second-slide",
   },
@@ -70,7 +70,7 @@ const PromotionSlider = () => {
       handleNextSlide(); // Swipe left
     }
     if (touchStartX.current - touchEndX.current < -50) {
-      handlePrevSlide(); // Swipe right
+      handlePrevSlide(); 
     }
   };
 

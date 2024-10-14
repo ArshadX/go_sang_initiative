@@ -16,27 +16,27 @@ const slider = [
   {
     id: "b1",
     name: "adv",
-    images: ['/images/promotions/laptop/testing.png']
+    images: ['/images/promotions/laptop/bannerlaptop.webp']
   },
   {
     id: "b2",
     name: "adv2",
-    images: ['/images/promotions/laptop/testing.png']
+    images: ['/images/promotions/laptop/bannerlaptop1.webp']
   },
   {
     id: "b3",
     name: "adv2",
-    images: ['/images/promotions/laptop/testing.png']
+    images: ['/images/promotions/laptop/bannerlaptop2.webp']
   },
   {
     id: "b4",
     name: "adv2",
-    images: ['/images/promotions/laptop/testing.png']
+    images: ['/images/promotions/laptop/bannerlaptop.webp']
   },
   {
     id: "b5",
     name: "adv2",
-    images: ['/images/promotions/laptop/testing.png']
+    images: ['/images/promotions/laptop/bannerlaptop1.webp']
   },
 ];
 
