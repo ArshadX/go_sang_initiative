@@ -108,6 +108,7 @@ const ChooseLocation = () => {
       if (response.status !== 200) {
         throw new Error('Network response was not ok');
       } else {
+        console.log(searchData);
         const rideData = JSON.parse(response.data.data);
         localStorage.setItem('rides', JSON.stringify(rideData));
         // Handle rideData as needed
@@ -136,10 +137,10 @@ const ChooseLocation = () => {
           />
           {fromSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
-              {fromSuggestions.map((suggestion) => (
+              {fromSuggestions.map((suggestion,index) => (
                 <div
-                  key={suggestion.properties.osm_id}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('from', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
                   <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
@@ -161,10 +162,10 @@ const ChooseLocation = () => {
           />
           {toSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
-              {toSuggestions.map((suggestion) => (
+              {toSuggestions.map((suggestion,index) => (
                 <div
-                  key={suggestion.properties.osm_id}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('to', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
                   <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
