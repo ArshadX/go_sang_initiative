@@ -1,10 +1,29 @@
 {
   "pages": {
-    "/page": [
+    "/rides/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/chunks/app/rides/[id]/page.js"
+    ],
+    "/rides/[id]/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/[id]/error.js"
+    ],
+    "/rides/[id]/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/[id]/loading.js"
+    ],
+    "/rides/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/error.js"
+    ],
+    "/rides/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/loading.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -22,50 +41,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/rides/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/rides/page.js"
-    ],
-    "/rides/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/error.js"
-    ],
-    "/rides/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/loading.js"
-    ],
-    "/addride/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addride/page.js"
-    ],
-    "/addride/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addride/error.js"
-    ],
-    "/addride/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/addride/loading.js"
-    ],
-    "/rides/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/page.js"
-    ],
-    "/rides/[id]/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/error.js"
-    ],
-    "/rides/[id]/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/loading.js"
+      "static/chunks/app/_not-found/page.js"
     ]
   }
 }

@@ -14,10 +14,10 @@ export interface Ride {
   requested_user: string;
   response_time: string;
   ride_info: string;
-  seats: number; // Use 'number' instead of 'Number'
+  seats: number; 
   status: string;
-  stoppers: any[]; // Adjust based on what you expect
-  vehicle: object;  // Adjust this type as needed
+  stoppers: any[]; 
+  vehicle: object;  
   _id: string;
   user_id: string;
   created_at: string;
