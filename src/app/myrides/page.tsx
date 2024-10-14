@@ -1,4 +1,3 @@
-"use client";
 
 
 import MyRides from "@/components/rides/MyRides";
