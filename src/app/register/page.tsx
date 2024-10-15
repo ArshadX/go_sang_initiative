@@ -109,8 +109,8 @@ export default function Page() {
     try {
 
       // Make the POST request using axios and pass the form data in the request body
-      const response = await axios.post(
-        `${API_BASE_URL}/user_profile/register_user/`,
+      const response = await instance.post(
+        `/user_profile/register_user/`,
         {
           // Send the formData object in the body
           phone_number: formData.phone_number,

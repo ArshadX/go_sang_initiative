@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { RiMapPinLine, RiStarFill, RiCloseCircleLine, RiFlashlightLine } from 'react-icons/ri';
+import { RiMapPinLine,RiArrowRightSLine, RiCheckboxCircleLine , RiStarFill, RiCloseCircleLine, RiFlashlightLine } from 'react-icons/ri';
 import { useParams } from 'next/navigation';
 import { instance } from '@/constants/apis/instance';
 import { getCredentials } from "@/app/actions/auth";
@@ -11,41 +11,85 @@ import Ride from '@/components/rides/Ride'; // Importing the Ride interface
 const BookingPage = () => {
     const [ride, setRide] = useState<Ride | null>(null);
     const [rideid, setRideid] = useState<string>('');
+    const [userId, setUserid] = useState<string>(''); // Use string type for userId
+    const [isRideBooked, setIsRideBooked] = useState<boolean>(false);
 
     const params = useParams();
     const { id } = params; 
 
     useEffect(() => {
         const fetchRideData = async () => {
+            // Get user credentials and set userId
+            const data = await getCredentials();
+            const currentUserId = String(data.phone_number); 
+            setUserid(currentUserId); 
+    
+            // Retrieve rides from localStorage
             const rides = localStorage.getItem('rides');
             if (rides) {
                 const parsedRides: Record<string, Ride> = JSON.parse(rides);
                 if (typeof id === 'string' && parsedRides[id]) {
                     setRide(parsedRides[id]);
-                    setRideid(parsedRides[id]._id.$oid); // Extracting the $oid as a string
+                    setRideid(parsedRides[id]._id.$oid); 
+    
+                    const users = parsedRides[id].requested_user;
+                    // Check if the current user has already booked the ride
+                    const isBooked = users.some((user) => user.user_id === currentUserId);
+    
+                    setIsRideBooked(isBooked);
                 }
             }
         };
-
-        fetchRideData(); // Fetch ride data when component mounts
-    }, [id]);
-
-    const bookride = async () => {
-        const data = await getCredentials();
-        const userdata = {
-            user_id: data.phone_number,
-            ride_id: rideid,
-        };
-        const response = await instance.post('/rides/book_ride/', userdata); // Ensure the correct API route
-        console.log(response);
-    };
     
+        fetchRideData();
+    }, []);  // Add 'id' as a dependency to re-run if it changes
+    
+  
+   
+    const bookride = async () => {
+       
+     const data = await getCredentials();
+        
+        
+        
+        const userdata = {
+          user_id: data.phone_number,
+          ride_id: rideid,
+        };
+      
+        try {
+          const response = await instance.post('/rides/book_ride/', userdata); // Ensure the correct API route
+          if (response.status === 200) {
+            // Handle successful booking
+            console.log('Ride booked successfully:', response.data);
+            // Add any success handling logic (like redirecting or displaying a confirmation)
+          } else {
+            console.log('Unexpected response:', response.status);
+          }
+        } catch (error: any) {
+          if (error.response) {
+            const message= error.response.data.message;
+            // Server responded with a status other than 2xx
+            console.log('Error response data:', error.response.data);
+            
+          } else if (error.request) {
+            // Request was made, but no response was received
+            console.log('No response received:', error.request);
+          } else {
+            // Some other error occurred during the request setup
+            console.log('Error:', error.message);
+          }
+        }
+      };
+      
+      
     
 
     if (!ride) {
         return <div>Loading...</div>; // Handle loading state if ride data is not available
     } else {
-        console.log(ride); // Logs the ride ID string
+
+     
     }
 
     return (
@@ -57,17 +101,27 @@ const BookingPage = () => {
                 <div className="md:col-span-2">
                     {/* Ride route details */}
                     <div className="bg-white p-4 rounded-lg shadow mb-4">
-                        <div className="flex items-center mb-2">
-                            <span className="text-gray-500 text-sm">{new Date(ride.pick_up_time).toLocaleTimeString('en-US')}</span>
-                            <RiMapPinLine className="text-gray-500 mx-2" />
-                            <span className="text-sm">{ride.address_from}</span>
+                            <div className="flex items-center mb-2">
+                                <span className="text-gray-500 text-sm">
+                                    {new Date(ride.pick_up_time).toLocaleTimeString('en-US')}
+                                </span>
+                                <RiMapPinLine className="text-gray-500 mx-2 font-semibold" />
+                                <span className="text-sm">{ride.address_from}</span>
+                            </div>
+                            <div className="flex items-center mb-2">
+                                <span className="text-gray-500 text-sm">
+                                    {new Date(ride.pick_up_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}
+                                </span>
+                                <RiMapPinLine className="text-gray-500 mx-2 font-semibold" />
+                                <span className="text-sm">{ride.address_to}</span>
+                            </div>
+                            {/* Dummy Duration Section */}
+                            <div className="flex items-center text-gray-700 mt-4">
+                                <RiArrowRightSLine className="text-xl text-blue-500 mr-2" /> {/* Arrow icon */}
+                                <span className="text-sm">Estimated Duration: 30 minutes</span> {/* Dummy duration */}
+                            </div>
                         </div>
-                        <div className="flex items-center">
-                            <span className="text-gray-500 text-sm">{new Date(ride.pick_up_time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}</span>
-                            <RiMapPinLine className="text-gray-500 mx-2" />
-                            <span className="text-sm">{ride.address_to}</span>
-                        </div>
-                    </div>
+
 
                     {/* Driver information */}
                     <div className="bg-white p-4 rounded-lg shadow mb-4">
@@ -122,10 +176,21 @@ const BookingPage = () => {
                             <span className="text-sm">{ride.seats} passenger(s)</span>
                             <span className="text-lg font-bold">₹{ride.price}</span>
                         </div>
-                        <button className="bg-blue-500 text-white w-full py-2 rounded-lg flex items-center justify-center" onClick={bookride}>
-                            <RiFlashlightLine className="mr-2" />
-                            Book
-                        </button>
+                        {
+                            isRideBooked ? (
+                                    <div className="flex items-center justify-center bg-green-100 text-green-600 py-2 rounded-lg">
+                                <RiCheckboxCircleLine className="mr-2 text-xl" />
+                                <span className="font-semibold">Ride Booked</span>
+                                </div>                                
+                                    ) : (
+                                <button className="bg-blue-500 text-white w-full py-2 rounded-lg flex items-center justify-center" onClick={bookride}>
+                                <RiFlashlightLine className="mr-2" />
+                                Book
+                                </button>
+                            )
+                            }
+
+                        
                     </div>
 
                     <div>

@@ -18,7 +18,7 @@ export default interface Ride {
     pick_up_time: string;
     price: string;
     ladies_only: string;
-    requested_user: string;
+    requested_user: any[];
     response_time: string;
     ride_info: string;
     seats: number; 
