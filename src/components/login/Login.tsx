@@ -60,7 +60,6 @@ const Login = () => {
           });
           console.log(response.status)
           if (response.status === 200) {
-            console.log(response.data);
             await generateSession(response.data.token,mobile); 
             router.push('/profile') // Navigate to profile on successful login
           } else {

@@ -4,7 +4,8 @@ import { instance } from "@/constants/apis/instance";
 import React, { useCallback, useEffect, useState } from "react";
 import { getCredentials } from "@/app/actions/auth";
 import Dialogue from "../common/DialogueBox";
-
+import User, { Vehicle } from './User';
+import { UserProfile } from '@/utils/UserProfile';
 import {
   RiHistoryLine,
   RiIdCardLine,
@@ -17,31 +18,6 @@ import {
 } from 'react-icons/ri';
 import { useRouter } from 'next/navigation';
 
-interface Vehicle {
-  vehicle_brand: string;
-  vehicle_capacity: string;
-  vehicle_modal: string;
-  vehicle_number: string;
-  vehicle_type: string;
-}
-
-interface User {
-  first_name: string;
-  last_name: string;
-  profileImage: string;
-  status: string;
-  email: string;
-  phone_number: string;
-  is_email_verified: boolean;
-  vehical_list: Array<Vehicle>;  
-  is_aadhar_verified: boolean;
-  bio: string;
-  chatty: string;
-  music: string;
-  smoking: string;
-  pets: string;
-  vehicle: string;
-}
 
 // Define the keys for collapsible items
 type CollapsibleKeys = 'vehicles' | 'paymentHistory' | 'faq' | 'termsConditions' | 'settings' | 'supportCenter';
@@ -75,27 +51,13 @@ const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // 
   const fetchUser = async (phone_number: unknown, token: unknown | string) => {
     try {
       setLoading(true);
-      const response = await instance.post(
-        '/user_profile/get_user/',
-        { user_id: phone_number },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-
-      const result = response.data;
-      if (result.user) {
-        const userData: User = JSON.parse(result.user);
-        setUser(userData);
-        setVehicles(userData.vehical_list); // Keep the spelling as you mentioned
-      }
+      const userData = await UserProfile();
+      setUser(userData);
+      setVehicles(userData.vehical_list); // Assuming user has vehicle_list
+    } catch (err:any) {
+      console.log(err.message);
+    } finally {
       setLoading(false);
-    } catch (error: any) {
-      setLoading(false);
-      console.error('Error fetching user:', error.message);
     }
   };
 

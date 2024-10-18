@@ -16,6 +16,7 @@ export const verifySession = cache(async () => {
     isAuth: true,
     token: session.token,
     phone_number: session.phone_number,
-    session:session // Return the entire session object
+    user:session.user,
+    
   };
 });

@@ -18,7 +18,6 @@ export default function Page() {
         if(rides){
             const parsedRides: Ride[] = JSON.parse(rides);
             setRides(parsedRides);
-            console.log(parsedRides);
         }
 
     },[])
