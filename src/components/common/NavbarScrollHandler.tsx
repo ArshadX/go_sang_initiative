@@ -23,7 +23,7 @@ const NavbarScrollHandler = ({children}:{children:ReactNode}) => {
   }, []);
 
   return (
-    <div className={`${isFixed ? 'fixed shadow-md top-0 left-0 right-0' : 'relative'} w-full bg-white`}>
+    <div className={`${isFixed ? 'fixed shadow-md top-0 left-0 right-0 z-50' : 'relative'} w-full bg-white`}>
       {children}
     </div>
   );

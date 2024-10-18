@@ -22,35 +22,25 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/addride/page": [
+    "/faq/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/page.js"
+      "static/chunks/app/faq/page.js"
     ],
-    "/addride/error": [
+    "/faq/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/error.js"
+      "static/chunks/app/faq/error.js"
     ],
-    "/addride/loading": [
+    "/faq/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/loading.js"
+      "static/chunks/app/faq/loading.js"
     ],
-    "/login/page": [
+    "/_not-found/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/login/page.js"
-    ],
-    "/login/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/login/error.js"
-    ],
-    "/login/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/login/loading.js"
+      "static/chunks/app/_not-found/page.js"
     ],
     "/profile/page": [
       "static/chunks/webpack.js",
@@ -67,20 +57,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/profile/loading.js"
     ],
-    "/about/page": [
+    "/terms&conditions/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
+      "static/chunks/app/terms&conditions/page.js"
     ],
-    "/about/error": [
+    "/terms&conditions/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/error.js"
+      "static/chunks/app/terms&conditions/error.js"
     ],
-    "/about/loading": [
+    "/terms&conditions/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/about/loading.js"
+      "static/chunks/app/terms&conditions/loading.js"
     ]
   }
 }

@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { getCredentials } from "@/app/actions/auth";
@@ -5,6 +6,7 @@ import { instance } from "@/constants/apis/instance";
 import Link from "next/link";
 
 import { RiSearchLine, RiAddLine, RiSubtractLine, RiMapPinLine } from "react-icons/ri";
+import { type } from "os";
 
 const debounce = (func, delay) => {
   let timeoutId;
@@ -82,8 +84,13 @@ const RideOffer = () => {
     if (location.length > 2) {
       axios
         .get(`${API_URL}${location}&bbox=68.1097,6.4627,97.3956,35.5133`)
-        .then((res) => setSuggestions(res.data.features))
+        .then((res) =>{
+          console.log(res.data);
+          setSuggestions(res.data.features);
+          
+        } )
         .catch((err) => console.error(err));
+      
     }
   };
 
@@ -194,8 +201,18 @@ const RideOffer = () => {
   const handlePublishRide = async() => {
     const ridedetails=  {
      user_id: user.phone_number,
-     coordinates_from:startCoordinates,
-     coordinates_to:dropCoordinates,
+     coordinates_from: {
+      type: "Point",
+      coordinates: Array.isArray(startCoordinates)
+        ? startCoordinates
+        : [startCoordinates.lat, startCoordinates.lon],
+    },
+    coordinates_to: {
+      type: "Point",
+      coordinates: Array.isArray(dropCoordinates)
+        ? dropCoordinates
+        : [dropCoordinates.lat, dropCoordinates.lon],
+    },
      address_from: startLocation,
      address_to:dropLocation,
      pick_up_time:rideTime,
@@ -211,7 +228,8 @@ const RideOffer = () => {
     ladies_only:false,
     ride_info: rideDescription,
     };
-    console.log(ridedetails);
+
+    
     try{
       const response= await instance.post("/rides/add_ride/",ridedetails,{
         headers: {
@@ -219,7 +237,6 @@ const RideOffer = () => {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
       if (response.status !== 200) {
         throw new Error('Network response was not ok');
       }else if(response.status==200){
@@ -230,7 +247,7 @@ const RideOffer = () => {
 
     }
     catch(error){
-    console.log(error.response.data.message);
+    console.log(error.message);
     }
     
   };

@@ -13,6 +13,7 @@ import {
   RiSettings3Line,
   RiHeartLine,
   RiArrowRightSLine,
+  RiDeleteBinLine
 } from 'react-icons/ri';
 import { useRouter } from 'next/navigation';
 
@@ -32,7 +33,7 @@ interface User {
   email: string;
   phone_number: string;
   is_email_verified: boolean;
-  vehical_list: Array<Vehicle>;  // Correct spelling as per your backend
+  vehical_list: Array<Vehicle>;  
   is_aadhar_verified: boolean;
   bio: string;
   chatty: string;
@@ -50,7 +51,9 @@ const ProfilePage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [vehicles, setVehicles] = useState<Vehicle[] | null>(null); // Change here
   const [loading, setLoading] = useState(false);
-  
+  const [deleteVehicle, setDeleteVehicle] = useState<Vehicle | null>(null); // Store the vehicle to delete
+const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // Control the confirmation dialog
+
   const [collapseStates, setCollapseStates] = useState<Record<CollapsibleKeys, boolean>>({
     vehicles: false,
     paymentHistory: false,
@@ -96,6 +99,38 @@ const ProfilePage = () => {
     }
   };
 
+
+  const handleDeleteVehicle = async (vehicle: Vehicle) => {
+    try {
+        const session = await getCredentials();
+        const response = await instance.post(
+            '/user_profile/delete_vehical/',
+            {
+                user_id: session.phone_number,
+                vehicle_number: vehicle.vehicle_number,
+                vehicle_modal: vehicle.vehicle_modal,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${session.token}`,
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+
+        if (response.data.success) {
+            // Update vehicles state to remove the deleted vehicle
+            setVehicles((prevVehicles) => prevVehicles?.filter(v => v.vehicle_number !== vehicle.vehicle_number) || []);
+        }
+    } catch (error:any) {
+        console.error('Error deleting vehicle:', error.message);
+    } finally {
+        setShowDeleteConfirmation(false); 
+        setDeleteVehicle(null); 
+    }
+};
+
+
   // Toggle the collapse state for a specific item
   const toggleCollapse = (key: CollapsibleKeys) => {
     setCollapseStates((prevStates) => ({
@@ -133,6 +168,19 @@ const ProfilePage = () => {
       <Head>
         <title>Profile Page</title>
       </Head>
+
+      {showDeleteConfirmation && (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+        <div className="bg-white p-6 rounded shadow-lg">
+            <h3 className="text-lg font-bold mb-4">Are you sure you want to delete this vehicle?</h3>
+            <div className="flex justify-end">
+                <button onClick={() => setShowDeleteConfirmation(false)} className="mr-2 text-gray-600">Cancel</button>
+                <button onClick={() => deleteVehicle && handleDeleteVehicle(deleteVehicle)} className="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+            </div>
+        </div>
+    </div>
+)}
+
       <div className="bg-gray-100 flex items-center justify-center">
         <div className="bg-white p-6 shadow-lg rounded-lg w-full h-full lg:w-1/2 lg:h-auto lg:max-h-screen">
           <div className="flex items-center mb-6">
@@ -168,14 +216,18 @@ const ProfilePage = () => {
               <RiArrowRightSLine className="text-gray-500" />
             </li>
             {collapseStates.vehicles && (
-              <ul className="pl-8">
+            <ul className="pl-8">
                 {vehicles && vehicles.map((vehicle, index) => (
-                  <li key={index}>
-                    {vehicle.vehicle_brand} - {vehicle.vehicle_number}
-                  </li>
+                    <li key={index} className="flex items-center justify-between">
+                        <b>{vehicle.vehicle_brand} - {vehicle.vehicle_number}</b>
+                        <button onClick={() => { setDeleteVehicle(vehicle); setShowDeleteConfirmation(true); }} className="text-red-500 ml-2">
+                            <RiDeleteBinLine />
+                        </button>
+                    </li>
                 ))}
-              </ul>
-            )}
+            </ul>
+        )}
+
 
             {/* Payment History Section */}
             <li onClick={() => toggleCollapse('paymentHistory')} className="flex items-center justify-between cursor-pointer">
@@ -194,33 +246,23 @@ const ProfilePage = () => {
 
             {/* FAQ Section */}
             <li onClick={() => toggleCollapse('faq')} className="flex items-center justify-between cursor-pointer">
-              <a href="#" className="flex items-center">
+              <a href="/faq" className="flex items-center">
                 <RiQuestionLine className="text-gray-500 mr-4" />
                 <span className="font-semibold">FAQ</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            {collapseStates.faq && (
-              <ul className="pl-8">
-                <li>Question 1</li>
-                <li>Question 2</li>
-              </ul>
-            )}
+           
 
             {/* Terms & Conditions Section */}
             <li onClick={() => toggleCollapse('termsConditions')} className="flex items-center justify-between cursor-pointer">
-              <a href="#" className="flex items-center">
+              <a href="/terms&conditions" className="flex items-center">
                 <RiFileTextLine className="text-gray-500 mr-4" />
                 <span className="font-semibold">Terms & Conditions</span>
               </a>
               <RiArrowRightSLine className="text-gray-500" />
             </li>
-            {collapseStates.termsConditions && (
-              <ul className="pl-8">
-                <li>Condition 1</li>
-                <li>Condition 2</li>
-              </ul>
-            )}
+           
 
             {/* Settings Section */}
             <li onClick={() => toggleCollapse('settings')} className="flex items-center justify-between cursor-pointer">

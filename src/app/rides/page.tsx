@@ -1,16 +1,27 @@
 "use client"; // Mark this file as a Client Component
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 import FilterCard from '@/components/rides/FilterCard';
 import RideCard from '@/components/rides/RideCard';
 import ChooseLocation from '@/components/home/ChooseLocation';
-
+import Ride from  '@/components/rides/Ride';
 export default function Page() {
     const [showFilter, setShowFilter] = useState(false); // State to manage filter visibility on mobile
+    const [rides, setRides] = useState<Ride[]>([]);
 
     const toggleFilter = () => {
         setShowFilter(!showFilter); // Toggle filter visibility
     };
+
+    useEffect(()=>{
+        const rides= localStorage.getItem('rides');
+        if(rides){
+            const parsedRides: Ride[] = JSON.parse(rides);
+            setRides(parsedRides);
+            console.log(parsedRides);
+        }
+
+    },[])
 
     return (
         <>
@@ -44,10 +55,14 @@ export default function Page() {
                 </div>
             </div>
 
-            {/* Ride section */}
-            <div className="w-full lg:w-3/4 ">
-                <RideCard />
-            </div>
+                        {rides.map((ride, index) => (
+                <a key={`${ride._id}-${index}`} className="w-full lg:w-3/4" href={`rides/${index}`}>
+                    <RideCard {...ride} /> {/* Pass the ride object as props */}
+                </a>
+            ))}
+
+
+
         </div>
         </>
     );
