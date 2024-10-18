@@ -2,16 +2,16 @@ import Image from "next/image"
 
 const people = [
   {
-    name: 'Vimal Sharma',
+    name: 'Jagdish',
     role: 'Founder',
     imageUrl:
-      'vimal.jpg',
+      ''
 },
     {
-        name: 'Mo Arshad',
+        name: 'Ayub',
         role: 'Founder',
         imageUrl:
-          'arshad.jpg',
+          '',
     }
     
     
