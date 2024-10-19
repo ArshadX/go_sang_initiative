@@ -22,20 +22,65 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/profile/page": [
+    "/myrides/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/page.js"
+      "static/chunks/app/myrides/page.js"
     ],
-    "/profile/error": [
+    "/myrides/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/error.js"
+      "static/chunks/app/myrides/error.js"
     ],
-    "/profile/loading": [
+    "/myrides/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/profile/loading.js"
+      "static/chunks/app/myrides/loading.js"
+    ],
+    "/rides/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/[id]/page.js"
+    ],
+    "/rides/[id]/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/[id]/error.js"
+    ],
+    "/rides/[id]/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/[id]/loading.js"
+    ],
+    "/rides/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/error.js"
+    ],
+    "/rides/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/loading.js"
+    ],
+    "/rides/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/page.js"
+    ],
+    "/rides/offered/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/offered/page.js"
+    ],
+    "/rides/offered/error": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/offered/error.js"
+    ],
+    "/rides/offered/loading": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/rides/offered/loading.js"
     ],
     "/_not-found/page": [
       "static/chunks/webpack.js",
@@ -57,95 +102,35 @@
       "static/chunks/main-app.js",
       "static/chunks/app/login/loading.js"
     ],
-    "/editprofile/page": [
+    "/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/page.js"
+      "static/chunks/app/profile/page.js"
     ],
-    "/editprofile/error": [
+    "/profile/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/error.js"
+      "static/chunks/app/profile/error.js"
     ],
-    "/editprofile/loading": [
+    "/profile/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/editprofile/loading.js"
+      "static/chunks/app/profile/loading.js"
     ],
-    "/addride/page": [
+    "/rides/get/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/page.js"
+      "static/chunks/app/rides/get/page.js"
     ],
-    "/addride/error": [
+    "/rides/get/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/error.js"
+      "static/chunks/app/rides/get/error.js"
     ],
-    "/addride/loading": [
+    "/rides/get/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/addride/loading.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
-    ],
-    "/about/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/error.js"
-    ],
-    "/about/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/loading.js"
-    ],
-    "/rides/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/page.js"
-    ],
-    "/rides/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/error.js"
-    ],
-    "/rides/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/loading.js"
-    ],
-    "/rides/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/page.js"
-    ],
-    "/rides/[id]/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/error.js"
-    ],
-    "/rides/[id]/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/rides/[id]/loading.js"
-    ],
-    "/myrides/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/page.js"
-    ],
-    "/myrides/error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/error.js"
-    ],
-    "/myrides/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/myrides/loading.js"
+      "static/chunks/app/rides/get/loading.js"
     ]
   }
 }

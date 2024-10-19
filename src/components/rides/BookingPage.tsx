@@ -9,7 +9,7 @@ import Ride from '@/components/rides/Ride';
 import User, { Vehicle } from '../profile/User';
 import Dialogue from '../common/DialogueBox';
 import { OtherUser } from '@/utils/OtherUser';
-
+import Link from 'next/link';
 const BookingPage = () => {
   const [ride, setRide] = useState<Ride | null>(null);
   const [rideid, setRideid] = useState<string>('');
@@ -33,6 +33,7 @@ const BookingPage = () => {
         if (rides) {
           const parsedRides: Record<string, Ride> = JSON.parse(rides);
           if (typeof id === 'string' && parsedRides[id]) {
+            console.log(parsedRides[id]);
             setRide(parsedRides[id]);
             setRideid(parsedRides[id]._id.$oid);
 
@@ -88,7 +89,13 @@ const BookingPage = () => {
   };
 
   if (!ride) {
-    return <div>Loading...</div>;
+    return (
+        <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h1 className="text-xl font-bold text-red-600"> Sorry Not Able to Find your Requested Ride</h1>
+        </div>
+    </div>
+    );
   }
 
   if (!user) {
@@ -133,7 +140,6 @@ const BookingPage = () => {
             </div>
           </div>
 
-          {/* Driver information */}
           <div className="bg-white p-4 rounded-lg shadow mb-4">
             <div className="flex items-center mb-4">
               <img src="https://placehold.co/50x50" alt="Profile picture" className="w-12 h-12 rounded-full mr-4" />
@@ -167,14 +173,17 @@ const BookingPage = () => {
           {/* Co-travellers */}
           <div className="bg-white p-4 rounded-lg shadow">
             <h2 className="text-lg font-bold mb-4">Co-travellers</h2>
-            {RequestedUsers.map((requested_user_id, index) => (
+            {RequestedUsers.map((user, index) => (
+                    <Link href={`/profile/${user._id.$oid}`} key={index}>
+
               <div className="flex items-center mb-4" key={index}>
                 <img src="https://placehold.co/50x50" alt="Profile picture" className="w-12 h-12 rounded-full mr-4" />
                 <div>
-                  <h3 className="text-sm font-bold">Co-traveller Name</h3> {/* Replace with actual co-traveller data */}
+                  <h3 className="text-sm font-bold">{user.first_name} {user.last_name}</h3> 
                   <p className="text-sm text-gray-500">Co-traveller Route</p> {/* Replace with actual route data */}
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </div>

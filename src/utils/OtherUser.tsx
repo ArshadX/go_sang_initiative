@@ -5,6 +5,7 @@ import { instance } from '@/constants/apis/instance';
 export const OtherUser = async (requested_user:string) => {
   try {
     const session = await getCredentials();
+    console.log(session.token);
     if (!session.token) {
       throw new Error('No token found');
     }
@@ -13,7 +14,7 @@ export const OtherUser = async (requested_user:string) => {
       '/user_profile/get_others_profile/',
       {
         user_id: session.phone_number,
-        requested_profile_id: requested_user,
+        requested_profile_id: '670e1786eaca41e3ff2eb7dc',
       },
       {
         headers: {
@@ -23,9 +24,10 @@ export const OtherUser = async (requested_user:string) => {
       }
     );
     
-    if (response) {
-      console.log(response);
-      return response;
+    if (response.data) {
+      const user= JSON.parse(response.data);
+       console.log(user);
+      return user;
     }
     throw new Error('User not found');
   } catch (error) {

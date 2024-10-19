@@ -41,6 +41,7 @@ const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false); // 
 
   const fetchToken = useCallback(async () => {
     const session = await getCredentials();
+    console.log(session.token);
     fetchUser(session.phone_number, session.token);
   }, []);
 
