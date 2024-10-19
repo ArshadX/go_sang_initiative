@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line } from "react-icons/ri";
+import { RiSendPlaneLine, RiMapPinUserFill, RiUser3Line, RiGpsFill } from "react-icons/ri";
 import { useRouter } from 'next/navigation';
 import useOSRMRoute from '@/hooks/useOSRMRoute';
 import { instance } from "@/constants/apis/instance";
@@ -48,7 +48,7 @@ const ChooseLocation = () => {
       } else {
         setFromSuggestions([]);
       }
-    }, 1000); // Debounce for 300ms
+    }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [fromLocation]);
@@ -64,7 +64,7 @@ const ChooseLocation = () => {
       } else {
         setToSuggestions([]);
       }
-    }, 1000); 
+    }, 1000);
 
     return () => clearTimeout(delayDebounceFn);
   }, [toLocation]);
@@ -87,6 +87,33 @@ const ChooseLocation = () => {
     }
   };
 
+  // Get Current Location and Reverse Geocode
+  const useCurrentLocation = (type: 'from' | 'to') => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const coordinates: Coordinates = { lat: latitude, lon: longitude };
+
+        // Reverse geocoding to get the address from lat/lon
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+          .then(response => response.json())
+          .then(data => {
+            const address = data.display_name;
+            if (type === 'from') {
+              setFromCoordinates(coordinates);
+              setFromLocation(address); // Fill address in input
+            } else {
+              setToCoordinates(coordinates);
+              setToLocation(address); // Fill address in input
+            }
+          })
+          .catch(err => console.error('Error during reverse geocoding:', err));
+      },
+      (error) => console.error('Error getting location:', error),
+      { enableHighAccuracy: true }
+    );
+  };
+
   const incrementPassenger = () => setPassengerCount(passengerCount + 1);
   const decrementPassenger = () => {
     if (passengerCount > 1) setPassengerCount(passengerCount - 1);
@@ -98,7 +125,7 @@ const ChooseLocation = () => {
       coordinates_to: { lon: toCoordinates.lon, lat: toCoordinates.lat },
       address_from: fromLocation,
       address_to: toLocation,
-      seats: passengerCount, 
+      seats: passengerCount,
       search_origin: "home",
       ladies_only: false,
     };
@@ -110,10 +137,8 @@ const ChooseLocation = () => {
       } else {
         const rideData = JSON.parse(response.data.data);
         localStorage.setItem('rides', JSON.stringify(rideData));
-        // Handle rideData as needed
         router.push('/rides');
       }
-
     } catch (error: any) {
       console.error(error.message);
     }
@@ -134,11 +159,21 @@ const ChooseLocation = () => {
             onChange={(e) => setFromLocation(e.target.value)}
             className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
           />
+          <span
+            className="absolute right-3 text-gray-600 cursor-pointer relative group"
+            onClick={() => useCurrentLocation('from')}
+          >
+            <RiGpsFill />
+            {/* Tooltip */}
+            <span className="absolute hidden group-hover:flex items-center -top-8 right-0 bg-black text-white text-xs px-2 py-1 rounded-lg">
+              Use Current Location
+            </span>
+          </span>
           {fromSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
               {fromSuggestions.map((suggestion, index) => (
                 <div
-                  key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                  key={`${suggestion.properties.osm_id}-${index}`}
                   className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('from', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
@@ -159,11 +194,21 @@ const ChooseLocation = () => {
             onChange={(e) => setToLocation(e.target.value)}
             className="bg-gray-100 text-gray-600 w-full p-2 rounded-full outline-none"
           />
+          <span
+            className="absolute right-3 text-gray-600 cursor-pointer relative group"
+            onClick={() => useCurrentLocation('to')}
+          >
+            <RiGpsFill />
+            {/* Tooltip */}
+            <span className="absolute hidden group-hover:flex items-center -top-8 right-0 bg-black text-white text-xs px-2 py-1 rounded-lg">
+              Use Current Location
+            </span>
+          </span>
           {toSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
               {toSuggestions.map((suggestion, index) => (
                 <div
-                  key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                  key={`${suggestion.properties.osm_id}-${index}`}
                   className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('to', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
@@ -174,8 +219,8 @@ const ChooseLocation = () => {
           )}
         </div>
 
-        {/* Date Picker Input */}
-        <div className="flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
+        {/* DateTime Input */}
+        <div className="relative flex items-center bg-gray-100 rounded-full p-2 w-full sm:w-1/4">
           <input
             type="datetime-local"
             value={dateTime}

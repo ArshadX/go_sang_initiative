@@ -1,8 +1,5 @@
 {
-  "/myrides/page": "app/myrides/page.js",
-  "/rides/page": "app/rides/page.js",
   "/profile/page": "app/profile/page.js",
-  "/rides/offered/page": "app/rides/offered/page.js",
   "/page": "app/page.js",
-  "/faq/page": "app/faq/page.js"
+  "/rides/page": "app/rides/page.js"
 }
