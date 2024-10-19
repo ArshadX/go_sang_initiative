@@ -1,12 +1,11 @@
 "use client";
 export const revalidate = 'no-store';
-import React, {useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';  // Use next/navigation in App Router, not 'next/router'
 
 import { validateField } from "@/utils/formValidation";
-import { generateSession, getCredentials } from "@/app/actions/auth"
+import { generateSession, getCredentials } from "@/app/actions/auth";
 import { instance } from "@/constants/apis/instance";
-
 
 const Login = () => {
   const router = useRouter();
@@ -16,16 +15,21 @@ const Login = () => {
   const [otp, setOtp] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
-  const fetchToken = useCallback(async()=>{
-    const session = await getCredentials()
-    if(session.isAuth){
-      router.push("/profile")
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+  const fetchToken = useCallback(async () => {
+    const session = await getCredentials();
+    if (session.isAuth) {
+      router.push("/profile");
     }
-  },[])
-  useEffect(()=>{
-      fetchToken()
-  },[])
-  const handleNext = async (e:any) => {
+  }, []);
+
+  useEffect(() => {
+    fetchToken();
+  }, []);
+
+  const handleNext = async (e: any) => {
+    if (loading) return; // Prevent multiple clicks
+
     if (step === 1) {
       const mobileError = validateField("phone", mobile);
       if (mobileError) {
@@ -34,82 +38,53 @@ const Login = () => {
       }
 
       setError(""); 
+      setLoading(true); // Start loading
 
       try {
-        const res = await instance.post('/user_profile/user_exist/',{
-          user_id:mobile
-        })
-        console.log("asakasjsakj",res.data)
+        const res = await instance.post('/user_profile/user_exist/', {
+          user_id: mobile
+        });
         if (res.data.user_exist) {
-            console.log(res.data)
-          setStep(2);  // Move to the password/OTP step
+          setStep(2); // Move to the password/OTP step
         } else {
           setError("This mobile number does not exist.");
         }
       } catch (error: any) {
-        console.log(error)
         handleError(error);
+      } finally {
+        setLoading(false); // Stop loading
       }
     } else if (step === 2) {
       if (password !== "" && otp === "") {
+        setLoading(true); // Start loading
+
         try {
-          console.log("login pressed")
           const response = await instance.post('/user_profile/login/', {
             user_id: mobile,
             password: password,
           });
-          console.log(response.status)
+
           if (response.status === 200) {
-            await generateSession(response.data.token,mobile); 
-            router.push('/profile') // Navigate to profile on successful login
+            await generateSession(response.data.token, mobile);
+            router.push('/profile'); // Navigate to profile on successful login
           } else {
-            console.log("invalid")
             setError("Login failed. Check your credentials.");
           }
-        } catch (error:any) {
-          console.log('eeror')
-          setError(error.message)
-          // handleError(error)
+        } catch (error: any) {
+          setError(error.message);
+        } finally {
+          setLoading(false); // Stop loading
         }
       }
     }
   };
 
   const handleOtpLogin = async () => {
-    // const countryCode = "+91"; 
-    // const formattedPhoneNumber = `${countryCode}${mobile.replace(/\D/g, "")}`;
-    // try {
-    //   const response = await axios.get("", {
-    //     params: {
-    //       key: "",
-    //       otp: otp,
-    //       to: formattedPhoneNumber,
-    //     },
-    //     headers: {
-          
-    //     },
-    //   });
-
-    //   if (response.status === 200) {
-    //     setOtpSent(true);
-    //     setStep(3); // Move to OTP verification step
-    //   } else {
-    //     setError("Failed to send OTP via WhatsApp.");
-    //   }
-    // } catch (error) {
-    //   setError("Error sending OTP. Please try again later.");
-    // }
+    // OTP login logic
   };
 
   const handleOtpVerify = () => {
-    // Implement OTP verification logic here.
-    // Once OTP is verified, you can redirect the user to the profile page or show success message.
-    if (otp.length === 4) { // Check if OTP length is valid
-      // Assuming verification passed
-      router.push('/profile');  // Redirect to profile after OTP verification
-    } else {
-      setError("Invalid OTP. Please try again.");
-    }
+    // OTP verification logic
   };
 
   const handleError = (error: any) => {
@@ -131,6 +106,8 @@ const Login = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md m-4">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
+        {loading && <p className="text-center">Loading...</p>} {/* Loading message */}
+
         {step === 1 && (
           <div>
             <input
@@ -144,6 +121,7 @@ const Login = () => {
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white w-full p-2 rounded-full"
+              disabled={loading} // Disable button while loading
             >
               Next
             </button>
@@ -164,6 +142,7 @@ const Login = () => {
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white w-full p-2 rounded-full active:bg-secondary"
+              disabled={loading} // Disable button while loading
             >
               Login
             </button>
@@ -196,8 +175,9 @@ const Login = () => {
             </div>
             {error && <p className="text-red-500 text-center mb-4">{error}</p>}
             <button
-              onClick={handleOtpVerify}  // OTP verification handler
+              onClick={handleOtpVerify}  
               className="bg-blue-500 text-white w-full p-2 rounded-full"
+              disabled={loading} 
             >
               Verify OTP
             </button>

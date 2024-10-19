@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { RiMapPinLine, RiArrowRightSLine, RiCheckboxCircleLine, RiStarFill, RiCloseCircleLine, RiFlashlightLine } from 'react-icons/ri';
+import { RiMapPinLine,RiErrorWarningLine, RiArrowRightSLine, RiCheckboxCircleLine, RiStarFill, RiCloseCircleLine, RiFlashlightLine } from 'react-icons/ri';
 import { useParams } from 'next/navigation';
 import { instance } from '@/constants/apis/instance';
 import { getCredentials } from "@/app/actions/auth";
@@ -16,7 +16,8 @@ const BookingPage = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isRideBooked, setIsRideBooked] = useState<boolean>(false);
   const [RequestedUsers, setRequestedUsers] = useState<Array<any>>([]);
-  
+  const [error, setError] = useState<string | null>(null);  
+
   const params = useParams();
   const { id } = params;
 
@@ -45,12 +46,16 @@ const BookingPage = () => {
                 })
               );
               setRequestedUsers(coTravellers);
-           
+            } else {
+              setError("Ride not found.");
+            }
+          } else {
+            setError("No rides available in localStorage.");
           }
+        } catch (error) {
+          console.error('Error fetching ride data:', error);
+          setError('An error occurred while fetching the ride data.');
         }
-      } catch (error) {
-        console.error('Error fetching ride data:', error);
-      }
     };
 
     fetchRideData();
@@ -71,22 +76,27 @@ const BookingPage = () => {
             'Content-Type': 'application/json',
         },
          });
-      if (response.status === 200) {
-        setIsRideBooked(true);
-        console.log('Ride booked successfully:', response.data);
-      } else {
-        console.log('Unexpected response:', response.status);
-      }
-    } catch (error: any) {
-      if (error.response) {
-        console.log('Error response data:', error.response.data);
-      } else if (error.request) {
-        console.log('No response received:', error.request);
-      } else {
-        console.log('Error:', error.message);
-      }
+         if (response.status === 200) {
+          setIsRideBooked(true);
+          console.log('Ride booked successfully:', response.data);
+        } else {
+          console.log('Unexpected response:', response.status);
+          setError('Unexpected response while booking the ride.');
+        }
+      } catch (error: any) {
+        if (error.response) {
+          console.log('Error response data:', error.response.data);
+          setError('Error booking the ride: ' + error.response.data.message);
+        } else if (error.request) {
+          console.log('No response received:', error.request);
+          setError('No response from the server. Please try again.');
+        } else {
+          console.log('Error:', error.message);
+          setError('Error: ' + error.message);
+        }
     }
   };
+  
 
   if (!ride) {
     return (
@@ -103,7 +113,18 @@ const BookingPage = () => {
   }
 
   return (
+    
     <div className="max-w-4xl mx-auto bg-gray-100 p-6">
+
+{error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+          <RiErrorWarningLine className="absolute top-0 left-0 mt-2 ml-3" />
+          <strong className="font-bold"> 
+            
+          </strong>
+          <span className="block sm:inline">{error}</span>
+        </div>
+      )}
       <h1 className="text-2xl font-bold mb-4">
         {new Date(ride.pick_up_time).toLocaleDateString('en-US', {
           weekday: 'long',
@@ -172,7 +193,7 @@ const BookingPage = () => {
 
           {/* Co-travellers */}
           <div className="bg-white p-4 rounded-lg shadow">
-            <h2 className="text-lg font-bold mb-4">Co-travellers</h2>
+            <h2 className="text-lg font-bold mb-4">Co-travellers / Booked Users</h2>
             {RequestedUsers.map((user, index) => (
                     <Link href={`/profile/${user._id.$oid}`} key={index}>
 

@@ -48,7 +48,7 @@ const ChooseLocation = () => {
       } else {
         setFromSuggestions([]);
       }
-    }, 300); // Debounce for 300ms
+    }, 1000); // Debounce for 300ms
 
     return () => clearTimeout(delayDebounceFn);
   }, [fromLocation]);
@@ -64,7 +64,7 @@ const ChooseLocation = () => {
       } else {
         setToSuggestions([]);
       }
-    }, 300); // Debounce for 300ms
+    }, 1000); 
 
     return () => clearTimeout(delayDebounceFn);
   }, [toLocation]);
@@ -79,11 +79,11 @@ const ChooseLocation = () => {
     if (type === 'from') {
       setFromLocation(name);
       setFromCoordinates({ lat: Number(lat), lon: Number(lon) });
-      setFromSuggestions([]);
+      setFromSuggestions([]); // Clear suggestions for 'from' location
     } else {
       setToLocation(name);
       setToCoordinates({ lat: Number(lat), lon: Number(lon) });
-      setToSuggestions([]);
+      setToSuggestions([]); // Clear suggestions for 'to' location
     }
   };
 
@@ -98,7 +98,7 @@ const ChooseLocation = () => {
       coordinates_to: { lon: toCoordinates.lon, lat: toCoordinates.lat },
       address_from: fromLocation,
       address_to: toLocation,
-      seats: passengerCount, // Use passengerCount instead of hardcoding
+      seats: passengerCount, 
       search_origin: "home",
       ladies_only: false,
     };
@@ -108,7 +108,6 @@ const ChooseLocation = () => {
       if (response.status !== 200) {
         throw new Error('Network response was not ok');
       } else {
-        console.log(searchData);
         const rideData = JSON.parse(response.data.data);
         localStorage.setItem('rides', JSON.stringify(rideData));
         // Handle rideData as needed
@@ -137,10 +136,10 @@ const ChooseLocation = () => {
           />
           {fromSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
-              {fromSuggestions.map((suggestion,index) => (
+              {fromSuggestions.map((suggestion, index) => (
                 <div
-                key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                  key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                  className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('from', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
                   <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
@@ -162,10 +161,10 @@ const ChooseLocation = () => {
           />
           {toSuggestions.length > 0 && (
             <div className="absolute top-full mt-1 bg-white shadow-md rounded-lg w-full max-h-60 overflow-y-auto z-50">
-              {toSuggestions.map((suggestion,index) => (
+              {toSuggestions.map((suggestion, index) => (
                 <div
-                key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
-                className="p-2 hover:bg-gray-100 cursor-pointer"
+                  key={`${suggestion.properties.osm_id}-${index}`}  // Combine osm_id and index
+                  className="p-2 hover:bg-gray-100 cursor-pointer"
                   onClick={() => handleLocationClick('to', suggestion.properties.name, suggestion.geometry.coordinates)}
                 >
                   <strong>{suggestion.properties.name}</strong>, {suggestion.properties.city}, {suggestion.properties.state}, {suggestion.properties.country}
@@ -226,15 +225,13 @@ const ChooseLocation = () => {
 
       {/* Search Button */}
       <div className="flex justify-center">
-          <button
-            className="mt-4 bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 transition"
-            onClick={handleSearch}
-          >
-            Search
-          </button>
-        </div>
-
-
+        <button
+          className="mt-4 bg-blue-500 text-white rounded-full py-2 px-4 hover:bg-blue-600 transition"
+          onClick={handleSearch}
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 };

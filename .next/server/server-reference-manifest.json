@@ -4,99 +4,115 @@
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/myrides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/addride/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/faq/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/myrides/page": "rsc",
-        "app/rides/[id]/page": "rsc",
-        "app/rides/page": "rsc",
-        "app/rides/offered/page": "rsc",
+        "app/rides/get/page": "rsc",
         "app/_not-found/page": "rsc",
+        "app/rides/[id]/page": "rsc",
+        "app/addride/page": "rsc",
+        "app/rides/page": "rsc",
         "app/login/page": "rsc",
         "app/profile/page": "rsc",
-        "app/rides/get/page": "rsc"
+        "app/rides/offered/page": "rsc",
+        "app/faq/page": "rsc"
       }
     },
     "1f8603cda0f2f31d99d0296854239531a435c63b": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/myrides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/addride/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/faq/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/myrides/page": "rsc",
-        "app/rides/[id]/page": "rsc",
-        "app/rides/page": "rsc",
-        "app/rides/offered/page": "rsc",
+        "app/rides/get/page": "rsc",
         "app/_not-found/page": "rsc",
+        "app/rides/[id]/page": "rsc",
+        "app/addride/page": "rsc",
+        "app/rides/page": "rsc",
         "app/login/page": "rsc",
         "app/profile/page": "rsc",
-        "app/rides/get/page": "rsc"
+        "app/rides/offered/page": "rsc",
+        "app/faq/page": "rsc"
       }
     },
     "41e4e7faa11442691d67bc216270a4ab7c32ad3b": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/myrides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/addride/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/faq/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/myrides/page": "rsc",
-        "app/rides/[id]/page": "rsc",
-        "app/rides/page": "rsc",
-        "app/rides/offered/page": "rsc",
+        "app/rides/get/page": "rsc",
         "app/_not-found/page": "rsc",
+        "app/rides/[id]/page": "rsc",
+        "app/addride/page": "rsc",
+        "app/rides/page": "rsc",
         "app/login/page": "rsc",
         "app/profile/page": "rsc",
-        "app/rides/get/page": "rsc"
+        "app/rides/offered/page": "rsc",
+        "app/faq/page": "rsc"
       }
     },
     "6fefbf04decd7b7a7b1824625bc568fb707f81a0": {
       "workers": {
         "app/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/myrides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/_not-found/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/[id]/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/addride/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/rides/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
         "app/profile/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
-        "app/rides/get/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
+        "app/rides/offered/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!",
+        "app/faq/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CProjects%5C%5Cgo_sang_initiative%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Cauth.ts%22%2C%5B%22logout%22%2C%22generateSession%22%2C%22getCredentials%22%2C%22%24%24ACTION_0%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/page": "rsc",
         "app/myrides/page": "rsc",
-        "app/rides/[id]/page": "rsc",
-        "app/rides/page": "rsc",
-        "app/rides/offered/page": "rsc",
+        "app/rides/get/page": "rsc",
         "app/_not-found/page": "rsc",
+        "app/rides/[id]/page": "rsc",
+        "app/addride/page": "rsc",
+        "app/rides/page": "rsc",
         "app/login/page": "rsc",
         "app/profile/page": "rsc",
-        "app/rides/get/page": "rsc"
+        "app/rides/offered/page": "rsc",
+        "app/faq/page": "rsc"
       }
     }
   },
   "edge": {},
-  "encryptionKey": "59fAVFrcOZCeOsF9ZS+63JqoKpWbuJMNh9yQnPgBAeM="
+  "encryptionKey": "IzBzKXaJXtggA/aU4qDn+H7V1T8OBcv18ScPSqSl+j8="
 }

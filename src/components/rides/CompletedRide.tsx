@@ -3,7 +3,7 @@
 import { FaCar } from 'react-icons/fa';
 import Image from 'next/image';
 
-const MyRides = () => {
+const CompletedRide = () => {
   return (
     
     <div className="max-w-sm mx-auto bg-white rounded-lg shadow-md p-4 mt-6">
@@ -51,4 +51,4 @@ const MyRides = () => {
   );
 };
 
-export default MyRides;
+export default CompletedRide;
