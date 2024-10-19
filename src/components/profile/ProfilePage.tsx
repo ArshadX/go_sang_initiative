@@ -15,7 +15,9 @@ import {
   RiHeartLine,
   RiArrowRightSLine,
   RiArrowDownSLine,
-  RiDeleteBinLine
+  RiDeleteBinLine,
+  RiFileList2Line, RiTimeLine,
+   RiCarLine, RiAddLine
 } from 'react-icons/ri';
 import { useRouter } from 'next/navigation';
 
@@ -181,36 +183,55 @@ const ProfilePage = () => {
                 <RiArrowRightSLine className="text-gray-500" />
               )}
             </li>
-            {collapseStates.vehicles && (
-              <ul className="pl-8">
-                {vehicles && vehicles.map((vehicle, index) => (
-                  <li key={index} className="flex items-center justify-between">
-                    <b>{vehicle.vehicle_brand} - {vehicle.vehicle_number}</b>
-                    <button onClick={() => { setDeleteVehicle(vehicle); setShowDeleteConfirmation(true); }} className="text-red-500 ml-2">
-                      <RiDeleteBinLine />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
 
-            <li onClick={() => toggleCollapse('MyRides')} className="flex items-center justify-between cursor-pointer">
-              <a href="#" className="flex items-center">
-                <RiHistoryLine className="text-gray-500 mr-4" />
-                <span className="font-semibold">My Rides</span>
-              </a>
-              {collapseStates.MyRides ? (
-                <RiArrowDownSLine className="text-gray-500" />
-              ) : (
-                <RiArrowRightSLine className="text-gray-500" />
-              )}
-            </li>
-            {collapseStates.MyRides && (
-              <ul className="pl-8">
-                <a href="/rides/offered"><b><li>Offered Rides</li></b></a>
-                <a href="/rides/get"><b><li>Ride History</li></b></a>
-              </ul>
-            )}
+                      {collapseStates.vehicles && (
+                        <ul className="pl-8">
+                          {vehicles && vehicles.map((vehicle, index) => (
+                            <li key={index} className="flex items-center justify-between">
+                              <div className="flex items-center">
+                                <RiCarLine className="text-gray-500 mr-2" />
+                                <b>{vehicle.vehicle_brand} - {vehicle.vehicle_number}</b>
+                              </div>
+                              <button onClick={() => { setDeleteVehicle(vehicle); setShowDeleteConfirmation(true); }} className="text-red-500 ml-2">
+                                <RiDeleteBinLine />
+                              </button>
+                            </li>
+                          ))}
+                          <li className="flex items-center justify-between">
+                            <a href="/addvehical" className='flex items-center text-blue-400'>
+                              <RiAddLine className="mr-2" />
+                              Add Vehicle
+                            </a>
+                          </li>
+                        </ul>
+                      )}
+
+
+
+                    <li onClick={() => toggleCollapse('MyRides')} className="flex items-center justify-between cursor-pointer">
+                      <a href="#" className="flex items-center">
+                        <RiHistoryLine className="text-gray-500 mr-4" />
+                        <span className="font-semibold">My Rides</span>
+                      </a>
+                      {collapseStates.MyRides ? (
+                        <RiArrowDownSLine className="text-gray-500" />
+                      ) : (
+                        <RiArrowRightSLine className="text-gray-500" />
+                      )}
+                    </li>
+                  {collapseStates.MyRides && (
+                    <ul className="pl-8">
+                      <li className='flex items-center'>
+                        <RiFileList2Line className="text-blue-500 mr-2" />
+                        <a href="/rides/offered" className='text-blue-500'>Offered Rides</a>
+                      </li>
+                      <li className='flex items-center'>
+                        <RiTimeLine className="text-blue-500 mr-2" />
+                        <a href="/rides/get" className='text-blue-500'>Ride History</a>
+                      </li>
+                    </ul>
+                  )}
+
 
             {/* Payment History Section */}
             <li onClick={() => toggleCollapse('paymentHistory')} className="flex items-center justify-between cursor-pointer">
