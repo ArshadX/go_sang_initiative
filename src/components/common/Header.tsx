@@ -15,7 +15,7 @@ const about = [
   { name: 'Who we are', description: '', href: '/about', icon: RiTeamLine },
   { name: 'Refer and earn free rides', description: '', href: '#', icon: RiMoneyRupeeCircleLine },
   { name: 'Safety measures', description: '', href: '#', icon: RiShieldCheckLine },
-  { name: 'FAQs', description: '', href: '#', icon: RiChat4Line},
+  { name: 'FAQs', description: '', href: '/faq', icon: RiChat4Line},
 ];
 
 const callsToAction = [

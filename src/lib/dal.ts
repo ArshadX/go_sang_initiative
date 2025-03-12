@@ -9,13 +9,14 @@ export const verifySession = cache(async () => {
   const session = await decrypt(cookiestore);
 
   if (!session?.phone_number) {
-    return { isAuth: false, token: null, phone_number: null, session: null }; // Include session as null if not authenticated
+    return { isAuth: false, token: null, phone_number: null }; // Include session as null if not authenticated
   }
 
   return {
     isAuth: true,
     token: session.token,
     phone_number: session.phone_number,
-    session:session // Return the entire session object
+    
+    
   };
 });

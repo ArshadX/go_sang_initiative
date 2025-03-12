@@ -22,25 +22,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/faq/page": [
+    "/rides/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/faq/page.js"
+      "static/chunks/app/rides/page.js"
     ],
-    "/faq/error": [
+    "/rides/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/faq/error.js"
+      "static/chunks/app/rides/error.js"
     ],
-    "/faq/loading": [
+    "/rides/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/faq/loading.js"
-    ],
-    "/_not-found/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/rides/loading.js"
     ],
     "/profile/page": [
       "static/chunks/webpack.js",
@@ -57,20 +52,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/profile/loading.js"
     ],
-    "/terms&conditions/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/terms&conditions/page.js"
+      "static/chunks/app/login/page.js"
     ],
-    "/terms&conditions/error": [
+    "/login/error": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/terms&conditions/error.js"
+      "static/chunks/app/login/error.js"
     ],
-    "/terms&conditions/loading": [
+    "/login/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/terms&conditions/loading.js"
+      "static/chunks/app/login/loading.js"
     ]
   }
 }

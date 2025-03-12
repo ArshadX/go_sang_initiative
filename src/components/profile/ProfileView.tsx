@@ -1,39 +1,59 @@
-"use client"; // This line marks the component as a Client Component
+"use client"; // Mark this as a Client Component
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RiShieldStarLine, RiErrorWarningLine, RiChat1Line, RiMailLine, RiCloseCircleLine } from 'react-icons/ri';
+import { useParams } from 'next/navigation';
+import { OtherUser } from '@/utils/OtherUser';
+import User  from './User'; 
 
 const ProfileView = () => {
-    // Sample user data
-    const user = {
-        name: 'Jane Doe',
-        isAadharVerified: true,
-        isRCVerified: false,
-        isDrivingLicenseVerified: true,
-        gender: 'female',
-        description: 'Travel enthusiast and adventure seeker.',
-        ridesPublished: 3,
-        memberSince: 'April 2024',
-        email: 'jane.doe@example.com',
-        profileImage: 'https://via.placeholder.com/150',
-    };
+    const { id } = useParams(); 
+    const [user, setUser] = useState<User | null>(null); 
 
-    // Local state for verification checkboxes
+    // Fetch the user profile when the id changes
+    useEffect(() => {
+        const fetchProfile = async () => {
+            if (id) { 
+                const userData = await OtherUser(id as string); 
+                setUser(userData);
+            }
+        };
+        fetchProfile(); 
+    }, [id]); 
+
     const [verificationStatus, setVerificationStatus] = useState({
-        aadhar: user.isAadharVerified,
-        rc: user.isRCVerified,
-        drivingLicense: user.isDrivingLicenseVerified,
+        aadhar: false,
+        rc: false,
+        drivingLicense: false,
     });
 
-    const handleCheckboxChange = (e:any) => {
-        const { name, checked } = e.target;
-        setVerificationStatus((prev) => ({ ...prev, [name]: checked }));
-    };
+    // Update verification status when user is fetched
+    useEffect(() => {
+        if (user) {
+            setVerificationStatus({
+                aadhar: user.is_aadhar_verified || false,
+                rc: user.is_email_verified || false, 
+                drivingLicense: user.is_number_verified || false, 
+            });
+        }
+    }, [user]);
+
+    if (!user) {
+        return <div>Loading...</div>; 
+    }
+
+    const profileImage = '/path-to-dummy-image.jpg'; 
+    const dummyDescription = "This is a sample description for the user."; 
+    const ridesPublished = 10; 
+
+    const createdAtDate = user.created_at?.$date 
+        ? new Date(user.created_at.$date).toLocaleDateString() 
+        : 'Unknown'; 
 
     // Determine card colors
-    const cardColor = 'bg-pink-300'; // Default pink color
-    const verifiedColor = 'bg-yellow-200'; // Gold color for verified items
-    const unverifiedColor = 'bg-gray-300'; // Silver color for unverified items
+    const cardColor = 'bg-pink-300'; 
+    const verifiedColor = 'bg-yellow-200'; 
+    const unverifiedColor = 'bg-gray-300'; 
 
     return (
         <div className="min-h-screen bg-gray-100 py-8">
@@ -43,16 +63,16 @@ const ProfileView = () => {
 
                 {/* Profile Card */}
                 <div className={`bg-white rounded-lg shadow-lg p-6 mb-4 flex items-center transition-transform transform hover:scale-105 duration-300 ease-in-out`}>
-                    <img src={user.profileImage} alt="Profile" className="w-24 h-24 rounded-full border-4 border-gray-300 shadow-md transition-transform duration-200 ease-in-out hover:scale-110" />
+                    <img src={profileImage} alt="Profile" className="w-24 h-24 rounded-full border-4 border-gray-300 shadow-md transition-transform duration-200 ease-in-out hover:scale-110" />
                     <div className="ml-6">
                         <div className="flex items-center mb-2">
                             <RiShieldStarLine className={`text-2xl ${verificationStatus.aadhar ? 'text-yellow-500' : 'text-gray-300'}`} />
-                            <h2 className="text-xl font-bold ml-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">{user.name}</h2>
+                            <h2 className="text-xl font-bold ml-2 text-gray-800 hover:text-blue-600 transition-colors duration-300">{user.first_name} {user.last_name}</h2>
                         </div>
-                        <p className="text-sm text-gray-600 italic mb-3">{user.description}</p>
+                        <p className="text-sm text-gray-600 italic mb-3">{dummyDescription}</p>
                         <div className="flex flex-col justify-start text-gray-700 text-sm">
-                            <span className="font-semibold">{user.ridesPublished} rides published</span>
-                            <span className="font-semibold">Member since {user.memberSince}</span>
+                            <span className="font-semibold">{ridesPublished} rides published</span>
+                            <span className="font-semibold">Member since {createdAtDate}</span> {/* Rendering the parsed date */}
                         </div>
                     </div>
                 </div>
@@ -60,11 +80,11 @@ const ProfileView = () => {
                 {/* Contact Options */}
                 <div className="bg-white rounded-lg shadow-lg p-4 mb-4 flex items-center space-x-4">
                     <RiChat1Line className="text-2xl text-blue-500" />
-                    <span className="text-lg font-semibold text-gray-800">Chat with {user.name}</span>
+                    <span className="text-lg font-semibold text-gray-800">Chat with {user.first_name}</span>
                 </div>
                 <div className="bg-white rounded-lg shadow-lg p-4 flex items-center space-x-4">
                     <RiMailLine className="text-2xl text-blue-500" />
-                    <span className="text-lg font-semibold text-gray-800">{user.email}</span>
+                    <span className="text-lg font-semibold text-gray-800">{user.email || 'Email not provided'}</span>
                 </div>
 
                 {/* Verification Status Section */}

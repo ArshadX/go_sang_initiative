@@ -42,7 +42,7 @@ const slider = [
 
 export default function Carousel() {
   return (
-    <main suppressHydrationWarning={true}>
+    <main suppressHydrationWarning={true}  className="mb-10">
         <Swiper
         effect={'cube'}
         autoplay={

@@ -14,7 +14,7 @@ const BottomTab = () => {
                 <RiAddCircleLine size={20} color={pathname === "/addride"?"#22d3ee":"#000"} />
                 <span className="text-xs">Publish Ride </span>
             </Link>
-            <Link href="/rides" aria-label="My Rides" className="flex flex-col items-center">
+            <Link href="/myrides" aria-label="My Rides" className="flex flex-col items-center">
                 <RiCarLine size={20} color={pathname === "/rides"?"#22d3ee":"#000"}/>
                 <span className="text-xs">My Rides</span>
             </Link>

@@ -23,7 +23,9 @@ export default function Error({
           () => reset()
         }
       >
-        Try again
+        <div className="justify-content-center">
+        <b>Some Error Accoured Please try again and make sure you logged in</b>
+        </div>
       </button>
     </div>
   )

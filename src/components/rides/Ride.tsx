@@ -24,7 +24,7 @@ export default interface Ride {
     seats: number; 
     status: string;
     stoppers: any[]; 
-    vehicle: Vehicle;  // Use the Vehicle interface
+    vehicle: Vehicle;  
     user_id: string;
     created_at: string;
     updated_at: string;

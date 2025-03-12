@@ -4,7 +4,7 @@ import { verifySession } from "@/lib/dal";
 import { createSession, deleteSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { cache } from "react";
-
+import User from "@/components/profile/User";
 export async function generateSession(token:string,phone_number:string) {
   await createSession(token,phone_number)
 }

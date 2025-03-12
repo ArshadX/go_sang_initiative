@@ -16,12 +16,12 @@ function useOSRMRoute() {
 
         if (data.routes && data.routes.length > 0) {
           const route = data.routes[0];
-          const distanceInKm = route.distance / 1000; // Convert meters to kilometers
-          const durationInHours = Math.floor(route.duration / 3600); // Convert seconds to hours
-          const durationInMinutes = Math.floor((route.duration % 3600) / 60); // Remaining minutes
+          const distanceInKm = route.distance / 1000; 
+          const durationInHours = Math.floor(route.duration / 3600); 
+          const durationInMinutes = Math.floor((route.duration % 3600) / 60); 
 
           setRouteInfo({
-            distance: distanceInKm, // in kilometers
+            distance: distanceInKm, 
             duration: {
               hours: durationInHours,
               minutes: durationInMinutes,
