@@ -28,13 +28,13 @@ const BookingPage = () => {
         const data = await getCredentials();
         const user = await UserProfile();
         if (user) setUser(user as User);
-
         // Retrieve rides from localStorage
         const rides = localStorage.getItem('rides');
+        console.log(id);
+
         if (rides) {
           const parsedRides: Record<string, Ride> = JSON.parse(rides);
           if (typeof id === 'string' && parsedRides[id]) {
-            console.log(parsedRides[id]);
             setRide(parsedRides[id]);
             setRideid(parsedRides[id]._id.$oid);
 
